@@ -20,8 +20,8 @@
 <meta property="og:image" content="https://practifyia.com/images/hero-dashboard.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://practifyia.com/images/hero-dashboard.png">
-<link rel="icon" type="image/png" href="/images/logo.png">
-<link rel="apple-touch-icon" href="/images/logo.png">
+<link rel="icon" type="image/png" href="/images/favicon.png">
+<link rel="apple-touch-icon" href="/images/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -787,7 +787,7 @@ textarea{resize:vertical;min-height:100px}
       Solicitar demo
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
-    <a class="btn-o" href="https://app.practifyia.com/?source=hero" target="_blank">
+    <a class="btn-o" href="#precios">
       Empezar ahora
     </a>
   </div>
@@ -865,7 +865,6 @@ textarea{resize:vertical;min-height:100px}
 <section class="sec video-sec" id="video">
   <div class="container">
     <div style="text-align:center">
-      <div class="sec-label reveal">Vídeo · 75 segundos</div>
       <h2 class="sec-h reveal">Descubre Practify en 75 segundos.</h2>
       <p class="sec-desc reveal">Cómo tu equipo deja de perder ventas por miedo a las objeciones.</p>
     </div>
@@ -1331,7 +1330,7 @@ textarea{resize:vertical;min-height:100px}
           <span class="pc-period">/ usuario / mes</span>
         </div>
         <div class="pc-note">Facturación mensual. Cancela cuando quieras.</div>
-        <a class="pc-btn" href="https://app.practifyia.com/?source=pricing-pro" target="_blank">
+        <a class="pc-btn" href="https://checkout.practifyia.com/b/8x25kxd8X2XOfG61iu5ZC00" target="_blank">
           Empezar ahora
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
@@ -1442,7 +1441,7 @@ textarea{resize:vertical;min-height:100px}
     <h2 class="reveal">Tu mejor comercial ya está en el equipo.<br>Haz que todos se le parezcan.</h2>
     <p class="reveal">Empieza hoy o agenda una demo para que te enseñemos Practify adaptado a tu negocio.</p>
     <div class="hero-btns" style="margin-bottom:0;justify-content:center">
-      <a class="btn-p reveal" href="https://app.practifyia.com/?source=cta-final" target="_blank">
+      <a class="btn-p reveal" href="#precios">
         Empezar ahora
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
@@ -1754,7 +1753,12 @@ textarea{resize:vertical;min-height:100px}
 
 <script>
 // ── PAGE SYSTEM ──
-function showPage(name){
+// Mapa página interna ↔ URL pública
+const PAGE_TO_PATH={main:'/',privacidad:'/privacidad',terminos:'/terminos',cookies:'/cookies',demo:'/demo'};
+const PATH_TO_PAGE=Object.fromEntries(Object.entries(PAGE_TO_PATH).map(([k,v])=>[v,k]));
+
+function showPage(name,opts={}){
+  if(!document.getElementById('page-'+name))return;
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+name).classList.add('active');
   window.scrollTo(0,0);
@@ -1764,7 +1768,31 @@ function showPage(name){
       obs.observe(el);
     });
   },50);
+  // Sincronizar URL del navegador
+  if(!opts.skipHistory){
+    const path=PAGE_TO_PATH[name]||'/';
+    if(window.location.pathname!==path){
+      history.pushState({page:name},'',path);
+    }
+  }
+  // Título dinámico para SEO y pestañas del navegador
+  const titles={main:'Practify IA — Tu equipo comercial, entrenado por IA',privacidad:'Política de privacidad · Practify IA',terminos:'Términos y condiciones · Practify IA',cookies:'Política de cookies · Practify IA',demo:'Solicitar demo · Practify IA'};
+  if(titles[name])document.title=titles[name];
 }
+
+// Resolver página inicial según URL al cargar
+(function initPageFromURL(){
+  const path=window.location.pathname.replace(/\/$/,'')||'/';
+  const page=PATH_TO_PAGE[path]||'main';
+  if(page!=='main')showPage(page,{skipHistory:true});
+})();
+
+// Manejar botones atrás/adelante del navegador
+window.addEventListener('popstate',function(e){
+  const path=window.location.pathname.replace(/\/$/,'')||'/';
+  const page=PATH_TO_PAGE[path]||'main';
+  showPage(page,{skipHistory:true});
+});
 
 function navTo(id){
   if(!document.getElementById('page-main').classList.contains('active')){
