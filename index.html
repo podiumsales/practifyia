@@ -1762,6 +1762,12 @@ function showPage(name,opts={}){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+name).classList.add('active');
   window.scrollTo(0,0);
+  // Páginas con fondo claro (todo lo que no sea main): nav siempre en modo blanco
+  const navEl=document.getElementById('nav');
+  if(navEl){
+    if(name==='main')navEl.classList.toggle('scrolled',window.scrollY>10);
+    else navEl.classList.add('scrolled');
+  }
   setTimeout(()=>{
     document.querySelectorAll('#page-'+name+' .reveal').forEach(el=>{
       el.classList.remove('visible');
