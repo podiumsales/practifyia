@@ -1515,36 +1515,39 @@ textarea{resize:vertical;min-height:100px}
     <div>
       <div class="form-card">
         <div id="demo-form-wrap">
-          <form onsubmit="submitDemo(event)">
+          <form id="demo-form" onsubmit="submitDemo(event)">
+            <input type="hidden" name="access_key" value="REPLACE_WITH_WEB3FORMS_KEY">
+            <input type="hidden" name="subject" value="Nueva solicitud de demo · Practify IA">
+            <input type="hidden" name="from_name" value="Practify IA Web">
             <div class="form-grid">
-              <div><label>Nombre completo *</label><input type="text" placeholder="Tu nombre" required></div>
-              <div><label>Email corporativo *</label><input type="email" placeholder="tu@empresa.com" required></div>
-              <div><label>Empresa *</label><input type="text" placeholder="Nombre de tu empresa" required></div>
-              <div><label>Cargo *</label><input type="text" placeholder="CEO, Director comercial, Fundador..." required></div>
+              <div><label>Nombre completo *</label><input type="text" name="nombre" placeholder="Tu nombre" required></div>
+              <div><label>Email corporativo *</label><input type="email" name="email" placeholder="tu@empresa.com" required></div>
+              <div><label>Empresa *</label><input type="text" name="empresa" placeholder="Nombre de tu empresa" required></div>
+              <div><label>Cargo *</label><input type="text" name="cargo" placeholder="CEO, Director comercial, Fundador..." required></div>
               <div>
                 <label>Tamaño del equipo comercial *</label>
-                <select required><option value="" disabled selected>Selecciona</option><option>Solo yo</option><option>2 a 5</option><option>6 a 15</option><option>16 a 50</option><option>Más de 50</option></select>
+                <select name="equipo" required><option value="" disabled selected>Selecciona</option><option>Solo yo</option><option>2 a 5</option><option>6 a 15</option><option>16 a 50</option><option>Más de 50</option></select>
               </div>
               <div>
                 <label>Sector *</label>
-                <select required><option value="" disabled selected>Selecciona</option><option>Consultoría / Servicios</option><option>Formación / Infoproductos</option><option>SaaS / Tech</option><option>Finanzas / Seguros</option><option>Inmobiliario</option><option>Salud</option><option>Legal</option><option>B2C high-ticket</option><option>Otro</option></select>
+                <select name="sector" required><option value="" disabled selected>Selecciona</option><option>Consultoría / Servicios</option><option>Formación / Infoproductos</option><option>SaaS / Tech</option><option>Finanzas / Seguros</option><option>Inmobiliario</option><option>Salud</option><option>Legal</option><option>B2C high-ticket</option><option>Otro</option></select>
               </div>
               <div class="form-full">
                 <label>¿Qué problema quieres resolver? (opcional)</label>
-                <textarea placeholder="Onboarding lento, objeciones mal gestionadas, falta de métricas..."></textarea>
+                <textarea name="problema" placeholder="Onboarding lento, objeciones mal gestionadas, falta de métricas..."></textarea>
               </div>
             </div>
-            <button type="submit" class="btn-submit">
-              Agendar demo
+            <button type="submit" class="btn-submit" id="demo-submit-btn">
+              Continuar a agendar
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
-            <p class="form-legal">Respondemos en menos de 24h. Tus datos son tratados con confidencialidad y no se comparten con terceros.</p>
+            <p class="form-legal">Tus datos son tratados con confidencialidad y no se comparten con terceros.</p>
           </form>
         </div>
         <div class="form-success" id="demo-success">
-          <div class="suc-circle">✓</div>
-          <h3>¡Solicitud recibida!</h3>
-          <p>Te escribimos en menos de 24h para concretar día y hora. Revisa tu email.</p>
+          <h3>Elige día y hora.</h3>
+          <p style="margin-bottom:18px">Reserva el hueco que mejor te encaje. Te llegará confirmación al email.</p>
+          <div id="calendly-inline" style="min-width:280px;height:680px"></div>
         </div>
       </div>
     </div>
@@ -1854,10 +1857,51 @@ if(rpw){
 }
 
 // ── FORMS ──
-function submitDemo(e){
+async function submitDemo(e){
   e.preventDefault();
+  const form=e.target;
+  const btn=document.getElementById('demo-submit-btn');
+  const originalLabel=btn.innerHTML;
+  btn.disabled=true;
+  btn.innerHTML='Enviando...';
+
+  const data=new FormData(form);
+  const nombre=data.get('nombre')||'';
+  const email=data.get('email')||'';
+
+  // 1) Enviar datos a Web3Forms (email a Practify IA)
+  try{
+    const accessKey=data.get('access_key');
+    if(accessKey && accessKey!=='REPLACE_WITH_WEB3FORMS_KEY'){
+      const res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:data});
+      if(!res.ok)console.warn('Web3Forms error',res.status);
+    }
+  }catch(err){console.warn('Form send failed',err)}
+
+  // 2) Mostrar Calendly con prefill (siempre, aunque falle el email — para no bloquear al usuario)
   document.getElementById('demo-form-wrap').style.display='none';
-  document.getElementById('demo-success').style.display='block';
+  const sucEl=document.getElementById('demo-success');
+  sucEl.style.display='block';
+
+  // Cargar Calendly script si no está
+  if(!window.Calendly){
+    await new Promise(resolve=>{
+      const s=document.createElement('script');
+      s.src='https://assets.calendly.com/assets/external/widget.js';
+      s.async=true;
+      s.onload=resolve;
+      document.head.appendChild(s);
+    });
+  }
+  // Init inline widget
+  Calendly.initInlineWidget({
+    url:'https://calendly.com/practifyia/30min?hide_event_type_details=1&hide_landing_page_details=1&hide_gdpr_banner=1&primary_color=7c3aed',
+    parentElement:document.getElementById('calendly-inline'),
+    prefill:{name:nombre,email:email}
+  });
+
+  btn.disabled=false;
+  btn.innerHTML=originalLabel;
 }
 
 // ── FAQ ──
