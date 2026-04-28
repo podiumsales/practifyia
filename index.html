@@ -689,15 +689,20 @@ textarea{resize:vertical;min-height:100px}
   .int-tile:nth-last-child(-n+2){border-bottom:none}
 }
 @media(max-width:760px){
-  nav{padding:0 20px}
+  nav{padding:0 16px}
   .nav-links{display:none}
+  .nav-login{display:none}
+  .nav-right{gap:0}
+  .nav-cta{padding:8px 14px;font-size:13px}
   h1.hero-h{font-size:clamp(32px,9vw,48px)}
   .hero-sub{font-size:16px}
   .hero{padding:100px 20px 60px}
   .sec,.showcase,.flywheel-sec,.int-sec,.sec-sec,.pricing-sec,.faq-sec{padding:72px 0}
   .container{padding:0 20px}
   .why-grid,.flywheel-grid,.int-grid,.sec-cards,.pricing-grid{grid-template-columns:1fr}
-  .sc-inner,.sec-inner,.demo-inner{grid-template-columns:1fr;gap:40px}
+  .sc-inner,.sec-inner,.demo-inner{grid-template-columns:minmax(0,1fr);gap:40px}
+  .sc-inner>*,.sec-inner>*,.demo-inner>*{min-width:0;max-width:100%}
+  .sc-img,.sc-browser,.sc-mock-wrap{max-width:100%}
   .sc-inner.rev{direction:ltr}
   .rp-body{grid-template-columns:1fr}
   .met-grid{grid-template-columns:1fr}
