@@ -1892,8 +1892,12 @@ function scrollToId(id){
 }
 
 // ── NAV ON SCROLL ──
+// Solo aplica el toggle scroll→white en la página principal.
+// En subpáginas (demo, privacidad, términos, cookies) la nav debe quedarse en blanco siempre.
 const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>{
+  const mainActive=document.getElementById('page-main')?.classList.contains('active');
+  if(!mainActive)return;
   if(window.scrollY>10)nav.classList.add('scrolled');
   else nav.classList.remove('scrolled');
 },{passive:true});
