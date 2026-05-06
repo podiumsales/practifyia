@@ -1560,6 +1560,8 @@ textarea{resize:vertical;min-height:100px}
             <input type="hidden" name="access_key" value="ca6956c4-72b3-412f-8016-f65c90417cbd">
             <input type="hidden" name="subject" value="Nueva solicitud de demo · Practify IA">
             <input type="hidden" name="from_name" value="Practify IA Web">
+            <!-- Honeypot anti-spam: campo invisible que solo los bots rellenan -->
+            <input type="text" name="botcheck" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0;pointer-events:none" aria-hidden="true">
             <div class="form-grid">
               <div><label>Nombre completo *</label><input type="text" name="nombre" placeholder="Tu nombre" required></div>
               <div><label>Email corporativo *</label><input type="email" name="email" placeholder="tu@empresa.com" required></div>
@@ -1927,12 +1929,19 @@ async function submitDemo(e){
   const form=e.target;
   const btn=document.getElementById('demo-submit-btn');
   const originalLabel=btn.innerHTML;
-  btn.disabled=true;
-  btn.innerHTML='Enviando...';
 
   const data=new FormData(form);
   const nombre=data.get('nombre')||'';
   const email=data.get('email')||'';
+
+  // Anti-spam: si un bot rellena el honeypot, abortamos silenciosamente
+  if(data.get('botcheck')){return false}
+
+  // Validación básica de email (impide envíos malformados desde DevTools)
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){return false}
+
+  btn.disabled=true;
+  btn.innerHTML='Enviando...';
 
   // 1) Enviar datos a Web3Forms (email a Practify IA)
   try{
