@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>7 Skills de Claude para Vendedores — Practify IA</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #0a0a0a;
+    --bg-light: #fafafa;
+    --ink: #0a0a0a;
+    --ink-soft: #404040;
+    --muted: #737373;
+    --line: #e5e5e5;
+    --purple-1: #7c3aed;
+    --purple-2: #a78bfa;
+    --purple-3: #c4b5fd;
+    --purple-4: #ede9fe;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: var(--ink); }
+
+  @page { size: A4; margin: 0; }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    padding: 22mm 20mm;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-light);
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* === PAGE NUMBER + WORDMARK === */
+  .pagenum {
+    position: absolute;
+    bottom: 12mm;
+    right: 20mm;
+    font-size: 9pt;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+  .wordmark {
+    position: absolute;
+    bottom: 12mm;
+    left: 20mm;
+    font-size: 9pt;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .wordmark span { color: var(--purple-1); }
+
+  /* === COVER === */
+  .cover {
+    background: var(--bg);
+    color: #fafafa;
+    padding: 30mm 22mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cover .wordmark { color: #fafafa; }
+  .cover .pagenum { color: rgba(255,255,255,0.5); }
+
+  .cover-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .cover-logo {
+    font-size: 14pt;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  .cover-logo span { color: var(--purple-2); }
+  .cover-eyebrow {
+    display: inline-block;
+    padding: 6px 12px;
+    background: rgba(167, 139, 250, 0.15);
+    border: 1px solid rgba(167, 139, 250, 0.3);
+    border-radius: 999px;
+    font-size: 9pt;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--purple-3);
+  }
+
+  .cover-main h1 {
+    font-size: 54pt;
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    font-weight: 800;
+    margin-bottom: 14mm;
+  }
+  .cover-main h1 .hl {
+    background: linear-gradient(180deg, transparent 60%, rgba(124, 58, 237, 0.55) 60%);
+    padding: 0 4px;
+  }
+  .cover-sub {
+    font-size: 14pt;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.78);
+    max-width: 130mm;
+    font-weight: 400;
+  }
+
+  .cover-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20mm;
+    padding-top: 12mm;
+    border-top: 1px solid rgba(255,255,255,0.12);
+  }
+  .cover-foot .author {
+    font-size: 10pt;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+  }
+  .cover-foot .author strong { color: #fafafa; font-weight: 600; }
+  .cover-badge {
+    text-align: right;
+    font-size: 9pt;
+    color: rgba(255,255,255,0.5);
+  }
+  .cover-badge .big {
+    display: block;
+    font-size: 32pt;
+    font-weight: 800;
+    color: var(--purple-2);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 4mm;
+  }
+
+  /* === SECTION HEADER (skill pages) === */
+  .skill-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 8mm;
+    margin-bottom: 10mm;
+    padding-bottom: 8mm;
+    border-bottom: 1px solid var(--line);
+  }
+  .skill-number {
+    flex-shrink: 0;
+    width: 22mm;
+    height: 22mm;
+    background: var(--bg);
+    color: #fafafa;
+    border-radius: 4mm;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+  .skill-number .label {
+    font-size: 7pt;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--purple-3);
+    margin-bottom: 2mm;
+    font-weight: 600;
+  }
+  .skill-number .num {
+    font-size: 28pt;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+  }
+  .skill-title {
+    flex: 1;
+    padding-top: 2mm;
+  }
+  .skill-title h2 {
+    font-size: 22pt;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    margin-bottom: 3mm;
+  }
+  .skill-title .tagline {
+    font-size: 10.5pt;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .block {
+    margin-bottom: 7mm;
+  }
+  .block-label {
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--purple-1);
+    margin-bottom: 3mm;
+  }
+  .block-body {
+    font-size: 10.5pt;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .block-body strong { color: var(--ink); font-weight: 600; }
+
+  .prompt-box {
+    background: var(--bg);
+    color: #e5e5e5;
+    border-radius: 4mm;
+    padding: 6mm 7mm;
+    font-family: 'JetBrains Mono', 'Menlo', monospace;
+    font-size: 8.5pt;
+    line-height: 1.55;
+    white-space: pre-wrap;
+    border-left: 4px solid var(--purple-1);
+  }
+
+  /* === INTRO PAGE === */
+  .intro-page h1 {
+    font-size: 38pt;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    font-weight: 800;
+    margin-bottom: 12mm;
+  }
+  .intro-page h1 .hl {
+    color: var(--purple-1);
+  }
+  .intro-page p {
+    font-size: 12pt;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin-bottom: 6mm;
+    max-width: 155mm;
+  }
+  .intro-page p strong { color: var(--ink); }
+
+  .intro-meta {
+    margin-top: 12mm;
+    padding: 8mm;
+    background: var(--purple-4);
+    border-left: 3px solid var(--purple-1);
+    border-radius: 0 4mm 4mm 0;
+  }
+  .intro-meta .label {
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--purple-1);
+    margin-bottom: 3mm;
+  }
+  .intro-meta .body {
+    font-size: 11pt;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+
+  /* === SYSTEM PAGE === */
+  .system-page h2 {
+    font-size: 30pt;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+    margin-bottom: 8mm;
+  }
+  .system-page > p.lead {
+    font-size: 12pt;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin-bottom: 12mm;
+    max-width: 155mm;
+  }
+
+  .phase-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6mm;
+    margin-bottom: 10mm;
+  }
+  .phase-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--purple-1);
+    padding: 6mm 7mm;
+    border-radius: 0 3mm 3mm 0;
+  }
+  .phase-card .phase-label {
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--purple-1);
+    margin-bottom: 3mm;
+  }
+  .phase-card .phase-skills {
+    font-size: 11pt;
+    color: var(--ink);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .conclusion {
+    padding: 8mm;
+    background: var(--bg);
+    color: #fafafa;
+    border-radius: 4mm;
+    font-size: 11pt;
+    line-height: 1.6;
+  }
+  .conclusion strong { color: var(--purple-2); font-weight: 600; }
+
+  /* === CTA PAGE === */
+  .cta-page {
+    background: var(--bg);
+    color: #fafafa;
+    padding: 30mm 22mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cta-page .wordmark { color: #fafafa; }
+  .cta-page .pagenum { color: rgba(255,255,255,0.5); }
+
+  .cta-page h2 {
+    font-size: 38pt;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    font-weight: 800;
+    margin-bottom: 10mm;
+  }
+  .cta-page h2 .hl { color: var(--purple-2); }
+  .cta-page .body {
+    font-size: 12pt;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.78);
+    margin-bottom: 6mm;
+    max-width: 150mm;
+  }
+  .cta-page .body strong { color: #fafafa; font-weight: 600; }
+
+  .cta-list {
+    list-style: none;
+    margin: 6mm 0 10mm;
+    padding: 0;
+  }
+  .cta-list li {
+    padding: 4mm 0 4mm 9mm;
+    position: relative;
+    font-size: 11.5pt;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.5;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .cta-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 7mm;
+    width: 5mm;
+    height: 5mm;
+    border-radius: 50%;
+    background: var(--purple-1);
+  }
+  .cta-list li strong { color: #fff; font-weight: 600; }
+
+  .cta-box {
+    background: linear-gradient(135deg, var(--purple-1) 0%, #6d28d9 100%);
+    border-radius: 5mm;
+    padding: 8mm 9mm;
+    margin-top: 6mm;
+  }
+  .cta-box .label {
+    font-size: 9pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    font-weight: 700;
+    margin-bottom: 3mm;
+  }
+  .cta-box .url {
+    font-size: 20pt;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.02em;
+    margin-bottom: 3mm;
+  }
+  .cta-box .detail {
+    font-size: 10pt;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.5;
+  }
+
+  .signature {
+    margin-top: auto;
+    padding-top: 8mm;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    font-size: 10pt;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+  }
+  .signature strong { color: #fafafa; font-weight: 600; font-size: 11pt; display: block; margin-bottom: 1mm; }
+</style>
+</head>
+<body>
+
+<!-- ===== PAGE 1 — COVER ===== -->
+<section class="page cover">
+  <div class="cover-top">
+    <div class="cover-logo">Practify <span>IA</span></div>
+    <div class="cover-eyebrow">Recurso gratuito</div>
+  </div>
+
+  <div class="cover-main">
+    <h1>7 Skills de Claude que <span class="hl">cierran ventas</span> por ti.</h1>
+    <p class="cover-sub">El sistema que cierra más con el mismo equipo, sin contratar más comerciales. Prompts exactos + cómo usarlos.</p>
+  </div>
+
+  <div class="cover-foot">
+    <div class="author">
+      <strong>Andrei Rentea</strong>
+      Fundador de Practify IA<br>
+      Para founders, dueños y líderes comerciales B2B
+    </div>
+    <div class="cover-badge">
+      <span class="big">7</span>
+      skills · 11 páginas · 1 sistema
+    </div>
+  </div>
+</section>
+
+<!-- ===== PAGE 2 — INTRO ===== -->
+<section class="page intro-page">
+  <h1>Lo que veo en cada call <span class="hl">es siempre lo mismo.</span></h1>
+
+  <p>Llevo meses pasando llamadas de venta reales por un sistema de IA que detecta dónde se cae cada venta.</p>
+
+  <p>El comercial promedio comete los mismos 5-7 errores en cada call. <strong>No es problema de talento.</strong> Es que nadie tiene tiempo de escuchar las 30-50 calls semanales del equipo para corregir esos errores uno a uno.</p>
+
+  <p>Por eso construí un sistema con <strong>7 skills de Claude</strong> que cubren todo el ciclo de venta. No reemplazan al comercial — lo amplifican.</p>
+
+  <div class="intro-meta">
+    <div class="label">Cómo usar este recurso</div>
+    <div class="body">Si tienes Claude (gratis o Pro), puedes copiar y pegar estos 7 prompts y empezar HOY mismo. Cada skill te ahorra entre 2 y 5 horas a la semana en preparación, análisis o seguimiento manual.</div>
+  </div>
+
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">02 / 11</div>
+</section>
+
+<!-- ===== SKILL 1 ===== -->
+<section class="page">
+  <div class="skill-header">
+    <div class="skill-number">
+      <div class="label">Skill</div>
+      <div class="num">01</div>
+    </div>
+    <div class="skill-title">
+      <h2>Análisis de calls perdidas</h2>
+      <div class="tagline">Sabe en qué minuto se cayó la venta y qué habría hecho un closer top.</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Problema que resuelve</div>
+    <div class="block-body">No tienes tiempo de escuchar las 30 calls semanales de tu equipo. Las ventas que se caen lo hacen sin que sepas por qué. Repites los mismos errores semana tras semana.</div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Cómo configurarla</div>
+    <div class="block-body">Cada vez que el equipo cierre una venta perdida o un seguimiento que no avanza, pasan la transcripción de la call a esta skill. En menos de 1 minuto te dice: en qué minuto se cayó, qué objeción no se trabajó bien, y qué habría hecho un closer top.</div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Prompt exacto</div>
+    <div class="prompt-box">ROL: Eres un closer B2B senior con 15 años de experiencia analizando calls de venta perdidas. Tu trabajo es identificar el momento exacto donde se cayó la venta y qué se debió haber hecho diferente.
+
+CONTEXTO: Te voy a pasar la transcripción de una call que terminó en "no" o en seguimiento. Necesito tu análisis quirúrgico.
+
+INSTRUCCIONES:
+1. Identifica los 3 momentos clave donde la dinámica cambió (timestamp + qué pasó)
+2. Para cada momento, dime: qué hizo el comercial, qué debió hacer, por qué importa
+3. Detecta la objeción real (la que el prospect no verbalizó pero estaba detrás de su "no")
+4. Dame una frase concreta que el comercial podría haber usado para reencuadrar
+5. Concluye con 1 acción específica que el comercial debe practicar antes de la próxima call
+
+FORMATO: bullets cortos, sin floritura, lenguaje directo.
+
+TRANSCRIPCIÓN: [pegar aquí]</div>
+  </div>
+
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">03 / 11</div>
+</section>
+
+<!-- ===== SKILL 2 ===== -->
+<section class="page">
+  <div class="skill-header">
+    <div class="skill-number">
+      <div class="label">Skill</div>
+      <div class="num">02</div>
+    </div>
+    <div class="skill-title">
+      <h2>Preparación de prospect</h2>
+      <div class="tagline">Llega a cada call con contexto de consultor, no de vendedor genérico.</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Problema que resuelve</div>
+    <div class="block-body">Tu equipo llega a las calls sin preparación. Improvisan, suenan genéricos, queman leads buenos.</div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Cómo configurarla</div>
+    <div class="block-body">Antes de cada call agendada, esta skill te genera un dossier del prospect en 2 minutos: investigación de la empresa, ángulos relevantes, preguntas adaptadas a su sector y rol.</div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Prompt exacto</div>
+    <div class="prompt-box">ROL: Eres un sales engineer que prepara research previo para calls B2B de alto ticket. Tu objetivo: que el comercial llegue con contexto suficiente para sonar como un consultor, no como un vendedor.
+
+CONTEXTO: Te paso el nombre, cargo, empresa y sector de un prospect agendado para una call esta semana.
+
+INSTRUCCIONES:
+1. Genera 5 puntos clave sobre la empresa (tamaño, sector, momentum reciente, news, retos típicos)
+2. Identifica los 3 dolores más probables que esa persona en ese rol y sector enfrenta hoy
+3. Crea 5 preguntas de discovery adaptadas a ese perfil específico (no genéricas)
+4. Sugiere 2 ángulos de conexión humana (lo que probablemente les importa al rol específico, no a la empresa)
+5. Da una frase de apertura de call personalizada que no suene a script
+
+FORMATO: lista escaneable, máximo 1 página.
+
+PROSPECT: [nombre], [cargo], [empresa], [sector]</div>
+  </div>
+
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">04 / 11</div>
+</section>
+
+<!-- ===== SKILL 3 ===== -->
+<section class="page">
+  <div class="skill-header">
+    <div class="skill-number">
+      <div class="label">Skill</div>
+      <div class="num">03</div>
+    </div>
+    <div class="skill-title">
+      <h2>Discovery customizado por sector</h2>
+      <div class="tagline">Preguntas que destapan el dolor real en menos de 10 minutos.</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Problema que resuelve</div>
+    <div class="block-body">Tu equipo usa las mismas 5 preguntas en todas las calls, sea quien sea el prospect. Los prospects buenos se aburren. Los malos no califican.</div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Cómo configurarla</div>
+    <div class="block-body">Para cada nuevo sector que vendes, esta skill te genera un set de 8-10 preguntas de discovery específicas que un experto de ese sector haría.</div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Prompt exacto</div>
+    <div class="prompt-box">ROL: Eres un consultor de ventas especializado en discovery profundo. Tu trabajo es generar preguntas que destapen el dolor real del prospect en menos de 10 minutos.
+
+CONTEXTO: Voy a venderle [PRODUCTO/SERVICIO] a empresas del sector [SECTOR]. El decisor típico es [ROL].
+
+INSTRUCCIONES:
+1. Genera 10 preguntas de discovery progresivas, ordenadas por profundidad (situación → problema → impacto → urgencia)
+2. Para cada pregunta, explica en 1 línea qué información busca destapar
+3. Marca con ⭐ las 3 preguntas más críticas — las que SÍ o SÍ debo hacer para cualificar bien
+4. Añade 3 follow-ups posibles para cada pregunta crítica según la respuesta
+5. Termina con una pregunta de cierre de discovery que conecte con tu solución
+
+FORMATO: preguntas numeradas, follow-ups indentados.
+
+PRODUCTO: [tu producto]
+SECTOR: [sector del prospect]
+ROL DEL DECISOR: [rol]</div>
+  </div>
+
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">05 / 11</div>
+</section>
+
+<!-- ===== SKILL 4 ===== -->
+<section class="page">
+  <div class="skill-header">
+    <div class="skill-number">
+      <div class="label">Skill</div>
+      <div class="num">04</div>
+    </div>
+    <div class="skill-title">
+      <h2>Manejo de objeciones en tiempo real</h2>
+      <div class="tagline">15 objeciones × 3 respuestas validadas. Cero improvisación.</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Problema que resuelve</div>
+    <div class="block-body">Cuando el prospect suelta "es caro" o "tengo que pensarlo", tu comercial improvisa. Y la improvisación pierde 7 de cada 10 ventas.</div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Cómo configurarla</div>
+    <div class="block-body">Tu equipo tiene un documento maestro con las 15 objeciones más comunes de tu sector + 3 respuestas validadas para cada una. Esta skill genera ese documento.</div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Prompt exacto</div>
+    <div class="prompt-box">ROL: Eres un closer B2B senior especializado en manejo de objeciones. Tu trabajo: que el comercial nunca improvise frente a una objeción.
+
+CONTEXTO: Vendo [PRODUCTO] al perfil [DECISOR] en el sector [SECTOR]. Mi rango de precio típico es [PRECIO].
+
+INSTRUCCIONES:
+Genera las 15 objeciones más comunes que recibirá el comercial. Para cada objeción:
+1. La objeción tal como la diría el prospect (literal)
+2. Lo que REALMENTE esconde (la objeción de fondo)
+3. La pregunta para aislar la objeción real
+4. La respuesta corta (1 línea para refutar en directo)
+5. La respuesta larga (2-3 líneas para reencuadrar valor)
+
+Ordena las 15 objeciones de más frecuente a menos frecuente.
+
+FORMATO: tabla con columnas claras.
+
+PRODUCTO: [producto]
+DECISOR: [rol]
+SECTOR: [sector]
+PRECIO: [rango]</div>
+  </div>
+
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">06 / 11</div>
+</section>
+
+<!-- ===== SKILL 5 ===== -->
+<section class="page">
+  <div class="skill-header">
+    <div class="skill-number">
+      <div class="label">Skill</div>
+      <div class="num">05</div>
+    </div>
+    <div class="skill-title">
+      <h2>Secuencia de cierre por tipo de prospect</h2>
+      <div class="tagline">Microcierres adaptados al arquetipo del comprador.</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Problema que resuelve</div>
+    <div class="block-body">No todos los prospects se cierran igual. El analítico necesita datos, el visceral necesita historia, el dudoso necesita garantías. Tu equipo usa la misma secuencia para todos.</div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Cómo configurarla</div>
+    <div class="block-body">Esta skill identifica el tipo de prospect que tienes delante y te da la secuencia exacta de microcierres que mejor funciona para ese perfil.</div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Prompt exacto</div>
+    <div class="prompt-box">ROL: Eres un experto en cierres B2B con conocimiento profundo de los 4 arquetipos de comprador (analítico, visceral, social, escéptico).
+
+CONTEXTO: Te describo cómo se ha comportado un prospect en la call (tipo de preguntas, ritmo, dolor verbalizado, objeciones).
+
+INSTRUCCIONES:
+1. Identifica cuál de los 4 arquetipos predomina (justificación de 1 línea)
+2. Genera una secuencia de 5 microcierres adaptados a ese arquetipo, en orden creciente de compromiso
+3. Para cada microcierre, dame la frase exacta a usar (entrecomillada)
+4. Indica qué respuesta del prospect te dice "puedes pasar al siguiente"
+5. Indica qué respuesta te dice "para — hay objeción no resuelta"
+
+FORMATO: secuencia numerada, cada paso autocontenido.
+
+CONTEXTO DEL PROSPECT: [tus notas de la call hasta este punto]</div>
+  </div>
+
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">07 / 11</div>
+</section>
+
+<!-- ===== SKILL 6 ===== -->
+<section class="page">
+  <div class="skill-header">
+    <div class="skill-number">
+      <div class="label">Skill</div>
+      <div class="num">06</div>
+    </div>
+    <div class="skill-title">
+      <h2>Follow-up automático según resultado</h2>
+      <div class="tagline">Emails que reactivan ventas paradas. Subida de respuesta del 5% al 25%.</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Problema que resuelve</div>
+    <div class="block-body">El 80% de las ventas se pierden en el seguimiento. Tu equipo envía el mismo email a todos: "Hola, hablamos hace X días, ¿qué tal?". Sin contexto, sin valor añadido. Resultado: silencio.</div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Cómo configurarla</div>
+    <div class="block-body">Esta skill genera el email de follow-up adaptado al resultado de la call: si fue "necesito pensarlo", si fue "consultar con mi socio", si fue "muy caro", etc.</div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Prompt exacto</div>
+    <div class="prompt-box">ROL: Eres un copywriter B2B especializado en emails de follow-up post-call que reactivan ventas paradas.
+
+CONTEXTO: Tuve una call con [PROSPECT] sobre [PRODUCTO/SERVICIO]. La call terminó con [RESULTADO/OBJECIÓN]. Han pasado [X DÍAS] sin respuesta.
+
+INSTRUCCIONES:
+1. Genera el email de follow-up perfecto para este caso específico
+2. Asunto: máximo 6 palabras, sin clickbait, que invite a abrir
+3. Cuerpo: máximo 80 palabras, estructura: contexto breve → valor añadido nuevo → CTA simple
+4. El email NO debe sonar a seguimiento de vendedor. Debe sonar a mensaje útil de un par
+5. Termina con una pregunta concreta que invite a respuesta de 1 línea
+6. Da 2 variantes del email (una más directa, otra más casual)
+
+PROSPECT: [nombre + contexto]
+PRODUCTO: [qué le ofreciste]
+OBJECIÓN/RESULTADO: [qué dijo al final]
+DÍAS SIN RESPONDER: [X]</div>
+  </div>
+
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">08 / 11</div>
+</section>
+
+<!-- ===== SKILL 7 ===== -->
+<section class="page">
+  <div class="skill-header">
+    <div class="skill-number">
+      <div class="label">Skill</div>
+      <div class="num">07</div>
+    </div>
+    <div class="skill-title">
+      <h2>Auditoría semanal del equipo</h2>
+      <div class="tagline">Informe ejecutivo cada viernes. Decisiones, no intuiciones.</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Problema que resuelve</div>
+    <div class="block-body">Cada lunes te preguntas "¿qué está fallando en mis comerciales esta semana?" y no tienes una respuesta clara. Solo intuiciones.</div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Cómo configurarla</div>
+    <div class="block-body">Cada viernes, esta skill consume los datos de la semana y te entrega un informe ejecutivo con: patrones detectados, errores repetidos, sugerencias para la próxima semana.</div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Prompt exacto</div>
+    <div class="prompt-box">ROL: Eres un VP de ventas analizando el rendimiento semanal de un equipo comercial. Tu trabajo: detectar patrones y proponer mejoras concretas.
+
+CONTEXTO: Te paso datos de la semana: número de calls, tasas de cualificación, tasas de cierre, objeciones más comunes, frases recurrentes que dijeron los comerciales.
+
+INSTRUCCIONES:
+1. Resume el rendimiento de la semana en 3 frases (lo bueno, lo neutro, lo malo)
+2. Identifica los 3 patrones más críticos detectados (recurrentes, no anécdotas)
+3. Para cada patrón, sugiere 1 acción concreta para la próxima semana (ejercicio, role-play, recurso)
+4. Genera 1 pregunta para la reunión 1-a-1 con cada comercial basada en su debilidad específica
+5. Cierra con 1 hipótesis sobre dónde estaría el equipo en 30 días si aplicara las acciones
+
+FORMATO: ejecutivo, sin filler, decisiones accionables.
+
+DATOS DE LA SEMANA: [pegar aquí: nº calls, resultados, frases, etc.]</div>
+  </div>
+
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">09 / 11</div>
+</section>
+
+<!-- ===== PAGE 10 — SYSTEM ===== -->
+<section class="page system-page">
+  <h2>Cómo conectar las <span style="color: var(--purple-1);">7 skills</span> en un sistema.</h2>
+
+  <p class="lead">Por separado, cada skill te ahorra 2-5 horas/semana. Juntas, son un <strong>asistente comercial completo</strong>. Este es el orden ideal de uso:</p>
+
+  <div class="phase-grid">
+    <div class="phase-card">
+      <div class="phase-label">Antes de la call</div>
+      <div class="phase-skills">Skill 2 — Preparación<br>Skill 3 — Discovery</div>
+    </div>
+    <div class="phase-card">
+      <div class="phase-label">Durante la call</div>
+      <div class="phase-skills">Skill 4 — Objeciones<br>Skill 5 — Cierre por arquetipo</div>
+    </div>
+    <div class="phase-card">
+      <div class="phase-label">Después de la call</div>
+      <div class="phase-skills">Skill 1 — Análisis (si se cae)<br>Skill 6 — Follow-up</div>
+    </div>
+    <div class="phase-card">
+      <div class="phase-label">Cada viernes</div>
+      <div class="phase-skills">Skill 7 — Auditoría semanal</div>
+    </div>
+  </div>
+
+  <div class="conclusion">
+    Si las usas en orden y de forma consistente durante <strong>4 semanas</strong>, tu tasa de cierre debería subir entre <strong>5 y 15 puntos</strong>. No es magia — es solo dejar de cometer los mismos errores semana tras semana.
+  </div>
+
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">10 / 11</div>
+</section>
+
+<!-- ===== PAGE 11 — CTA ===== -->
+<section class="page cta-page">
+  <div>
+    <h2>Lo que ningún prompt <span class="hl">de Claude puede hacer.</span></h2>
+    <p class="body">Estas 7 skills te dan el sistema general. Pero hay 2 cosas que un prompt nunca podrá resolver por sí solo:</p>
+
+    <ul class="cta-list">
+      <li><strong>Analizar la grabación AUDIO de tus calls reales</strong> — no solo el texto que tú le pasas manualmente.</li>
+      <li><strong>Detectar patrones automáticos en TODO tu equipo</strong> — sin que tú tengas que pasar cada call uno a uno.</li>
+    </ul>
+
+    <p class="body">Para eso construí <strong>Practify IA</strong>: un software que escucha cada call real de tu equipo, las analiza con IA específica de ventas (no Claude generalista), y te entrega los insights directamente cada semana.</p>
+
+    <div class="cta-box">
+      <div class="label">Análisis gratuito de tu primera call</div>
+      <div class="url">practifyia.com</div>
+      <div class="detail">Tarda 5 minutos. Sin tarjeta, sin compromiso. Te enseñamos en directo cómo se cae cada venta y qué haría un closer top.</div>
+    </div>
+  </div>
+
+  <div class="signature">
+    <strong>Andrei Rentea</strong>
+    Fundador de Practify IA · @practify.ia en LinkedIn
+  </div>
+
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">11 / 11</div>
+</section>
+
+</body>
+</html>
