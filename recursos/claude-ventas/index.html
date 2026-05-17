@@ -463,10 +463,31 @@ footer a:hover{text-decoration:underline}
 </footer>
 
 <script>
-// Placeholder handler — se reemplaza cuando configures Brevo
-function handleSubmit(e){
+async function handleSubmit(e){
   e.preventDefault();
-  alert('Form aún sin conectar a Brevo. Configura primero la lista en Brevo y reemplaza este form por el código embed que te dé Brevo.');
+  const form = e.target;
+  const btn = form.querySelector('button[type="submit"]');
+  const name = form.querySelector('input[name="name"]').value.trim();
+  const email = form.querySelector('input[name="email"]').value.trim();
+  const originalLabel = btn.innerHTML;
+
+  btn.disabled = true;
+  btn.innerHTML = 'Enviando…';
+
+  try {
+    const res = await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, source: 'landing-claude-ventas' })
+    });
+    if (!res.ok) throw new Error('Subscribe failed');
+
+    window.location.href = '/recursos/claude-ventas/gracias/';
+  } catch (err) {
+    btn.disabled = false;
+    btn.innerHTML = originalLabel;
+    alert('Ha habido un error. Inténtalo de nuevo en unos segundos o escríbeme a andrei@practifyia.com.');
+  }
   return false;
 }
 </script>
