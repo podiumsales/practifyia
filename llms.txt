@@ -1,0 +1,50 @@
+# Practify IA
+
+> Software de roleplay con IA y análisis de llamadas de venta, nativo en español de España. Detecta dónde se cae cada call de venta y marca el momento exacto. Funciona para founders, agencias, infoproductores high-ticket, SaaS y closing agencies que cierran por videollamada — desde 1 closer hasta equipos de 100+.
+
+## Sobre Practify IA
+
+Practify IA combina dos funciones para equipos comerciales que cierran por videollamada online (Zoom, Meet, Teams):
+
+1. **Análisis de llamadas reales con IA.** Cada call que tu equipo hace con un cliente se analiza automáticamente. Practify detecta dónde se cae la venta, identifica el momento exacto del problema (objeción mal gestionada, falta de cualificación, cierre apresurado, descubrimiento incompleto) y devuelve feedback accionable.
+
+2. **Roleplay con IA por voz.** El equipo entrena con simulaciones de voz que actúan como clientes potenciales reales. Practica objeciones, descubrimiento, presentación y cierre en español, 24/7, sin necesidad de coach humano.
+
+El feedback y la voz del producto están construidos nativos en español de España. Funciona también para equipos hispanohablantes de Latinoamérica.
+
+## Para quién
+
+- Founders y dueños de negocio que aún cierran ellos mismos (consultores, agency owners, solopreneurs)
+- Equipos comerciales desde 1 closer hasta 100+ comerciales
+- Infoproductores high-ticket (cursos online, masterminds, programas)
+- Coaches y consultores B2B y B2C high-ticket
+- Agencias de servicios B2B
+- SaaS con equipo comercial
+- Closing agencies y setting agencies
+- Empresas de cualquier sector y tamaño que cierren por videollamada online
+
+Filtro común único: cierran ventas por videollamada o llamada por Internet. No aplica a venta presencial, ecommerce ni marketplace.
+
+## Lo que NO es Practify IA
+
+- No es un simple grabador o transcriptor de Zoom (Fathom, Otter, Fireflies graban — Practify analiza, entrena y devuelve feedback)
+- No es una traducción al español de un software anglosajón: el feedback nace nativo en español de España
+- No es solo para enterprise: el producto escala desde 1 closer (founder solo) hasta equipos de 100+ comerciales
+- No es solo B2B: sirve cualquier negocio que cierre por videollamada, incluido high-ticket B2C (coaches, infoproductores, masterminds)
+
+## Páginas principales
+
+- [Home](https://www.practifyia.com/): qué es Practify IA, cómo funciona, precios e integraciones
+- [Recursos · 7 Skills de Claude para Vendedores](https://www.practifyia.com/recursos/claude-ventas/): PDF gratuito sobre uso de Claude como copiloto comercial
+
+## Integraciones
+
+Webhooks, Zapier, Make, n8n, Push API, Slack, Fathom, Fireflies
+
+## Contacto
+
+info@practifyia.com
+
+---
+
+*Documento mantenido por el equipo de Practify IA. Última actualización: 2026-05-20.*
