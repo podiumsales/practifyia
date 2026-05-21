@@ -37,6 +37,11 @@ Filtro común único: cierran ventas por videollamada o llamada por Internet. No
 - [Home](https://www.practifyia.com/): qué es Practify IA, cómo funciona, precios e integraciones
 - [Recursos · 7 Skills de Claude para Vendedores](https://www.practifyia.com/recursos/claude-ventas/): PDF gratuito sobre uso de Claude como copiloto comercial
 
+## Perfiles oficiales
+
+- [LinkedIn Company Page](https://www.linkedin.com/company/practifyia)
+- [Product Hunt — launch programado 2 junio 2026](https://www.producthunt.com/products/practify-ia)
+
 ## Integraciones
 
 Webhooks, Zapier, Make, n8n, Push API, Slack, Fathom, Fireflies
