@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cualificación de leads en ventas: qué es, frameworks y errores · Glosario · Practify IA</title>
+<meta name="description" content="Cualificación de leads en ventas: qué cualificar (presupuesto, autoridad, necesidad, timing, fit), frameworks (BANT, CHAMP, MEDDPICC), señales rojas que se ignoran y cómo cualificar sin interrogar.">
+<meta name="keywords" content="cualificación de leads, lead qualification, BANT, CHAMP, MEDDPICC, MQL SQL, cualificar prospects ventas, sales qualification">
+<link rel="canonical" href="https://www.practifyia.com/glosario/cualificacion-leads-ventas/">
+
+<meta property="og:title" content="Cualificación de leads en ventas: qué es, frameworks y errores · Practify IA">
+<meta property="og:description" content="Cualificar mal es la principal causa de pipelines hinchados sin cierres. BANT, CHAMP, MEDDPICC y cómo cualificar sin sonar a interrogatorio.">
+<meta property="og:url" content="https://www.practifyia.com/glosario/cualificacion-leads-ventas/">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_ES">
+<meta property="og:image" content="https://www.practifyia.com/images/hero-dashboard.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.practifyia.com/images/hero-dashboard.png">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-192.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTerm",
+  "@id": "https://www.practifyia.com/glosario/cualificacion-leads-ventas/#definedterm",
+  "name": "Cualificación de leads en ventas",
+  "alternateName": ["Lead qualification", "Cualificación comercial", "Cualificar prospectos", "Sales qualification"],
+  "description": "Proceso de determinar si un prospecto tiene el perfil, presupuesto, autoridad, necesidad y momento adecuados para convertirse en cliente. Cualificar mal es la principal causa de pipelines hinchados sin cierres.",
+  "inDefinedTermSet": {
+    "@type": "DefinedTermSet",
+    "name": "Glosario de ventas con IA — Practify IA",
+    "url": "https://www.practifyia.com/glosario/"
+  },
+  "url": "https://www.practifyia.com/glosario/cualificacion-leads-ventas/",
+  "inLanguage": "es-ES"
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Cualificación de leads en ventas: qué es, frameworks y errores",
+  "description": "Cualificación de leads en ventas: qué cualificar, frameworks BANT/CHAMP/MEDDPICC, señales rojas que se ignoran y cómo cualificar sin sonar a interrogatorio.",
+  "author": {
+    "@type": "Organization",
+    "name": "Practify IA",
+    "url": "https://www.practifyia.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Practify IA",
+    "url": "https://www.practifyia.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.practifyia.com/images/favicon-512.png"
+    }
+  },
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "inLanguage": "es-ES",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.practifyia.com/glosario/cualificacion-leads-ventas/"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Hay que cualificar en cold call o solo en cualificación?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "En cold call se hace cualificación ligera, no completa. El objetivo de la cold call no es cualificar a fondo, es detectar si hay suficiente señal para agendar una siguiente conversación. Bastan 2-3 preguntas: fit básico, dolor potencial, perfil de la persona al otro lado. La cualificación profunda (presupuesto, autoridad, timeline) se hace en la siguiente llamada, donde hay tiempo y permiso para entrar al detalle."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué hago si el prospecto se niega a hablar de presupuesto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Es una señal importante. Si tras dos intentos suaves el prospecto evita rangos, significa que o no quiere compartirlo (sospechoso) o no lo conoce (todavía más sospechoso). La salida no es forzar: es reformular. En lugar de '¿cuánto tenéis?', preguntar 'soluciones como esta suelen estar entre X e Y al año, ¿está dentro del orden de magnitud que manejáis?'. Si la evasión continúa tras eso, lo más probable es que el lead no esté cualificado y el comercial esté invirtiendo tiempo en quien no compra."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Es BANT obsoleto? ¿Sigue siendo válido en 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "BANT no es obsoleto, es incompleto para algunos contextos. Para B2B medio con ciclos cortos sigue funcionando bien. Para enterprise complejo se queda corto y conviene complementarlo con MEDDIC o MEDDPICC. La crítica más justa a BANT es que se centra en cualificar al prospecto sin ayudar a descubrir su negocio — pero esto se soluciona combinándolo con SPIN o con un buen discovery, no abandonándolo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo cualificar sin venir con un checklist evidente?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Integrando las preguntas de cualificación dentro de una conversación natural sobre el negocio del prospecto. En lugar de preguntar '¿tenéis presupuesto?', preguntar 'cuando habéis valorado soluciones similares en el pasado, ¿cómo gestionasteis la decisión de presupuesto internamente?'. La diferencia es que la segunda hace pensar al prospecto sobre su contexto, no le pone en modo defensivo. Cualificar bien requiere curiosidad genuina por el negocio del otro, no por marcar casillas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuántas llamadas son normales para cualificar un lead?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Para B2B medio, una sola llamada de cualificación de 25-35 minutos suele bastar. Para enterprise complejo con múltiples decisores, pueden necesitarse 2-3 conversaciones que incluyan a distintos stakeholders. Más allá de eso conviene revisar si el lead realmente está cualificado o si el comercial está alargando un proceso que ya debería haber concluido en una decisión."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Inicio",
+      "item": "https://www.practifyia.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Glosario",
+      "item": "https://www.practifyia.com/glosario/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Cualificación de leads en ventas",
+      "item": "https://www.practifyia.com/glosario/cualificacion-leads-ventas/"
+    }
+  ]
+}
+</script>
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --pm:#7c3aed;--pd:#5b21b6;--pl:#a78bfa;--pll:#c4b5fd;--pbg:#ede9fe;
+  --bg:#fafafa;--card:#fff;--text:#0a0a0a;--text2:#475569;--text3:#64748b;
+  --border:#e5e7eb;--radius:12px;--radius-lg:20px;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:var(--bg);color:var(--text);
+  font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+
+/* Nav */
+.nav{
+  position:sticky;top:0;background:#0a0a0a;color:#fff;
+  padding:18px 32px;display:flex;align-items:center;justify-content:space-between;
+  z-index:100;border-bottom:1px solid rgba(255,255,255,.08);
+}
+.nav-logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:-.02em;color:#fff;text-decoration:none}
+.nav-logo .ia{background:linear-gradient(135deg,#a78bfa 0%,#c4b5fd 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.nav-logo img{width:24px;height:24px}
+.nav-links{display:flex;list-style:none;gap:28px;align-items:center}
+.nav-links a{color:rgba(255,255,255,.85);text-decoration:none;font-size:14px;font-weight:500;transition:color .15s}
+.nav-links a:hover{color:#fff}
+.nav-cta{
+  background:linear-gradient(135deg,#7c3aed 0%,#a78bfa 100%);color:#fff;
+  padding:10px 18px;border-radius:8px;font-size:14px;font-weight:600;
+  text-decoration:none;transition:transform .15s,box-shadow .15s;
+}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(124,58,237,.35)}
+@media (max-width:768px){
+  .nav-links{display:none}
+  .nav{padding:14px 20px}
+}
+
+/* Article */
+.article-wrap{max-width:760px;margin:0 auto;padding:64px 32px 96px}
+.breadcrumbs{font-size:13px;color:var(--text3);margin-bottom:32px}
+.breadcrumbs a{color:var(--text3);text-decoration:none;transition:color .15s}
+.breadcrumbs a:hover{color:var(--pm)}
+.breadcrumbs span{color:var(--text);font-weight:500}
+
+h1{
+  font-size:clamp(32px,5vw,48px);font-weight:800;line-height:1.1;letter-spacing:-.025em;
+  margin-bottom:20px;color:var(--text);
+}
+.lead{
+  font-size:19px;line-height:1.6;color:var(--text2);margin-bottom:48px;
+  padding-bottom:32px;border-bottom:1px solid var(--border);
+}
+.lead strong{color:var(--text);font-weight:700}
+
+article h2{
+  font-size:26px;font-weight:700;line-height:1.25;letter-spacing:-.015em;
+  margin-top:56px;margin-bottom:18px;color:var(--text);
+}
+article h3{
+  font-size:18px;font-weight:700;margin-top:32px;margin-bottom:10px;color:var(--text);
+}
+article p{margin-bottom:18px;color:var(--text2)}
+article p strong{color:var(--text);font-weight:600}
+article ul,article ol{margin:0 0 22px 22px;color:var(--text2)}
+article li{margin-bottom:8px}
+article li::marker{color:var(--pl)}
+article a{color:var(--pm);text-decoration:underline;text-underline-offset:2px;font-weight:500}
+article a:hover{color:var(--pd)}
+
+.callout{
+  background:#f5f3ff;border-left:3px solid var(--pm);
+  padding:20px 24px;margin:32px 0;border-radius:0 8px 8px 0;
+}
+.callout p{margin:0;color:var(--text)}
+
+.related{
+  background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:32px;margin-top:64px;
+}
+.related h2{margin-top:0;font-size:20px}
+.related ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.related li{margin:0}
+.related a{
+  display:block;padding:14px 18px;border:1px solid var(--border);border-radius:10px;
+  text-decoration:none;color:var(--text);font-size:14px;font-weight:500;
+  transition:border-color .15s,background .15s,color .15s;
+}
+.related a:hover{border-color:var(--pl);background:#faf5ff;color:var(--pm)}
+
+.cta-block{
+  background:linear-gradient(135deg,#0a0a0a 0%,#1a0e3d 100%);color:#fff;
+  border-radius:var(--radius-lg);padding:40px;margin-top:48px;text-align:center;
+}
+.cta-block h3{color:#fff;font-size:22px;margin-bottom:10px;font-weight:700}
+.cta-block p{color:rgba(255,255,255,.75);margin-bottom:24px;font-size:15px}
+.cta-block .btn{
+  display:inline-block;background:#fff;color:var(--text);padding:14px 28px;
+  border-radius:10px;text-decoration:none;font-weight:600;font-size:15px;
+  transition:transform .15s,box-shadow .15s;
+}
+.cta-block .btn:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(255,255,255,.15)}
+
+/* Footer */
+.footer{
+  background:#fff;border-top:1px solid var(--border);padding:40px 32px 28px;
+  text-align:center;
+}
+.footer p{font-size:13px;color:var(--text3);margin-bottom:8px}
+.footer a{color:var(--text3);text-decoration:none;margin:0 12px;font-size:13px}
+.footer a:hover{color:var(--pm)}
+
+@media (max-width:640px){
+  .article-wrap{padding:40px 20px 64px}
+  article h2{font-size:22px;margin-top:40px}
+  .cta-block,.related{padding:28px 20px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png" alt="Practify IA">
+    Practify <span class="ia">IA</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/#producto">Producto</a></li>
+    <li><a href="/#como-funciona">Cómo funciona</a></li>
+    <li><a href="/#precios">Precios</a></li>
+    <li><a href="/glosario/">Glosario</a></li>
+  </ul>
+  <a href="https://app.practifyia.com/signup?source=glosario" class="nav-cta">Empezar gratis</a>
+</nav>
+
+<div class="article-wrap">
+
+  <nav class="breadcrumbs">
+    <a href="/">Inicio</a> › <a href="/glosario/">Glosario</a> › <span>Cualificación de leads en ventas</span>
+  </nav>
+
+  <article>
+
+    <h1>Cualificación de leads en ventas: qué es, frameworks y errores</h1>
+
+    <p class="lead">
+      <strong>La cualificación de leads</strong> es el proceso de determinar si un prospecto tiene el perfil, presupuesto, autoridad, necesidad y momento adecuados para convertirse en cliente. Cualificar mal es la principal causa de pipelines hinchados sin cierres. Un comercial que cualifica bien cierra más con menos esfuerzo; un comercial que no cualifica termina haciendo demos a quien nunca iba a comprar.
+    </p>
+
+    <h2>¿Qué es cualificar un lead?</h2>
+
+    <p>
+      Cualificar es responder a una pregunta concreta: <strong>¿merece la pena que siga invirtiendo tiempo en este prospecto?</strong>. No es una pregunta cruel; es la base de un pipeline sano. El tiempo del comercial es finito, y cada minuto invertido en alguien que no va a comprar es un minuto que no se invierte en alguien que sí.
+    </p>
+
+    <p>
+      En la práctica conviene distinguir dos niveles:
+    </p>
+
+    <ul>
+      <li><strong>MQL (Marketing Qualified Lead).</strong> El lead muestra interés explícito (descarga un recurso, asiste a un webinar, rellena un formulario relevante) y cumple criterios de perfil mínimos. Lo cualifica marketing, no ventas.</li>
+      <li><strong>SQL (Sales Qualified Lead).</strong> El lead ha pasado por una conversación con un comercial que ha verificado presupuesto, autoridad, necesidad y timing. Es donde la cualificación real ocurre.</li>
+    </ul>
+
+    <p>
+      Un error frecuente es confiar en el lead scoring del CRM y saltar la cualificación humana. Un formulario bien rellenado no es un cliente. La cualificación SQL ocurre en conversación — voz o videollamada — porque los matices que diferencian un lead serio de uno tibio no caben en un campo de formulario.
+    </p>
+
+    <h2>Los 5 elementos a cualificar (BANT clásico expandido)</h2>
+
+    <h3>Budget — ¿tiene presupuesto realista?</h3>
+    <p>No "¿cuánto tienes?" en frío, sino "¿está en el orden de magnitud que estamos manejando?". Si el rango del producto está entre 800-2.000€/mes y el prospecto esperaba 200€/mes, conviene saberlo en cualificación, no en cierre.</p>
+
+    <h3>Authority — ¿es decisor o influencer?</h3>
+    <p>Mapear el proceso de decisión: quién firma, quién influye, quién veta. En B2B medio suele haber un decisor principal y 1-2 influencers. En enterprise, 5-7 personas tocan la decisión. Cualificar a la persona equivocada es invertir tiempo en un mensajero, no en un comprador.</p>
+
+    <h3>Need — ¿el dolor justifica la solución?</h3>
+    <p>El prospecto puede tener interés intelectual sin tener dolor real. Curiosidad no es necesidad. La cualificación de necesidad implica conectar el problema con una consecuencia concreta: tiempo perdido, dinero que no entra, oportunidades caídas.</p>
+
+    <h3>Timeline — ¿cuándo decide?</h3>
+    <p>"Para Q4" es timing. "Cuando tenga tiempo" no es timing. Si no hay fecha aproximada, no hay urgencia. Un lead sin timeline claro es candidato a nurturing, no a propuesta inmediata.</p>
+
+    <h3>Fit cultural — ¿encaja con tu propuesta de valor?</h3>
+    <p>Un cliente puede tener presupuesto, autoridad, necesidad y timing y aun así ser mal cliente. Si el estilo de trabajo no encaja, el cierre será doloroso y la retención corta. Esta dimensión se ignora a menudo y es una de las que más impacto tiene en el CLV.</p>
+
+    <h2>Frameworks: BANT vs CHAMP vs MEDDPICC</h2>
+
+    <p>
+      Tres frameworks, tres contextos distintos:
+    </p>
+
+    <ul>
+      <li><strong>BANT</strong> (Budget, Authority, Need, Timeline). El clásico. Funciona bien en B2B medio con ciclos de 1-3 meses. Lo critican por estar centrado en cualificar al prospecto sin descubrir su negocio, pero combinado con SPIN o un buen discovery sigue siendo sólido.</li>
+      <li><strong>CHAMP</strong> (Challenges, Authority, Money, Prioritization). Inversión del orden de BANT: empieza por el dolor (challenges) antes de hablar de dinero. Más adecuado para inside sales y ventas consultivas donde el prospecto necesita verbalizar su problema antes de discutir presupuesto.</li>
+      <li><strong>MEDDPICC</strong> (Metrics, Economic buyer, Decision criteria, Decision process, Identify pain, Paper process, Champion, Competition). El más detallado. Pensado para enterprise complejo con ciclos largos. Útil cuando hay múltiples stakeholders, procesos formales de compra y competidores activos.</li>
+    </ul>
+
+    <p>
+      Regla práctica: BANT para venta B2B media, CHAMP cuando el prospecto necesita educación antes que cualificación, MEDDPICC cuando el ciclo es largo y hay procesos de procurement.
+    </p>
+
+    <h2>Señales de NO cualificación que se ignoran a menudo</h2>
+
+    <p>
+      Hay banderas rojas que aparecen durante la cualificación y que los comerciales optimistas tienden a explicar en vez de tomar en serio. Las más frecuentes:
+    </p>
+
+    <ul>
+      <li><strong>Presupuesto vago tras dos intentos.</strong> "No tenemos un presupuesto cerrado, depende"; "todavía no lo hemos hablado internamente". Si el prospecto realmente quisiera comprar pronto, tendría una idea aproximada.</li>
+      <li><strong>"Tengo que consultar pero no os doy contacto".</strong> Si el prospecto bloquea el acceso a los otros decisores, el comercial está negociando con un mensajero, no con un comprador.</li>
+      <li><strong>"Queremos ver todas las opciones del mercado".</strong> Suena profesional, suele significar que no hay urgencia ni preferencia. El prospecto está en modo investigación, no en modo compra.</li>
+      <li><strong>Urgencia falsa.</strong> "Necesito esto para ayer" sin contexto de qué empuja esa urgencia. La urgencia real viene acompañada de una razón concreta (evento, deadline, problema agudo).</li>
+      <li><strong>Cambios constantes de interlocutor.</strong> Cada llamada con una persona distinta y la anterior nunca está disponible. Señal de falta de champion interno.</li>
+      <li><strong>Solo quieren ver demo, no responden discovery.</strong> El prospecto pide demo pero evita responder sobre situación, dolor o decisión. Suele ser benchmarking, no compra.</li>
+      <li><strong>Silencio prolongado tras pasar propuesta.</strong> Si el comercial pasa propuesta y desaparece el prospecto, no fue una propuesta tibia; fue un lead que no estaba cualificado y se quedó callado.</li>
+    </ul>
+
+    <h2>El coste real de no cualificar bien</h2>
+
+    <p>
+      La mala cualificación no es solo "perder una venta". Es un coste estructural que se paga en varios niveles:
+    </p>
+
+    <ul>
+      <li><strong>Tiempo del comercial.</strong> Una demo mal cualificada consume 60-90 minutos entre preparación y ejecución. Diez demos al mes a prospects que no van a comprar son 10-15 horas perdidas al mes.</li>
+      <li><strong>Pipeline hinchado.</strong> Si el 40% de las oportunidades en pipeline no están realmente cualificadas, el forecast pierde toda fiabilidad. La dirección toma decisiones basadas en cifras que no representan realidad.</li>
+      <li><strong>Frustración del comercial.</strong> Perseguir leads que no responden y propuestas que se enfrían daña el ánimo del equipo. Un comercial que cualifica mal acaba creyendo que "no sabe vender" cuando lo que pasa es que estaba vendiendo a quien no compraba.</li>
+      <li><strong>Coste de oportunidad.</strong> Las horas dedicadas al lead malo son horas no dedicadas al lead bueno. La cualificación no es solo filtro, es priorización.</li>
+    </ul>
+
+    <h2>Cómo cualificar sin sonar a interrogatorio</h2>
+
+    <p>
+      Esta es la dificultad real de la cualificación: las preguntas que la componen pueden sonar frías si se sueltan en seco. "¿Tienes presupuesto?" cierra puertas. "¿Quién decide?" hace al prospecto sentirse evaluado.
+    </p>
+
+    <p>
+      El movimiento correcto es integrar las preguntas de cualificación dentro de una conversación sobre el negocio del prospecto. En lugar de:
+    </p>
+
+    <ul>
+      <li>"¿Cuánto presupuesto tenéis?" → "Cuando habéis valorado soluciones similares en el pasado, ¿cómo gestionasteis internamente la decisión de presupuesto?".</li>
+      <li>"¿Quién decide?" → "Si esto avanzara, ¿con quién más sueles consultar este tipo de decisiones?".</li>
+      <li>"¿Cuándo lo necesitáis?" → "¿Hay algún evento o deadline interno que esté empujando esto?".</li>
+    </ul>
+
+    <p>
+      La diferencia es que la segunda versión hace pensar al prospecto sobre su contexto, no le pone en modo defensivo. Cualificar bien requiere curiosidad genuina por el negocio del otro, no por marcar casillas.
+    </p>
+
+    <h2>Cualificación + roleplay con IA</h2>
+
+    <p>
+      Cualificar es de las habilidades que más rápidamente se nota cuando se entrena: las primeras 2-3 semanas de práctica concentrada cambian la calidad de las conversaciones de cualificación de forma visible.
+    </p>
+
+    <p>
+      <a href="/">Practify IA</a> es un software de roleplay con IA y análisis de llamadas de venta, <strong>nativo en español de España</strong>. El módulo de roleplay permite configurar prospectos IA con perfiles distintos de cualificación: el decisor que coopera, el decisor que esquiva el presupuesto, el influencer sin autoridad real, el gatekeeper que filtra. Practicar la cualificación contra estos cuatro arquetipos prepara al comercial para detectar las señales rojas en tiempo real. Y el módulo de análisis revisa las llamadas reales y marca cuando algún elemento de cualificación quedó sin verificar — para entrenarlo en el siguiente roleplay.
+    </p>
+
+    <div class="callout">
+      <p>Pipeline hinchado no es señal de éxito. Es señal de que el comercial está aceptando como oportunidades lo que no debería aceptar. La cualificación es donde se separa el ruido del trabajo real.</p>
+    </div>
+
+    <h2>Preguntas frecuentes sobre cualificación de leads</h2>
+
+    <h3>¿Hay que cualificar en cold call o solo en cualificación?</h3>
+    <p>En cold call se hace cualificación ligera, no completa. Bastan 2-3 preguntas: fit básico, dolor potencial, perfil de la persona. La cualificación profunda (presupuesto, autoridad, timeline) se hace en la siguiente llamada, donde hay tiempo y permiso para entrar al detalle.</p>
+
+    <h3>¿Qué hago si el prospecto se niega a hablar de presupuesto?</h3>
+    <p>Es una señal importante. Si tras dos intentos suaves el prospecto evita rangos, conviene reformular: "soluciones como esta suelen estar entre X e Y al año, ¿está dentro del orden de magnitud que manejáis?". Si la evasión continúa, lo más probable es que el lead no esté cualificado.</p>
+
+    <h3>¿Es BANT obsoleto? ¿Sigue siendo válido en 2026?</h3>
+    <p>BANT no es obsoleto, es incompleto para algunos contextos. Para B2B medio funciona bien. Para enterprise complejo conviene complementarlo con MEDDIC o MEDDPICC. La crítica más justa a BANT es centrarse en cualificar al prospecto sin descubrir su negocio — se soluciona combinándolo con SPIN o un buen discovery, no abandonándolo.</p>
+
+    <h3>¿Cómo cualificar sin venir con un checklist evidente?</h3>
+    <p>Integrando las preguntas de cualificación dentro de una conversación natural sobre el negocio del prospecto. En lugar de "¿tenéis presupuesto?", preguntar "cuando habéis valorado soluciones similares en el pasado, ¿cómo gestionasteis la decisión internamente?". Cualificar bien requiere curiosidad genuina por el negocio del otro, no por marcar casillas.</p>
+
+    <h3>¿Cuántas llamadas son normales para cualificar un lead?</h3>
+    <p>Para B2B medio, una sola llamada de cualificación de 25-35 minutos suele bastar. Para enterprise complejo con múltiples decisores, pueden necesitarse 2-3 conversaciones. Más allá conviene revisar si el lead realmente está cualificado o si el comercial está alargando un proceso que debería haber concluido.</p>
+
+    <div class="cta-block">
+      <h3>Entrena cualificación con roleplay de IA</h3>
+      <p>Practica contra decisores que esquivan, influencers sin autoridad y gatekeepers. Nativo en español de España. Desde el founder que cierra solo hasta equipos de 100+ comerciales.</p>
+      <a class="btn" href="https://app.practifyia.com/signup?source=glosario_cualificacion">Empezar gratis</a>
+    </div>
+
+  </article>
+
+  <section class="related">
+    <h2>Términos relacionados en el glosario</h2>
+    <ul>
+      <li><a href="/glosario/discovery-comercial/">Discovery comercial</a></li>
+      <li><a href="/glosario/objeciones-venta-frameworks/">Objeciones de venta</a></li>
+      <li><a href="/glosario/roleplay-ventas-ia/">Roleplay con IA para ventas</a></li>
+      <li><a href="/glosario/analisis-llamadas-venta/">Análisis de llamadas de venta con IA</a></li>
+      <li><a href="/glosario/coaching-ventas-ia/">Coaching de ventas con IA</a></li>
+      <li><a href="/glosario/conversation-intelligence/">Conversation intelligence</a></li>
+      <li><a href="/glosario/feedback-llamadas-comerciales-ia/">Feedback automático de llamadas</a></li>
+      <li><a href="/glosario/onboarding-comercial-ia/">Onboarding comercial con IA</a></li>
+    </ul>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <p>
+    <a href="/">Inicio</a> ·
+    <a href="/glosario/">Glosario</a> ·
+    <a href="/#precios">Precios</a> ·
+    <a href="/#faq">FAQ</a>
+  </p>
+  <p>© 2026 Practify IA · Software de roleplay con IA y análisis de llamadas de venta</p>
+</footer>
+
+</body>
+</html>
