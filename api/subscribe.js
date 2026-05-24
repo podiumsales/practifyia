@@ -18,7 +18,16 @@ export default async function handler(req, res) {
   }
 
   const apiKey = process.env.BREVO_API_KEY;
-  const listId = parseInt(process.env.BREVO_LIST_ID, 10);
+  const defaultListId = parseInt(process.env.BREVO_LIST_ID, 10);
+
+  // Mapeo source → lista de Brevo.
+  // Si el source no encaja con ninguno, cae al default (BREVO_LIST_ID).
+  const LIST_BY_SOURCE = {
+    'landing-claude-ventas': defaultListId,
+    'landing-prepara-prospectos': parseInt(process.env.BREVO_LIST_ID_PROSPECTOS, 10) || defaultListId,
+  };
+
+  const listId = LIST_BY_SOURCE[source] || defaultListId;
 
   if (!apiKey || !listId) {
     console.error('Missing BREVO_API_KEY or BREVO_LIST_ID');
