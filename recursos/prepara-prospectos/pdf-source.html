@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Prepara Prospectos con Claude — Practify IA</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #0a0a0a;
+    --bg-light: #fafafa;
+    --ink: #0a0a0a;
+    --ink-soft: #404040;
+    --muted: #737373;
+    --line: #e5e5e5;
+    --purple-1: #7c3aed;
+    --purple-2: #a78bfa;
+    --purple-3: #c4b5fd;
+    --purple-4: #ede9fe;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: var(--ink); }
+
+  @page { size: A4; margin: 0; }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    padding: 22mm 20mm;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-light);
+  }
+  .page:last-child { page-break-after: auto; }
+
+  .pagenum {
+    position: absolute;
+    bottom: 12mm;
+    right: 20mm;
+    font-size: 9pt;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+  .wordmark {
+    position: absolute;
+    bottom: 12mm;
+    left: 20mm;
+    font-size: 9pt;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .wordmark span { color: var(--purple-1); }
+
+  /* === COVER === */
+  .cover {
+    background: var(--bg);
+    color: #fafafa;
+    padding: 30mm 22mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cover .wordmark { color: #fafafa; }
+  .cover .pagenum { color: rgba(255,255,255,0.5); }
+
+  .cover-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .cover-logo {
+    font-size: 14pt;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  .cover-logo span { color: var(--purple-2); }
+  .cover-eyebrow {
+    display: inline-block;
+    padding: 6px 12px;
+    background: rgba(167, 139, 250, 0.15);
+    border: 1px solid rgba(167, 139, 250, 0.3);
+    border-radius: 999px;
+    font-size: 9pt;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--purple-3);
+  }
+
+  .cover-main h1 {
+    font-size: 54pt;
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    font-weight: 800;
+    margin-bottom: 14mm;
+  }
+  .cover-main h1 .hl {
+    background: linear-gradient(180deg, transparent 60%, rgba(124, 58, 237, 0.55) 60%);
+    padding: 0 4px;
+  }
+  .cover-sub {
+    font-size: 14pt;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.78);
+    max-width: 130mm;
+    font-weight: 400;
+  }
+
+  .cover-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20mm;
+    padding-top: 12mm;
+    border-top: 1px solid rgba(255,255,255,0.12);
+  }
+  .cover-foot .author {
+    font-size: 10pt;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+  }
+  .cover-foot .author strong { color: #fafafa; font-weight: 600; }
+  .cover-badge {
+    text-align: right;
+    font-size: 9pt;
+    color: rgba(255,255,255,0.5);
+  }
+  .cover-badge .big {
+    display: block;
+    font-size: 32pt;
+    font-weight: 800;
+    color: var(--purple-2);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 4mm;
+  }
+
+  /* === SECTION HEADER (prompt pages) === */
+  .skill-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 8mm;
+    margin-bottom: 10mm;
+    padding-bottom: 8mm;
+    border-bottom: 1px solid var(--line);
+  }
+  .skill-number {
+    flex-shrink: 0;
+    width: 22mm;
+    height: 22mm;
+    background: var(--bg);
+    color: #fafafa;
+    border-radius: 4mm;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+  .skill-number .label {
+    font-size: 7pt;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--purple-3);
+    margin-bottom: 2mm;
+    font-weight: 600;
+  }
+  .skill-number .num {
+    font-size: 28pt;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+  }
+  .skill-title {
+    flex: 1;
+    padding-top: 2mm;
+  }
+  .skill-title h2 {
+    font-size: 22pt;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    margin-bottom: 3mm;
+  }
+  .skill-title .tagline {
+    font-size: 10.5pt;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .block {
+    margin-bottom: 7mm;
+  }
+  .block-label {
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--purple-1);
+    margin-bottom: 3mm;
+  }
+  .block-body {
+    font-size: 10.5pt;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .block-body strong { color: var(--ink); font-weight: 600; }
+
+  .prompt-box {
+    background: var(--bg);
+    color: #e5e5e5;
+    border-radius: 4mm;
+    padding: 6mm 7mm;
+    font-family: 'JetBrains Mono', 'Menlo', monospace;
+    font-size: 8.5pt;
+    line-height: 1.55;
+    white-space: pre-wrap;
+    border-left: 4px solid var(--purple-1);
+  }
+
+  /* === INTRO PAGE === */
+  .intro-page h1 {
+    font-size: 38pt;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    font-weight: 800;
+    margin-bottom: 12mm;
+  }
+  .intro-page h1 .hl {
+    color: var(--purple-1);
+  }
+  .intro-page p {
+    font-size: 12pt;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin-bottom: 6mm;
+    max-width: 155mm;
+  }
+  .intro-page p strong { color: var(--ink); }
+
+  .intro-meta {
+    margin-top: 12mm;
+    padding: 8mm;
+    background: var(--purple-4);
+    border-left: 3px solid var(--purple-1);
+    border-radius: 0 4mm 4mm 0;
+  }
+  .intro-meta .label {
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--purple-1);
+    margin-bottom: 3mm;
+  }
+  .intro-meta .body {
+    font-size: 11pt;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+
+  /* === SYSTEM PAGE === */
+  .system-page h2 {
+    font-size: 30pt;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+    margin-bottom: 8mm;
+  }
+  .system-page > p.lead {
+    font-size: 12pt;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin-bottom: 12mm;
+    max-width: 155mm;
+  }
+
+  .flow-list {
+    list-style: none;
+    counter-reset: step;
+    padding: 0;
+    margin-bottom: 10mm;
+  }
+  .flow-list li {
+    counter-increment: step;
+    padding: 5mm 0 5mm 16mm;
+    position: relative;
+    font-size: 11pt;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--line);
+  }
+  .flow-list li:last-child { border-bottom: none; }
+  .flow-list li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 5mm;
+    width: 11mm;
+    height: 11mm;
+    border-radius: 50%;
+    background: var(--purple-1);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13pt;
+    font-weight: 700;
+  }
+  .flow-list li strong {
+    color: var(--ink);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 2mm;
+    font-size: 12pt;
+  }
+
+  .conclusion {
+    padding: 8mm;
+    background: var(--bg);
+    color: #fafafa;
+    border-radius: 4mm;
+    font-size: 11pt;
+    line-height: 1.6;
+  }
+  .conclusion strong { color: var(--purple-2); font-weight: 600; }
+
+  /* === EXAMPLE PAGE === */
+  .example-page h2 {
+    font-size: 30pt;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+    margin-bottom: 6mm;
+  }
+  .example-page > p.lead {
+    font-size: 11pt;
+    line-height: 1.55;
+    color: var(--muted);
+    margin-bottom: 10mm;
+    max-width: 155mm;
+  }
+  .example-context {
+    padding: 6mm 7mm;
+    background: var(--purple-4);
+    border-left: 3px solid var(--purple-1);
+    margin-bottom: 8mm;
+    border-radius: 0 3mm 3mm 0;
+  }
+  .example-context .label {
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--purple-1);
+    margin-bottom: 3mm;
+  }
+  .example-context .body {
+    font-size: 10.5pt;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .example-output {
+    padding: 6mm 7mm;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 3mm;
+    margin-bottom: 5mm;
+  }
+  .example-output .out-label {
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--purple-1);
+    margin-bottom: 3mm;
+  }
+  .example-output .out-body {
+    font-size: 10pt;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .example-output .out-body strong { color: var(--ink); font-weight: 600; }
+  .example-output .out-body ul { padding-left: 5mm; margin-top: 2mm; }
+  .example-output .out-body li { margin-bottom: 1mm; }
+
+  /* === CTA PAGE === */
+  .cta-page {
+    background: var(--bg);
+    color: #fafafa;
+    padding: 30mm 22mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cta-page .wordmark { color: #fafafa; }
+  .cta-page .pagenum { color: rgba(255,255,255,0.5); }
+
+  .cta-page h2 {
+    font-size: 38pt;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    font-weight: 800;
+    margin-bottom: 10mm;
+  }
+  .cta-page h2 .hl { color: var(--purple-2); }
+  .cta-page .body {
+    font-size: 12pt;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.78);
+    margin-bottom: 6mm;
+    max-width: 150mm;
+  }
+  .cta-page .body strong { color: #fafafa; font-weight: 600; }
+
+  .cta-list {
+    list-style: none;
+    margin: 6mm 0 10mm;
+    padding: 0;
+  }
+  .cta-list li {
+    padding: 4mm 0 4mm 9mm;
+    position: relative;
+    font-size: 11.5pt;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.5;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .cta-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 7mm;
+    width: 5mm;
+    height: 5mm;
+    border-radius: 50%;
+    background: var(--purple-1);
+  }
+  .cta-list li strong { color: #fff; font-weight: 600; }
+
+  .cta-box {
+    background: linear-gradient(135deg, var(--purple-1) 0%, #6d28d9 100%);
+    border-radius: 5mm;
+    padding: 8mm 9mm;
+    margin-top: 6mm;
+  }
+  .cta-box .label {
+    font-size: 9pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    font-weight: 700;
+    margin-bottom: 3mm;
+  }
+  .cta-box .url {
+    font-size: 20pt;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.02em;
+    margin-bottom: 3mm;
+  }
+  .cta-box .detail {
+    font-size: 10pt;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.5;
+  }
+
+  .signature {
+    margin-top: auto;
+    padding-top: 8mm;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    font-size: 10pt;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+  }
+  .signature strong { color: #fafafa; font-weight: 600; font-size: 11pt; display: block; margin-bottom: 1mm; }
+</style>
+</head>
+<body>
+
+<!-- ===== PAGE 1 — COVER ===== -->
+<section class="page cover">
+  <div class="cover-top">
+    <div class="cover-logo">Practify <span>IA</span></div>
+    <div class="cover-eyebrow">Recurso gratuito</div>
+  </div>
+
+  <div class="cover-main">
+    <h1>Prepara cada prospecto con Claude en <span class="hl">5 minutos</span> por call.</h1>
+    <p class="cover-sub">5 prompts encadenados que devuelven dossier, dolor, preguntas, objeciones y ángulo de apertura. Sin abrir 10 pestañas.</p>
+  </div>
+
+  <div class="cover-foot">
+    <div class="author">
+      <strong>Andrei Rentea</strong>
+      Fundador de Practify IA<br>
+      Para founders, dueños y líderes comerciales
+    </div>
+    <div class="cover-badge">
+      <span class="big">5</span>
+      prompts · 10 páginas · 1 sistema
+    </div>
+  </div>
+</section>
+
+<!-- ===== PAGE 2 — INTRO ===== -->
+<section class="page intro-page">
+  <h1>El 90% de las calls se pierden <span class="hl">antes de empezar.</span></h1>
+
+  <p>Entrar a una call de cierre sin preparar bien el prospecto es regalar la primera mitad de la conversación. Preguntas genéricas, hipótesis débiles, objeciones que te sorprenden en directo.</p>
+
+  <p>La preparación que hace la diferencia tarda al menos <strong>45-60 minutos por prospecto si la haces a mano</strong>: revisar LinkedIn, web, posts, sector, hipotetizar dolor, pensar preguntas. Casi nadie lo hace bien — no por pereza, sino por tiempo.</p>
+
+  <p>He empaquetado el sistema que uso yo en <strong>5 prompts de Claude encadenados</strong>. El output de uno alimenta al siguiente. En 5 minutos tienes un dossier completo y accionable de cualquier prospecto.</p>
+
+  <div class="intro-meta">
+    <div class="label">Cómo usar este recurso</div>
+    <div class="body">Si tienes Claude (gratis o Pro), puedes copiar y pegar estos 5 prompts y usarlos HOY antes de tu próxima call. El orden importa — está pensado para que cada prompt construya sobre el output del anterior.</div>
+  </div>
+
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">02 / 10</div>
+</section>
+
+<!-- ===== PROMPT 1 ===== -->
+<section class="page">
+  <div class="skill-header">
+    <div class="skill-number">
+      <div class="label">Prompt</div>
+      <div class="num">01</div>
+    </div>
+    <div class="skill-title">
+      <h2>Dossier del prospecto</h2>
+      <div class="tagline">Contexto completo del contacto + empresa en 30 segundos. Sin abrir 10 pestañas.</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Problema que resuelve</div>
+    <div class="block-body">Antes de cada call pierdes 20-30 min navegando: LinkedIn del contacto, web de la empresa, sus posts, su sector, noticias. La info queda dispersa y te toca sintetizarla mentalmente justo antes de la call.</div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Cómo usarlo</div>
+    <div class="block-body">Le pasas a Claude el link de LinkedIn del contacto + URL de la web de su empresa + 1 línea sobre tu producto. Devuelve un dossier estructurado en 5 secciones que te deja listo para los siguientes 4 prompts.</div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Prompt exacto</div>
+    <div class="prompt-box">ROL: Eres un research analyst comercial senior con 10 años preparando dossiers de prospectos B2B antes de calls de cierre. Tu output es siempre conciso, accionable y estructurado.
+
+CONTEXTO: Voy a darte el LinkedIn de un contacto y la URL de su empresa. Mi producto/servicio es: [DESCRIBE EN 1 LÍNEA].
+
+INSTRUCCIONES — devuélveme un dossier con estas 5 secciones, sin floritura:
+
+1. CONTACTO: rol exacto, antigüedad en la empresa, trayectoria reciente (últimos 2 puestos), señales de su LinkedIn (posts recientes, comentarios, intereses)
+
+2. EMPRESA: qué hacen, modelo de negocio, tamaño aproximado, sector, momento que atraviesan (crecimiento, contracción, pivot)
+
+3. SEÑALES DE TIMING: noticias, fichajes, lanzamientos, rondas, despidos, expansiones, cambios de equipo — todo lo que sugiera urgencia o cambio reciente
+
+4. POSIBLES STAKEHOLDERS: quién más decide o influye en una compra como la mía dentro de la empresa
+
+5. CONEXIÓN CON MI PRODUCTO: en 2-3 frases, dónde encajaría mi producto en su realidad actual
+
+FORMATO: bullets, sin párrafos largos. Si no tienes info sobre algún punto, di "sin señales claras" en vez de inventar.
+
+LINKEDIN: [pegar URL]
+WEB EMPRESA: [pegar URL]</div>
+  </div>
+
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">03 / 10</div>
+</section>
+
+<!-- ===== PROMPT 2 ===== -->
+<section class="page">
+  <div class="skill-header">
+    <div class="skill-number">
+      <div class="label">Prompt</div>
+      <div class="num">02</div>
+    </div>
+    <div class="skill-title">
+      <h2>Hipótesis del dolor real</h2>
+      <div class="tagline">Qué está intentando resolver el prospecto y, sobre todo, por qué AHORA.</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Problema que resuelve</div>
+    <div class="block-body">Entras a la call con hipótesis genéricas ("seguro que quiere vender más"). El prospecto detecta enseguida que no has hecho los deberes. Y la conversación se queda en superficie.</div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Cómo usarlo</div>
+    <div class="block-body">Le pasas a Claude el output del Prompt 1 + tu producto. Te devuelve 3 hipótesis del dolor real ordenadas por probabilidad, con el argumento de POR QUÉ ese dolor es relevante ahora y no hace 6 meses.</div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Prompt exacto</div>
+    <div class="prompt-box">ROL: Eres un consultor B2B senior que ayuda a comerciales a identificar el dolor real de un prospecto antes de la call. Tu trabajo es ir más allá del dolor superficial.
+
+CONTEXTO: Te paso el dossier del prospecto (del Prompt 1) y mi producto/servicio.
+
+INSTRUCCIONES — devuélveme:
+
+1. TRES HIPÓTESIS DEL DOLOR ordenadas por probabilidad. Cada una con:
+   - El dolor en 1 frase concreta
+   - El "por qué AHORA" (qué hace que sea urgente este trimestre, no el siguiente)
+   - La evidencia del dossier que apoya la hipótesis (cita la sección)
+
+2. UNA HIPÓTESIS DESCARTADA: cuál es el dolor obvio que casi todos asumirían pero que probablemente NO sea el real, y por qué.
+
+3. UNA PREGUNTA DE VALIDACIÓN: 1 sola pregunta que puedo hacer en el primer minuto de la call para validar cuál de las 3 hipótesis es la correcta sin sonar genérico.
+
+REGLAS: no inventes información que no esté en el dossier. Si una sección del dossier dice "sin señales claras", no construyas hipótesis sobre eso.
+
+DOSSIER: [pegar output del Prompt 1]
+MI PRODUCTO: [DESCRIBE EN 1 LÍNEA]</div>
+  </div>
+
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">04 / 10</div>
+</section>
+
+<!-- ===== PROMPT 3 ===== -->
+<section class="page">
+  <div class="skill-header">
+    <div class="skill-number">
+      <div class="label">Prompt</div>
+      <div class="num">03</div>
+    </div>
+    <div class="skill-title">
+      <h2>5 preguntas de discovery personalizadas</h2>
+      <div class="tagline">Preguntas en orden, adaptadas a su sector y momento. No genéricas.</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Problema que resuelve</div>
+    <div class="block-body">Las preguntas de discovery típicas ("cuéntame de tu negocio", "qué problemas tienes") suenan a guion. El prospecto entra en modo defensa o responde en superficie. La call no avanza al fondo.</div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Cómo usarlo</div>
+    <div class="block-body">Le pasas a Claude el output del Prompt 2 + el perfil del prospecto. Te devuelve 5 preguntas en el orden exacto, con la lógica de qué buscas con cada una y cómo conectarlas si la respuesta es evasiva.</div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Prompt exacto</div>
+    <div class="prompt-box">ROL: Eres un closer B2B senior especializado en discovery profundo. Tus preguntas suenan a conversación, no a interrogatorio. Sacan información que el prospecto no había verbalizado ni para sí mismo.
+
+CONTEXTO: Tienes las 3 hipótesis del dolor (del Prompt 2) y el rol del prospecto. Vas a diseñar la batería de preguntas para los primeros 10-15 minutos de la call.
+
+INSTRUCCIONES — devuélveme 5 preguntas en orden, cada una con:
+
+1. PREGUNTA EXACTA: redactada como yo la diría en voz alta, en español natural, sin tecnicismos. Máximo 25 palabras.
+
+2. QUÉ BUSCAS CON ELLA: qué información te dará la respuesta y cómo te ayudará a avanzar.
+
+3. FOLLOW-UP SI EVADE: 1 pregunta de seguimiento concreta si el prospecto responde en superficie.
+
+REGLAS:
+- Pregunta 1: rompe el hielo pero ya genera información útil (no "cuéntame de ti")
+- Preguntas 2-3: profundizan en la hipótesis del dolor #1 del Prompt anterior
+- Pregunta 4: testea la hipótesis del dolor #2 sin abandonar la conversación
+- Pregunta 5: cualifica capacidad de inversión conectada al objetivo verbalizado
+
+PERFIL: [pegar output Prompt 2 + rol del prospecto]
+MI PRODUCTO: [DESCRIBE EN 1 LÍNEA]</div>
+  </div>
+
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">05 / 10</div>
+</section>
+
+<!-- ===== PROMPT 4 ===== -->
+<section class="page">
+  <div class="skill-header">
+    <div class="skill-number">
+      <div class="label">Prompt</div>
+      <div class="num">04</div>
+    </div>
+    <div class="skill-title">
+      <h2>Objeciones anticipadas con respuesta</h2>
+      <div class="tagline">Las 2 objeciones más probables + respuesta validada. Para que no te sorprendan en directo.</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Problema que resuelve</div>
+    <div class="block-body">Las objeciones llegan siempre — pero te pillan procesando en directo. Improvisas la respuesta, dudas, das una salida torpe. El prospecto detecta la duda y la venta pierde momentum.</div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Cómo usarlo</div>
+    <div class="block-body">Le pasas a Claude el output del Prompt 3 + lo que sabes del prospecto. Te devuelve las 2 objeciones más probables para ESTE prospecto en concreto (no genéricas), cada una con una respuesta validada.</div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Prompt exacto</div>
+    <div class="prompt-box">ROL: Eres un closer B2B con 12 años de experiencia anticipando objeciones específicas según el perfil del prospecto. No das respuestas de manual — adaptas la respuesta a la realidad concreta del comprador.
+
+CONTEXTO: Tienes el dossier completo, las hipótesis de dolor y las preguntas de discovery. Ahora vas a anticipar las 2 objeciones más probables.
+
+INSTRUCCIONES — devuélveme exactamente 2 objeciones (no más):
+
+PARA CADA UNA:
+
+1. OBJECIÓN: redactada como la verbalizaría el prospecto. Frase exacta en español natural. No "tengo dudas sobre el ROI" — sino algo como "esto suena bien pero ahora no es el momento porque estamos en X".
+
+2. POR QUÉ ESA OBJECIÓN ES PROBABLE: 1-2 frases que conecten la objeción con el dossier (rol, sector, momento de la empresa).
+
+3. RESPUESTA VALIDADA: la respuesta que yo daría. No genérica. Conecta con la realidad concreta del prospecto. Máximo 60 palabras. Tono confesional o empático, NUNCA defensivo.
+
+4. PREGUNTA DE CIERRE TRAS LA RESPUESTA: una pregunta concreta para que el prospecto te diga si la objeción está resuelta o queda algo abierto.
+
+REGLAS:
+- Objeción 1: la más probable según la hipótesis del dolor real
+- Objeción 2: una objeción "escudo educado" (precio, tiempo, autoridad)
+
+DOSSIER + DOLOR + DISCOVERY: [pegar outputs anteriores]
+MI PRODUCTO: [DESCRIBE EN 1 LÍNEA]</div>
+  </div>
+
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">06 / 10</div>
+</section>
+
+<!-- ===== PROMPT 5 ===== -->
+<section class="page">
+  <div class="skill-header">
+    <div class="skill-number">
+      <div class="label">Prompt</div>
+      <div class="num">05</div>
+    </div>
+    <div class="skill-title">
+      <h2>Ángulo de apertura específico</h2>
+      <div class="tagline">Cómo arrancar la call para no sonar a guion. Personalizado a SU contexto.</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Problema que resuelve</div>
+    <div class="block-body">El primer minuto de la call define todo. "Hola, ¿cómo estás? ¿Tienes los 30 minutos?" activa modo defensa en el prospecto. La conversación nunca alcanza profundidad porque arrancó plana.</div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Cómo usarlo</div>
+    <div class="block-body">Le pasas a Claude todo el contexto anterior. Te devuelve un ángulo de apertura específico — una frase de 2-3 líneas que conecta con SU realidad concreta y le hace sentir que ha hablado con alguien que ha hecho los deberes.</div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Prompt exacto</div>
+    <div class="prompt-box">ROL: Eres un closer B2B senior que sabe que el primer minuto de la call decide el resto. Tu apertura nunca suena a guion — conecta directamente con la realidad del prospecto desde la primera frase.
+
+CONTEXTO: Tienes el dossier, las hipótesis del dolor, el plan de discovery y las objeciones anticipadas. Ahora vas a diseñar la apertura.
+
+INSTRUCCIONES — devuélveme 3 versiones distintas del ángulo de apertura:
+
+1. VERSIÓN DIRECTA: arranca con una observación específica del prospecto o su empresa (algo del dossier que NO es público obvio). Conecta esa observación con el motivo de la call en 2-3 frases.
+
+2. VERSIÓN POR PROBLEMA: arranca nombrando el dolor más probable (el #1 de las hipótesis) sin afirmar que el prospecto lo tiene. Pregunta si resuena.
+
+3. VERSIÓN POR CURIOSIDAD: arranca con una pregunta o frase que despierta curiosidad y le hace querer profundizar.
+
+PARA CADA VERSIÓN:
+- Texto literal de la apertura (máximo 4 frases)
+- Cuándo usar esta versión (qué tipo de prospecto / momento encaja)
+- Cuándo NO usar (caso donde fracasaría)
+
+REGLAS:
+- Cero "¿cómo estás?", "¿qué tal el día?", "¿tienes los 30 min?"
+- Cero menciones a "antes de empezar"
+- Cero referencias a haber estudiado al prospecto ("vi tu perfil"). La preparación se nota en lo específico, no en declararla.
+- Tono natural en español de España, ni formal ni de coach motivacional
+
+CONTEXTO COMPLETO: [pegar todo lo anterior]
+MI PRODUCTO: [DESCRIBE EN 1 LÍNEA]</div>
+  </div>
+
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">07 / 10</div>
+</section>
+
+<!-- ===== PAGE 8 — SYSTEM (CÓMO ENCADENARLOS) ===== -->
+<section class="page system-page">
+  <h2>Cómo encadenar los 5 prompts</h2>
+  <p class="lead">El output de cada prompt alimenta al siguiente. Si los usas sueltos, te falta el 70% del valor. El orden no es opcional.</p>
+
+  <ol class="flow-list">
+    <li>
+      <strong>Prompt 1 — Dossier</strong>
+      Pegas el LinkedIn del contacto + URL de la web. Copias el output completo.
+    </li>
+    <li>
+      <strong>Prompt 2 — Hipótesis del dolor</strong>
+      Pegas el dossier del Prompt 1 en el placeholder. Copias el output con las 3 hipótesis priorizadas.
+    </li>
+    <li>
+      <strong>Prompt 3 — Preguntas de discovery</strong>
+      Pegas las hipótesis del Prompt 2 + el rol del prospecto. Recibes las 5 preguntas en orden.
+    </li>
+    <li>
+      <strong>Prompt 4 — Objeciones anticipadas</strong>
+      Pegas todos los outputs anteriores. Recibes las 2 objeciones más probables y respuestas validadas.
+    </li>
+    <li>
+      <strong>Prompt 5 — Ángulo de apertura</strong>
+      Pegas todo el contexto. Recibes 3 versiones de apertura para elegir según el momento.
+    </li>
+  </ol>
+
+  <div class="conclusion">
+    El tiempo total son <strong>5 minutos</strong> si Claude responde a velocidad normal. Si haces 5 calls a la semana, son 3-4 horas recuperadas. Si haces 20, son 15+. Y entras a cada call con más contexto del que el prospecto espera que tengas.
+  </div>
+
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">08 / 10</div>
+</section>
+
+<!-- ===== PAGE 9 — EJEMPLO REAL ===== -->
+<section class="page example-page">
+  <h2>Ejemplo real anonimizado</h2>
+  <p class="lead">Output abreviado de los 5 prompts aplicados a una call real. Datos sensibles cambiados.</p>
+
+  <div class="example-context">
+    <div class="label">Contexto del prospecto</div>
+    <div class="body">Founder de una agencia de marketing B2B en Madrid. 8 personas en plantilla. Lleva 3 años creciendo a doble dígito. Producto: software que analiza calls de venta con IA.</div>
+  </div>
+
+  <div class="example-output">
+    <div class="out-label">Output Prompt 1 — Dossier (abreviado)</div>
+    <div class="out-body">
+      <strong>Contacto:</strong> CEO y fundador. 9 años al frente, antes 5 años en consultora top tier. Posts recientes sobre escalado de equipo comercial y dificultad de mantener calidad al crecer.<br><br>
+      <strong>Empresa:</strong> agencia de marketing B2B nicho industrial. Clientes ticket medio-alto. Crecimiento sostenido pero con dependencia del fundador en cierres.<br><br>
+      <strong>Señales:</strong> 2 contrataciones recientes en BD; posts del CEO mencionando que "el equipo cierra al 50% de lo que cierra él".
+    </div>
+  </div>
+
+  <div class="example-output">
+    <div class="out-label">Output Prompt 2 — Hipótesis del dolor (top 1)</div>
+    <div class="out-body">
+      <strong>Dolor #1:</strong> el equipo comercial nuevo no cierra al nivel del fundador y el fundador es el cuello de botella del crecimiento.<br>
+      <strong>Por qué AHORA:</strong> contratación de 2 BDs hace 6 meses, primer trimestre sin que el equipo llegue a target sin que él entre en las calls grandes.
+    </div>
+  </div>
+
+  <div class="example-output">
+    <div class="out-label">Output Prompt 5 — Apertura elegida</div>
+    <div class="out-body">
+      "Vi en uno de tus últimos posts que mencionas que tu equipo cierra al 50% de lo que cierras tú. Sin entrar todavía a soluciones — ¿esa diferencia te frena más en facturación o en bandwidth tuyo?"
+    </div>
+  </div>
+
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">09 / 10</div>
+</section>
+
+<!-- ===== PAGE 10 — CTA ===== -->
+<section class="page cta-page">
+  <div class="cover-top">
+    <div class="cover-logo">Practify <span>IA</span></div>
+    <div class="cover-eyebrow">El siguiente paso</div>
+  </div>
+
+  <div>
+    <h2>Esto cubre el <span class="hl">antes</span> de la call.<br>El durante y el después también tienen agujero.</h2>
+
+    <p class="body">Estos 5 prompts te dejan entrar a cada call con preparación de nivel senior. Pero hay otro espacio igual de invisible que se pierde después de cada call: <strong>lo que pasa DENTRO</strong>.</p>
+
+    <p class="body">Cada call de venta deja señales — qué objeción no se trabajó, qué pista del prospecto se ignoró, qué pregunta clave nunca llegó a hacerse. La mayoría de esas señales nunca se escuchan porque el equipo no tiene tiempo de revisar 30-50 calls a la semana.</p>
+
+    <ul class="cta-list">
+      <li><strong>Análisis automático de cada call</strong> — IA específica de ventas marca el momento exacto donde se cae la venta.</li>
+      <li><strong>Roleplay con voz IA</strong> — el equipo entrena objeciones reales en español, 24/7, sin coach humano.</li>
+      <li><strong>Feedback accionable cada semana</strong> — informe ejecutivo con lo que está funcionando y lo que no.</li>
+    </ul>
+
+    <div class="cta-box">
+      <div class="label">Conoce Practify IA</div>
+      <div class="url">practifyia.com</div>
+      <div class="detail">Pide acceso gratuito a una demo y mira cómo Practify analiza una call real de tu equipo. En vivo.</div>
+    </div>
+  </div>
+
+  <div class="signature">
+    <strong>Andrei Rentea</strong>
+    Fundador de Practify IA<br>
+    andrei@practifyia.com · linkedin.com/in/andreirentea
+  </div>
+
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">10 / 10</div>
+</section>
+
+</body>
+</html>
