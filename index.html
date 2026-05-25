@@ -965,7 +965,7 @@ textarea{resize:vertical;min-height:100px}
 
 <!-- NAV -->
 <nav id="nav">
-  <div class="logo" onclick="showPage('main')">
+  <div class="logo" onclick="location.href='/'">
     <img class="logo-icon" src="/images/logo.png" alt="Practify">
     Practify <span class="ia">IA</span>
   </div>
@@ -1004,7 +1004,7 @@ textarea{resize:vertical;min-height:100px}
       Empezar gratis
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
-    <button class="btn-o" onclick="showPage('demo')">
+    <button class="btn-o" onclick="location.href='/demo/'">
       Solicitar demo
     </button>
   </div>
@@ -1500,7 +1500,7 @@ textarea{resize:vertical;min-height:100px}
         </div>
       </div>
       <div class="reveal" style="margin-top:24px;text-align:center">
-        <p style="font-size:13.5px;line-height:1.65;color:rgba(255,255,255,0.55);max-width:720px;margin:0 auto">El análisis con IA se realiza vía Google Gemini bajo Cláusulas Contractuales Tipo aprobadas por la Comisión Europea. Tu contenido nunca se usa para entrenar modelos externos — garantizado por contrato. <a onclick="showPage('privacidad')" style="color:#a78bfa;text-decoration:underline;cursor:pointer">Política de privacidad</a></p>
+        <p style="font-size:13.5px;line-height:1.65;color:rgba(255,255,255,0.55);max-width:720px;margin:0 auto">El análisis con IA se realiza vía Google Gemini bajo Cláusulas Contractuales Tipo aprobadas por la Comisión Europea. Tu contenido nunca se usa para entrenar modelos externos — garantizado por contrato. <a href="/privacidad/" style="color:#a78bfa;text-decoration:underline;cursor:pointer">Política de privacidad</a></p>
       </div>
     </div>
   </div>
@@ -1574,7 +1574,7 @@ textarea{resize:vertical;min-height:100px}
           <span class="pc-amount">A medida</span>
         </div>
         <div class="pc-note">Volumen, SSO, integraciones y soporte prioritario.</div>
-        <button class="pc-btn" onclick="showPage('demo')">
+        <button class="pc-btn" onclick="location.href='/demo/'">
           Hablar con ventas
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
@@ -1665,7 +1665,7 @@ textarea{resize:vertical;min-height:100px}
         Empezar gratis
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
-      <button class="btn-o reveal" onclick="showPage('demo')">Solicitar demo</button>
+      <button class="btn-o reveal" onclick="location.href='/demo/'">Solicitar demo</button>
     </div>
   </div>
 </section>
@@ -1674,7 +1674,7 @@ textarea{resize:vertical;min-height:100px}
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <div class="logo" onclick="showPage('main')">
+      <div class="logo" onclick="location.href='/'">
         <img class="logo-icon" src="/images/logo.png" alt="Practify">
         Practify <span class="ia">IA</span>
       </div>
@@ -1689,15 +1689,15 @@ textarea{resize:vertical;min-height:100px}
     </div>
     <div class="footer-col">
       <h5>Empresa</h5>
-      <a onclick="showPage('demo')">Solicitar demo</a>
+      <a href="/demo/">Solicitar demo</a>
       <a href="https://app.practifyia.com" target="_blank">Entrar</a>
       <a href="mailto:info@practifyia.com">Contacto</a>
     </div>
     <div class="footer-col">
       <h5>Legal</h5>
-      <a onclick="showPage('privacidad')">Privacidad</a>
-      <a onclick="showPage('terminos')">Términos</a>
-      <a onclick="showPage('cookies')">Cookies</a>
+      <a href="/privacidad/">Privacidad</a>
+      <a href="/terminos/">Términos</a>
+      <a href="/cookies/">Cookies</a>
       <a onclick="openCookieSettings()" style="cursor:pointer">Gestionar cookies</a>
     </div>
   </div>
@@ -1711,346 +1711,12 @@ textarea{resize:vertical;min-height:100px}
 
 </div><!-- /page-main -->
 
-<!-- ════════════════════ DEMO PAGE ════════════════════ -->
-<div id="page-demo" class="page">
-<div class="demo-page">
-  <div class="demo-inner">
-    <div class="demo-left">
-      <div class="demo-left-label">Demo personalizada</div>
-      <h2 class="demo-title">Agenda una demo de Practify para tu equipo.</h2>
-      <p>30 minutos. Te enseñamos la plataforma adaptada a tu negocio, resolvemos dudas y vemos si encaja con lo que necesitas.</p>
-      <div class="demo-divider"></div>
-      <div class="demo-who-title">Qué verás en la demo</div>
-      <ul class="demo-who-list">
-        <li><span class="demo-check">✓</span>Cómo generar prospectos de IA desde la URL de tu negocio.</li>
-        <li><span class="demo-check">✓</span>Análisis en directo de una llamada real o simulada.</li>
-        <li><span class="demo-check">✓</span>Panel de manager con métricas del equipo.</li>
-        <li><span class="demo-check">✓</span>Planes, precios y opciones para tu volumen.</li>
-      </ul>
-    </div>
-    <div>
-      <div class="form-card">
-        <div id="demo-form-wrap">
-          <form id="demo-form" onsubmit="submitDemo(event)">
-            <input type="hidden" name="access_key" value="ca6956c4-72b3-412f-8016-f65c90417cbd">
-            <input type="hidden" name="subject" value="Nueva solicitud de demo · Practify IA">
-            <input type="hidden" name="from_name" value="Practify IA Web">
-            <!-- Honeypot anti-spam: campo invisible que solo los bots rellenan -->
-            <input type="text" name="botcheck" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0;pointer-events:none" aria-hidden="true">
-            <div class="form-grid">
-              <div><label>Nombre completo *</label><input type="text" name="nombre" placeholder="Tu nombre" required></div>
-              <div><label>Email corporativo *</label><input type="email" name="email" placeholder="tu@empresa.com" required></div>
-              <div><label>Empresa *</label><input type="text" name="empresa" placeholder="Nombre de tu empresa" required></div>
-              <div><label>Cargo *</label><input type="text" name="cargo" placeholder="CEO, Director comercial, Fundador..." required></div>
-              <div>
-                <label>Tamaño del equipo comercial *</label>
-                <select name="equipo" required><option value="" disabled selected>Selecciona</option><option>Solo yo</option><option>2 a 5</option><option>6 a 15</option><option>16 a 50</option><option>Más de 50</option></select>
-              </div>
-              <div>
-                <label>Sector *</label>
-                <select name="sector" required><option value="" disabled selected>Selecciona</option><option>Consultoría / Servicios</option><option>Formación / Infoproductos</option><option>SaaS / Tech</option><option>Finanzas / Seguros</option><option>Inmobiliario</option><option>Salud</option><option>Legal</option><option>B2C high-ticket</option><option>Otro</option></select>
-              </div>
-              <div class="form-full">
-                <label>¿Qué problema quieres resolver? (opcional)</label>
-                <textarea name="problema" placeholder="Onboarding lento, objeciones mal gestionadas, falta de métricas..."></textarea>
-              </div>
-            </div>
-            <button type="submit" class="btn-submit" id="demo-submit-btn">
-              Continuar a agendar
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-            <p class="form-legal">Tus datos son tratados con confidencialidad y no se comparten con terceros.</p>
-          </form>
-        </div>
-        <div class="form-success" id="demo-success">
-          <h3>Elige día y hora.</h3>
-          <p style="margin-bottom:18px">Reserva el hueco que mejor te encaje. Te llegará confirmación al email.</p>
-          <div id="calendly-inline" style="min-width:280px;height:680px"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<footer>
-  <div class="footer-bottom">
-    <div class="footer-copy">© 2026 Practify IA</div>
-    <div class="footer-bottom-links"><a onclick="showPage('main')">Volver al inicio</a></div>
-  </div>
-</footer>
-</div><!-- /page-demo -->
-
-<!-- ════════════════════ PRIVACIDAD ════════════════════ -->
-<div id="page-privacidad" class="page legal-page">
-  <div class="legal-inner">
-    <h2 class="legal-title">Política de privacidad</h2>
-    <p class="legal-meta">Última actualización: 28 de abril de 2026</p>
-
-    <p>En Practify IA nos tomamos la privacidad en serio. Esta política explica qué datos recogemos, para qué los usamos y qué derechos tienes sobre ellos.</p>
-
-    <h2>1. Responsable del tratamiento</h2>
-    <p>El responsable del tratamiento de tus datos personales es:</p>
-    <ul>
-      <li><strong>Razón social:</strong> Podium IO, LLC</li>
-      <li><strong>Domicilio:</strong> 1209 Mountain Road Place NE, STE R, Albuquerque, New Mexico 87110, Estados Unidos</li>
-      <li><strong>Constituida bajo las leyes del Estado de New Mexico (EE. UU.)</strong></li>
-      <li><strong>Sitio web:</strong> <a href="https://practifyia.com">practifyia.com</a></li>
-      <li><strong>Email de contacto:</strong> <a href="mailto:info@practifyia.com">info@practifyia.com</a></li>
-    </ul>
-    <p>"Practify IA" es el nombre comercial bajo el que opera Podium IO, LLC. Para cualquier cuestión relacionada con esta política o con el tratamiento de tus datos puedes contactarnos en <a href="mailto:info@practifyia.com">info@practifyia.com</a>.</p>
-
-    <h2>2. Qué datos recogemos</h2>
-    <p>Solo recogemos los datos estrictamente necesarios para que el servicio funcione:</p>
-    <ul>
-      <li><strong>Datos de cuenta:</strong> nombre, email y credenciales de acceso cifradas.</li>
-      <li><strong>Contenido que tú subes:</strong> grabaciones, transcripciones y cualquier material que decidas procesar en la plataforma.</li>
-      <li><strong>Datos de uso:</strong> información técnica sobre cómo utilizas el servicio (páginas visitadas, acciones, duración de sesión, tipo de dispositivo).</li>
-      <li><strong>Datos de facturación:</strong> los necesarios para emitir la factura. Los datos completos de tarjeta los gestionan pasarelas de pago certificadas y nosotros no los almacenamos.</li>
-      <li><strong>Comunicaciones:</strong> los mensajes que nos envías a soporte.</li>
-    </ul>
-
-    <h2>3. Para qué usamos tus datos</h2>
-    <ul>
-      <li>Prestar el servicio contratado.</li>
-      <li>Gestionar tu cuenta, facturación y soporte.</li>
-      <li>Mejorar la plataforma mediante análisis agregados y anónimos.</li>
-      <li>Detectar y prevenir fraude o usos abusivos.</li>
-      <li>Enviarte comunicaciones operativas (cambios de servicio, incidencias, facturas).</li>
-      <li>Enviarte comunicaciones comerciales solo si nos has dado consentimiento expreso.</li>
-    </ul>
-
-    <h2>4. Base legal</h2>
-    <p>Tratamos tus datos con las siguientes bases legales: la <strong>ejecución del contrato</strong> derivado del uso del servicio; el <strong>cumplimiento de obligaciones legales</strong> (contables y fiscales); nuestro <strong>interés legítimo</strong> en mejorar el producto y prevenir fraude; y tu <strong>consentimiento</strong> para comunicaciones comerciales y cookies no esenciales.</p>
-
-    <h2>5. Con quién compartimos tus datos</h2>
-    <p><strong>No vendemos ni cedemos tus datos a terceros con fines comerciales.</strong> Compartimos datos únicamente con proveedores de servicios necesarios para operar el producto, como infraestructura cloud, procesamiento de IA, envío de emails transaccionales y pasarela de pagos. Todos ellos actúan como encargados del tratamiento bajo contratos que garantizan un nivel adecuado de protección, confidencialidad y seguridad.</p>
-
-    <h2>6. Transferencias internacionales</h2>
-    <p>Algunos de nuestros proveedores pueden procesar datos fuera del Espacio Económico Europeo. En esos casos aplicamos mecanismos de transferencia aprobados por la normativa europea (como las Cláusulas Contractuales Tipo) para garantizar un nivel de protección equivalente al del EEE.</p>
-
-    <h2>7. Cuánto tiempo conservamos tus datos</h2>
-    <p>Conservamos tus datos mientras mantengas una cuenta activa. Cuando la cancelas, eliminamos tu contenido en un plazo razonable salvo que la ley exija conservarlo por un periodo mayor (por ejemplo, obligaciones fiscales aplicables a facturación).</p>
-
-    <h2>8. Tus derechos</h2>
-    <p>Puedes ejercer en cualquier momento los siguientes derechos:</p>
-    <ul>
-      <li><strong>Acceder</strong> a los datos que tenemos sobre ti.</li>
-      <li><strong>Rectificar</strong> datos inexactos o incompletos.</li>
-      <li><strong>Suprimir</strong> tus datos cuando ya no sean necesarios.</li>
-      <li><strong>Oponerte</strong> al tratamiento o solicitar su <strong>limitación</strong>.</li>
-      <li>Solicitar la <strong>portabilidad</strong> de tus datos.</li>
-      <li><strong>Retirar el consentimiento</strong> en cualquier momento.</li>
-      <li>Presentar una reclamación ante la autoridad de control competente.</li>
-    </ul>
-    <p>Para ejercer cualquiera de estos derechos escríbenos a <a href="mailto:info@practifyia.com">info@practifyia.com</a>. Responderemos en los plazos previstos por la normativa aplicable.</p>
-
-    <h2>9. Seguridad</h2>
-    <p>Aplicamos medidas técnicas y organizativas razonables para proteger tu información, incluyendo cifrado en tránsito y en reposo, control de acceso por roles, copias de seguridad y revisiones periódicas. Ningún sistema es infalible, pero trabajamos de forma continua para mantener un nivel de seguridad elevado.</p>
-
-    <h2>10. Menores</h2>
-    <p>Practify IA no está dirigido a menores de 16 años. Si detectamos que se han recogido datos de un menor sin consentimiento parental, los eliminaremos.</p>
-
-    <h2>11. Cambios en esta política</h2>
-    <p>Podemos actualizar esta política para reflejar cambios en el servicio o en la normativa. Si el cambio es significativo, te lo notificaremos con antelación razonable. La fecha de "Última actualización" refleja la versión vigente.</p>
-
-    <h2>12. Contacto</h2>
-    <p>Para cualquier duda sobre esta política o sobre cómo tratamos tus datos, escríbenos a <a href="mailto:info@practifyia.com">info@practifyia.com</a>.</p>
-  </div>
-  <footer>
-    <div class="footer-bottom" style="max-width:800px;margin:0 auto;padding:24px">
-      <div class="footer-copy">© 2026 Podium IO, LLC · Practify IA</div>
-      <div class="footer-bottom-links"><a onclick="showPage('main')">Volver al inicio</a></div>
-    </div>
-  </footer>
-</div>
-
-<!-- ════════════════════ TÉRMINOS ════════════════════ -->
-<div id="page-terminos" class="page legal-page">
-  <div class="legal-inner">
-    <h2 class="legal-title">Términos y condiciones</h2>
-    <p class="legal-meta">Última actualización: 28 de abril de 2026</p>
-
-    <p>Estos términos regulan el uso de Practify IA, accesible en <a href="https://practifyia.com">practifyia.com</a> y <a href="https://app.practifyia.com">app.practifyia.com</a>. Al crear una cuenta o usar el servicio aceptas estos términos en su totalidad. Si no estás de acuerdo con alguno de ellos, no uses el servicio.</p>
-
-    <h2>1. Identificación del prestador del servicio</h2>
-    <p>El servicio Practify IA es prestado por:</p>
-    <ul>
-      <li><strong>Razón social:</strong> Podium IO, LLC</li>
-      <li><strong>Domicilio:</strong> 1209 Mountain Road Place NE, STE R, Albuquerque, New Mexico 87110, Estados Unidos</li>
-      <li><strong>Constituida bajo las leyes del Estado de New Mexico (EE. UU.)</strong></li>
-      <li><strong>Email:</strong> <a href="mailto:info@practifyia.com">info@practifyia.com</a></li>
-    </ul>
-    <p>"Practify IA" es el nombre comercial bajo el que opera Podium IO, LLC.</p>
-
-    <h2>2. Descripción del servicio</h2>
-    <p>Practify IA es una plataforma SaaS de entrenamiento y análisis comercial con inteligencia artificial. El alcance concreto de funcionalidades de cada plan se describe en <a onclick="navTo('precios')">la sección de precios</a> y puede evolucionar con el tiempo.</p>
-
-    <h2>3. Cuenta y registro</h2>
-    <p>Para usar el servicio necesitas crear una cuenta con un email válido y aceptar estos términos. Te comprometes a facilitar información veraz, mantenerla actualizada y proteger tus credenciales. Eres responsable de toda actividad realizada desde tu cuenta.</p>
-    <p>Debes ser mayor de edad y tener capacidad legal para contratar. Si actúas en nombre de una empresa, declaras tener autorización para obligar a esa empresa a estos términos.</p>
-
-    <h2>4. Planes y precios</h2>
-    <p>Ofrecemos diferentes planes con distintos límites y funcionalidades. Los precios vigentes son los publicados en la web en el momento de la contratación. Podemos modificar los precios avisándote con antelación razonable; los cambios nunca afectan al período ya pagado.</p>
-
-    <h2>5. Pagos y renovaciones</h2>
-    <p>Los planes de pago se cobran por adelantado mediante pasarela de pagos certificada. Salvo que la canceles antes, la suscripción se renueva automáticamente al final de cada ciclo y el cobro se realiza en la fecha de renovación.</p>
-
-    <h2>6. Cancelación y reembolsos</h2>
-    <p>Puedes cancelar tu suscripción en cualquier momento desde el panel de cuenta. La cancelación tiene efecto al final del período ya pagado. No se realizan reembolsos por períodos parciales salvo obligación legal. Los usuarios consumidores en la UE pueden ejercer el derecho de desistimiento durante los <strong>14 días</strong> posteriores a la contratación, salvo que hayan comenzado a usar el servicio de forma activa durante ese plazo.</p>
-
-    <h2>7. Uso aceptable</h2>
-    <p>Al usar Practify IA te comprometes a NO:</p>
-    <ul>
-      <li>Subir contenido ilegal, ofensivo, difamatorio o que infrinja derechos de terceros.</li>
-      <li>Subir grabaciones de personas sin haber obtenido su consentimiento previo cuando la ley lo exija.</li>
-      <li>Intentar acceder de forma no autorizada a sistemas, datos o cuentas de otros usuarios.</li>
-      <li>Realizar ingeniería inversa, copiar, reproducir o revender el servicio sin autorización expresa.</li>
-      <li>Usar el servicio para enviar spam, malware o realizar ataques.</li>
-      <li>Automatizar el uso más allá de los límites e interfaces autorizadas.</li>
-    </ul>
-    <p>El incumplimiento grave puede resultar en suspensión o cancelación inmediata de la cuenta sin reembolso.</p>
-
-    <h2>8. Contenido del usuario</h2>
-    <p>Mantienes la titularidad de las grabaciones, transcripciones y demás contenido que subas ("Contenido del usuario"). Al subirlos nos concedes una licencia limitada y no exclusiva para procesarlos con el único fin de prestarte el servicio. No utilizamos tu contenido para entrenar modelos de inteligencia artificial externos ni para finalidades distintas de la prestación del servicio.</p>
-    <p>Eres responsable de asegurarte de que tienes derecho a subir ese contenido y de cumplir con la normativa aplicable (protección de datos, consentimiento de los participantes, confidencialidad, etc.).</p>
-
-    <h2>9. Confidencialidad</h2>
-    <p>Tratamos el Contenido del usuario como información confidencial. Solo accedemos a él cuando es estrictamente necesario para prestar el servicio, resolver incidencias o cumplir obligaciones legales, y siempre siguiendo lo descrito en la <a onclick="showPage('privacidad')">política de privacidad</a>.</p>
-
-    <h2>10. Propiedad intelectual</h2>
-    <p>Todo el software, diseño, marcas, textos y metodología de Practify IA son propiedad de sus titulares y están protegidos por las leyes de propiedad intelectual e industrial. La contratación del servicio otorga únicamente un derecho limitado de uso durante la vigencia del contrato y no transfiere ningún derecho de propiedad.</p>
-
-    <h2>11. Disponibilidad y soporte</h2>
-    <p>Trabajamos para mantener el servicio disponible 24/7, pero no garantizamos un uptime del 100%. Podemos realizar mantenimientos programados avisando con antelación razonable. El soporte se presta por email en horario laboral.</p>
-
-    <h2>12. Limitación de responsabilidad</h2>
-    <p>El servicio se presta "tal cual", sin garantías de resultados comerciales concretos. En la máxima medida permitida por ley, nuestra responsabilidad total por cualquier reclamación relacionada con el servicio queda limitada al importe efectivamente pagado por el usuario en los <strong>12 meses</strong> anteriores al hecho que motive la reclamación. No somos responsables de daños indirectos, lucro cesante ni pérdida de datos más allá de lo exigido por ley imperativa.</p>
-
-    <h2>13. Indemnización</h2>
-    <p>Te comprometes a indemnizarnos y mantenernos indemnes frente a reclamaciones de terceros derivadas del uso que hagas del servicio, del contenido que subas o del incumplimiento de estos términos.</p>
-
-    <h2>14. Terminación</h2>
-    <p>Podemos suspender o cancelar tu cuenta si incumples estos términos de forma grave o reiterada, previo aviso razonable salvo que la gravedad lo impida. Al terminar, dejarás de tener acceso al servicio y tus datos se tratarán conforme a la <a onclick="showPage('privacidad')">política de privacidad</a>.</p>
-
-    <h2>15. Modificaciones</h2>
-    <p>Podemos actualizar estos términos. Los cambios significativos se notifican con antelación razonable. El uso continuado del servicio tras la notificación implica aceptación.</p>
-
-    <h2>16. Ley aplicable y jurisdicción</h2>
-    <p>Estos términos se rigen por las leyes del Estado de New Mexico (EE. UU.), sin atender a sus reglas de conflicto de leyes. Los derechos imperativos que correspondan a usuarios consumidores conforme a la legislación de su país de residencia no se verán afectados por esta cláusula. Para clientes empresariales, las partes se someten a los tribunales competentes de Albuquerque, New Mexico.</p>
-
-    <h2>17. Contacto</h2>
-    <p>Cualquier duda sobre estos términos: <a href="mailto:info@practifyia.com">info@practifyia.com</a>.</p>
-  </div>
-  <footer>
-    <div class="footer-bottom" style="max-width:800px;margin:0 auto;padding:24px">
-      <div class="footer-copy">© 2026 Podium IO, LLC · Practify IA</div>
-      <div class="footer-bottom-links"><a onclick="showPage('main')">Volver al inicio</a></div>
-    </div>
-  </footer>
-</div>
-
-<!-- ════════════════════ COOKIES ════════════════════ -->
-<div id="page-cookies" class="page legal-page">
-  <div class="legal-inner">
-    <h2 class="legal-title">Política de cookies</h2>
-    <p class="legal-meta">Última actualización: 28 de abril de 2026</p>
-
-    <p>Esta política explica qué cookies y tecnologías similares usamos en <a href="https://practifyia.com">practifyia.com</a> y en la aplicación, para qué sirven y cómo puedes gestionarlas.</p>
-
-    <h2>1. Qué son las cookies</h2>
-    <p>Una cookie es un pequeño archivo de texto que un sitio web guarda en tu dispositivo cuando lo visitas. Sirve para recordar información de tu visita (como tu idioma o tu sesión iniciada), medir el uso del sitio y, en algunos casos, personalizar contenido.</p>
-
-    <h2>2. Tipos de cookies que usamos</h2>
-
-    <h3>Cookies técnicas (necesarias)</h3>
-    <p>Son imprescindibles para que la web y la app funcionen. Mantienen tu sesión abierta, recuerdan tus preferencias de idioma o tema, y protegen frente a ataques básicos. No se pueden desactivar sin romper el servicio.</p>
-
-    <h3>Cookies funcionales</h3>
-    <p>Guardan preferencias que mejoran tu experiencia, como recordarte la última pantalla visitada o tu configuración del panel. Puedes desactivarlas pero perderás esas comodidades.</p>
-
-    <h3>Cookies analíticas</h3>
-    <p>Nos ayudan a entender cómo se usa el producto (qué secciones se visitan más, qué flujos generan fricción) para mejorarlo. Los datos se tratan de forma agregada y anonimizada en la medida de lo posible.</p>
-
-    <h3>Cookies de terceros</h3>
-    <p>Algunos servicios externos que integramos (por ejemplo, reproductor de vídeo, chat de soporte o pasarela de pagos) pueden instalar sus propias cookies cuando interactúas con ellos. Esas cookies se rigen por las políticas de cada proveedor.</p>
-
-    <h2>3. Cómo gestionarlas</h2>
-    <p>Puedes gestionar o retirar tu consentimiento en cualquier momento:</p>
-    <ul>
-      <li>Desde el banner de cookies (si lo tenemos activo) o desde la configuración de tu cuenta.</li>
-      <li>Desde tu navegador, eliminando cookies ya almacenadas o bloqueando las futuras. Consulta la ayuda de tu navegador (Chrome, Firefox, Safari, Edge) para los pasos concretos.</li>
-    </ul>
-    <p>Ten en cuenta que si bloqueas cookies técnicas es posible que partes del servicio dejen de funcionar correctamente.</p>
-
-    <h2>4. Cambios en esta política</h2>
-    <p>Podemos actualizar esta política de cookies para reflejar cambios en nuestras prácticas o en la legislación aplicable. La fecha de "Última actualización" siempre indicará la versión vigente.</p>
-
-    <h2>5. Responsable y contacto</h2>
-    <p>El responsable del sitio es <strong>Podium IO, LLC</strong>, con domicilio en 1209 Mountain Road Place NE, STE R, Albuquerque, New Mexico 87110, Estados Unidos. Si quieres saber más sobre cómo tratamos tus datos, consulta nuestra <a onclick="showPage('privacidad')">política de privacidad</a>. Para cualquier duda, escríbenos a <a href="mailto:info@practifyia.com">info@practifyia.com</a>.</p>
-  </div>
-  <footer>
-    <div class="footer-bottom" style="max-width:800px;margin:0 auto;padding:24px">
-      <div class="footer-copy">© 2026 Podium IO, LLC · Practify IA</div>
-      <div class="footer-bottom-links"><a onclick="showPage('main')">Volver al inicio</a></div>
-    </div>
-  </footer>
-</div>
 
 <script>
-// ── PAGE SYSTEM ──
-// Mapa página interna ↔ URL pública
-const PAGE_TO_PATH={main:'/',privacidad:'/privacidad',terminos:'/terminos',cookies:'/cookies',demo:'/demo'};
-const PATH_TO_PAGE=Object.fromEntries(Object.entries(PAGE_TO_PATH).map(([k,v])=>[v,k]));
-
-function showPage(name,opts={}){
-  if(!document.getElementById('page-'+name))return;
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page-'+name).classList.add('active');
-  window.scrollTo(0,0);
-  // Páginas con fondo claro (todo lo que no sea main): nav siempre en modo blanco
-  const navEl=document.getElementById('nav');
-  if(navEl){
-    if(name==='main')navEl.classList.toggle('scrolled',window.scrollY>10);
-    else navEl.classList.add('scrolled');
-  }
-  setTimeout(()=>{
-    document.querySelectorAll('#page-'+name+' .reveal').forEach(el=>{
-      el.classList.remove('visible');
-      obs.observe(el);
-    });
-  },50);
-  // Sincronizar URL del navegador
-  if(!opts.skipHistory){
-    const path=PAGE_TO_PATH[name]||'/';
-    if(window.location.pathname!==path){
-      history.pushState({page:name},'',path);
-    }
-  }
-  // Título dinámico para SEO y pestañas del navegador
-  const titles={main:'Practify IA — Tu equipo comercial, entrenado por IA',privacidad:'Política de privacidad · Practify IA',terminos:'Términos y condiciones · Practify IA',cookies:'Política de cookies · Practify IA',demo:'Solicitar demo · Practify IA'};
-  if(titles[name])document.title=titles[name];
-}
-
-// Resolver página inicial según URL al cargar
-(function initPageFromURL(){
-  const path=window.location.pathname.replace(/\/$/,'')||'/';
-  const page=PATH_TO_PAGE[path]||'main';
-  if(page!=='main')showPage(page,{skipHistory:true});
-})();
-
-// Manejar botones atrás/adelante del navegador
-window.addEventListener('popstate',function(e){
-  const path=window.location.pathname.replace(/\/$/,'')||'/';
-  const page=PATH_TO_PAGE[path]||'main';
-  showPage(page,{skipHistory:true});
-});
-
+// ── NAV: scroll suave a anclas internas ──
+// (Las páginas /demo, /privacidad, /terminos, /cookies son ahora URLs reales servidas por archivos físicos)
 function navTo(id){
-  if(!document.getElementById('page-main').classList.contains('active')){
-    showPage('main');
-    setTimeout(()=>scrollToId(id),120);
-  } else {
-    scrollToId(id);
-  }
+  scrollToId(id);
 }
 
 function scrollToId(id){
@@ -2062,12 +1728,8 @@ function scrollToId(id){
 }
 
 // ── NAV ON SCROLL ──
-// Solo aplica el toggle scroll→white en la página principal.
-// En subpáginas (demo, privacidad, términos, cookies) la nav debe quedarse en blanco siempre.
 const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>{
-  const mainActive=document.getElementById('page-main')?.classList.contains('active');
-  if(!mainActive)return;
   if(window.scrollY>10)nav.classList.add('scrolled');
   else nav.classList.remove('scrolled');
 },{passive:true});
@@ -2348,7 +2010,7 @@ function openCookieSettings(){
 <!-- Cookie banner -->
 <div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
   <h4>🍪 Cookies</h4>
-  <p>Usamos cookies analíticas para entender cómo se usa la web y mejorarla. Puedes aceptarlas o rechazarlas. Las técnicas son necesarias para que la web funcione y siempre se cargan. <a onclick="showPage('cookies')" style="cursor:pointer">Más info</a>.</p>
+  <p>Usamos cookies analíticas para entender cómo se usa la web y mejorarla. Puedes aceptarlas o rechazarlas. Las técnicas son necesarias para que la web funcione y siempre se cargan. <a href="/cookies/" style="cursor:pointer">Más info</a>.</p>
   <div class="cookie-actions">
     <button class="cookie-btn cookie-btn-ghost" onclick="setCookieConsent(false)">Rechazar</button>
     <button class="cookie-btn cookie-btn-primary" onclick="setCookieConsent(true)">Aceptar</button>
