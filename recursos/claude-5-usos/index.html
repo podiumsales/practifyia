@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>5 Usos de Claude para Vender Más — Practify IA</title>
+<meta name="description" content="Aplica Claude a 5 partes concretas de tu negocio para escalar las ventas sin contratar a nadie. PDF gratis con prompts exactos.">
+<meta name="theme-color" content="#7c3aed">
+
+<meta property="og:title" content="5 usos de Claude para escalar las ventas de tu negocio">
+<meta property="og:description" content="Aplica Claude en 5 partes concretas de tu negocio: investigación, mensajes, contenido, dudas y seguimiento. PDF + prompts exactos. Gratis.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://practifyia.com/recursos/claude-5-usos">
+<meta property="og:image" content="https://practifyia.com/images/hero-dashboard.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-192.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --pm:#7c3aed; --pd:#5b21b6; --pl:#a78bfa; --pl2:#c4b5fd; --plav:#ede9fe;
+  --bg:#0a0a0a; --bg2:#1a1720; --card:#15121d;
+  --text:#ffffff; --text2:#cbd5e1; --text3:#94a3b8;
+  --border:rgba(196,181,253,0.15); --border2:rgba(196,181,253,0.25);
+  --max:1100px;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  background:var(--bg); color:var(--text);
+  font-size:16px; line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+nav{
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  background:rgba(10,10,10,0.85); backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:16px 24px;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.logo{
+  display:flex; align-items:center; gap:10px;
+  font-size:17px; font-weight:700; color:var(--text);
+  text-decoration:none;
+}
+.logo img{height:28px; width:auto}
+.logo .ia{
+  background:linear-gradient(135deg,#a78bfa 0%,#7c3aed 100%);
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+}
+.nav-back{
+  font-size:14px; color:var(--text3); text-decoration:none;
+  display:flex; align-items:center; gap:6px;
+  transition:color .15s;
+}
+.nav-back:hover{color:var(--text)}
+
+.hero{
+  position:relative; padding:140px 24px 80px;
+  min-height:90vh;
+  display:flex; align-items:center; justify-content:center;
+  text-align:center;
+  overflow:hidden;
+}
+.hero::before{
+  content:''; position:absolute; top:0; left:50%; transform:translateX(-50%);
+  width:700px; height:700px;
+  background:radial-gradient(circle,rgba(124,58,237,0.35) 0%,transparent 65%);
+  filter:blur(40px); pointer-events:none;
+  z-index:0;
+}
+.hero-inner{
+  position:relative; z-index:1; max-width:780px; margin:0 auto;
+}
+.eyebrow{
+  display:inline-block; padding:6px 14px;
+  background:rgba(124,58,237,0.12); border:1px solid var(--border2);
+  border-radius:20px;
+  font-size:12px; font-weight:600; color:var(--pl2);
+  letter-spacing:0.12em; text-transform:uppercase;
+  margin-bottom:24px;
+}
+h1{
+  font-size:clamp(36px,5vw,56px); font-weight:800;
+  line-height:1.05; letter-spacing:-0.02em;
+  margin-bottom:24px;
+}
+h1 .hl{
+  background:linear-gradient(135deg,#c4b5fd 0%,#a78bfa 50%,#7c3aed 100%);
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+}
+.hero-sub{
+  font-size:clamp(16px,1.6vw,19px); color:var(--text2); font-weight:400;
+  max-width:600px; margin:0 auto 40px;
+  line-height:1.55;
+}
+
+.form-wrap{
+  max-width:480px; margin:0 auto;
+  background:var(--card); border:1px solid var(--border2);
+  border-radius:16px; padding:28px;
+  box-shadow:0 20px 60px rgba(124,58,237,0.15);
+}
+.form-wrap h3{
+  font-size:18px; font-weight:700; margin-bottom:8px;
+  text-align:left;
+}
+.form-wrap .form-sub{
+  font-size:14px; color:var(--text3); margin-bottom:20px;
+  text-align:left;
+}
+.form-row{margin-bottom:14px; text-align:left}
+.form-row label{
+  display:block; font-size:12px; font-weight:600; color:var(--text2);
+  margin-bottom:6px; letter-spacing:0.04em; text-transform:uppercase;
+}
+.form-row input{
+  width:100%; padding:14px 16px;
+  background:rgba(255,255,255,0.04); border:1px solid var(--border2);
+  border-radius:10px;
+  color:var(--text); font-size:15px; font-family:inherit;
+  transition:border-color .15s, background .15s;
+}
+.form-row input:focus{
+  outline:none; border-color:var(--pm);
+  background:rgba(255,255,255,0.07);
+}
+.form-row input::placeholder{color:var(--text3); opacity:0.7}
+.btn-submit{
+  width:100%; padding:15px;
+  background:linear-gradient(135deg,#7c3aed 0%,#5b21b6 100%);
+  border:none; border-radius:10px;
+  color:#fff; font-size:15px; font-weight:700; font-family:inherit;
+  cursor:pointer;
+  transition:transform .15s, box-shadow .15s;
+  margin-top:6px;
+  display:flex; align-items:center; justify-content:center; gap:8px;
+}
+.btn-submit:hover{
+  transform:translateY(-1px);
+  box-shadow:0 8px 24px rgba(124,58,237,0.4);
+}
+
+section.sec{padding:80px 24px}
+.container{max-width:var(--max); margin:0 auto}
+.sec-label{
+  font-size:12px; font-weight:700; color:var(--pl2);
+  letter-spacing:0.14em; text-transform:uppercase;
+  text-align:center; margin-bottom:14px;
+}
+.sec-h{
+  font-size:clamp(28px,3.5vw,40px); font-weight:800;
+  line-height:1.15; letter-spacing:-0.015em;
+  text-align:center; margin-bottom:18px;
+}
+.sec-desc{
+  font-size:17px; color:var(--text2);
+  text-align:center; max-width:620px; margin:0 auto 50px;
+  line-height:1.55;
+}
+
+.includes-grid{
+  max-width:680px; margin:0 auto;
+  display:grid; gap:14px;
+}
+.include-item{
+  display:flex; gap:14px; align-items:flex-start;
+  padding:18px 20px;
+  background:var(--card); border:1px solid var(--border);
+  border-radius:12px;
+}
+.include-icon{
+  width:28px; height:28px; flex-shrink:0;
+  background:linear-gradient(135deg,#7c3aed,#5b21b6);
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  color:#fff;
+}
+.include-icon svg{width:14px; height:14px}
+.include-text{
+  font-size:15.5px; color:var(--text); font-weight:500;
+  line-height:1.5;
+}
+.bonus{
+  margin-top:24px; padding:18px 22px;
+  background:linear-gradient(135deg,rgba(124,58,237,0.18),rgba(91,33,182,0.1));
+  border:1px solid var(--border2); border-radius:12px;
+  font-size:15px; color:var(--text); line-height:1.55;
+}
+.bonus strong{color:var(--pl2)}
+
+.audience-grid{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:20px;
+  max-width:980px; margin:0 auto;
+}
+.audience-card{
+  padding:28px 24px;
+  background:var(--card); border:1px solid var(--border);
+  border-radius:14px;
+}
+.audience-icon{
+  width:42px; height:42px; margin-bottom:18px;
+  background:rgba(124,58,237,0.15); border:1px solid var(--border2);
+  border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--pl);
+}
+.audience-card h4{
+  font-size:17px; font-weight:700; color:var(--text);
+  margin-bottom:10px; line-height:1.3;
+}
+.audience-card p{
+  font-size:14.5px; color:var(--text2); line-height:1.55;
+}
+
+.author-block{
+  max-width:680px; margin:0 auto;
+  padding:36px;
+  background:var(--card); border:1px solid var(--border2);
+  border-radius:16px;
+  display:flex; gap:24px; align-items:flex-start;
+}
+.author-avatar{
+  width:64px; height:64px; flex-shrink:0;
+  background:linear-gradient(135deg,#7c3aed,#5b21b6);
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  color:#fff; font-size:24px; font-weight:700;
+}
+.author-content h4{
+  font-size:18px; font-weight:700; color:var(--text); margin-bottom:6px;
+}
+.author-content .author-role{
+  font-size:13px; color:var(--pl); margin-bottom:14px;
+  text-transform:uppercase; letter-spacing:0.06em; font-weight:600;
+}
+.author-content p{
+  font-size:15px; color:var(--text2); line-height:1.65;
+}
+
+.cta-final{
+  padding:90px 24px;
+  background:linear-gradient(180deg,transparent 0%,rgba(124,58,237,0.06) 100%);
+  text-align:center;
+}
+.cta-final .form-wrap{margin:30px auto 0}
+
+footer{
+  padding:30px 24px;
+  border-top:1px solid var(--border);
+  text-align:center;
+}
+footer .footer-inner{
+  max-width:var(--max); margin:0 auto;
+  font-size:13px; color:var(--text3);
+}
+footer a{color:var(--pl); text-decoration:none}
+footer a:hover{text-decoration:underline}
+
+@media (max-width:768px){
+  nav{padding:14px 18px}
+  .audience-grid{grid-template-columns:1fr}
+  .author-block{flex-direction:column; padding:28px; text-align:center}
+  .author-avatar{margin:0 auto}
+  .hero{padding:120px 20px 60px; min-height:auto}
+  section.sec{padding:60px 20px}
+  .form-wrap{padding:22px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">
+    <img src="/images/logo.png" alt="Practify IA">
+    Practify <span class="ia">IA</span>
+  </a>
+  <a href="/" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Volver al inicio
+  </a>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Recurso gratuito</div>
+    <h1>5 usos de Claude que escalan las <span class="hl">ventas de tu negocio</span></h1>
+    <p class="hero-sub">Aplica Claude en las 5 partes concretas que más mueven la aguja en cualquier negocio que venda online — vendas solo o con equipo.</p>
+
+    <div class="form-wrap">
+      <h3>Recibe el recurso en tu inbox</h3>
+      <p class="form-sub">Te llega al instante en menos de 1 minuto.</p>
+
+      <form id="leadForm" onsubmit="return handleSubmit(event)">
+        <div class="form-row">
+          <label for="name">Nombre</label>
+          <input type="text" id="name" name="name" placeholder="Tu nombre" required>
+        </div>
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+        </div>
+        <button type="submit" class="btn-submit">
+          Enviarme los 5 usos
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="container">
+    <div class="sec-label">Qué vas a recibir</div>
+    <h2 class="sec-h">El sistema para que Claude trabaje en cada parte de tu negocio</h2>
+    <p class="sec-desc">No son prompts sueltos. Son 5 usos concretos que cubren desde encontrar al cliente hasta hacer el último seguimiento.</p>
+
+    <div class="includes-grid">
+      <div class="include-item">
+        <div class="include-icon"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="include-text">5 prompts exactos listos para copiar y pegar en Claude</div>
+      </div>
+      <div class="include-item">
+        <div class="include-icon"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="include-text">Un ejemplo real anonimizado por cada uno de los 5 usos</div>
+      </div>
+      <div class="include-item">
+        <div class="include-icon"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="include-text">Cómo adaptar cada prompt a tu sector y a tu cliente</div>
+      </div>
+      <div class="include-item">
+        <div class="include-icon"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="include-text">El orden de uso: antes del cliente, durante el contacto y después</div>
+      </div>
+      <div class="include-item">
+        <div class="include-icon"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="include-text">Cómo medir si cada uso te está dejando tiempo o aumentando respuestas</div>
+      </div>
+
+      <div class="bonus">
+        <strong>BONUS</strong> — Checklist de qué NO automatizar con Claude. Las 3 partes del proceso donde meter IA te destroza la conversión.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="background:linear-gradient(180deg,transparent,rgba(124,58,237,0.04))">
+  <div class="container">
+    <div class="sec-label">Para quién es</div>
+    <h2 class="sec-h">Hecho para ti si vendes algo por internet</h2>
+    <p class="sec-desc">No importa si vendes solo, con equipo, formación online, servicios o software. Si tu cliente decide por una llamada, un mensaje o un email — estos 5 usos te aplican.</p>
+
+    <div class="audience-grid">
+      <div class="audience-card">
+        <div class="audience-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/><path d="M4 22v-2a8 8 0 0116 0v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <h4>Vendes tú solo</h4>
+        <p>Founders, consultores, coaches, infoproductores. Recuperas horas a la semana sin contratar a nadie ni delegar partes críticas del proceso.</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M17 11l-5 5-5-5M12 4v12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h4>Vendes con un equipo pequeño</h4>
+        <p>Estandarizas cómo se prepara, se escribe y se sigue cada cliente. Todos parten del mismo nivel — sin depender del comercial más senior.</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 9h16v11H4z M8 9V5a4 4 0 018 0v4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h4>Llevas un equipo comercial</h4>
+        <p>Subes el rendimiento del equipo entero. Cada uno entra a las llamadas, mensajes y seguimientos con preparación de nivel senior — sin formación extra.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="container">
+    <div class="sec-label">Sobre el autor</div>
+    <h2 class="sec-h">Quién hay detrás de este recurso</h2>
+
+    <div class="author-block">
+      <div class="author-avatar">A</div>
+      <div class="author-content">
+        <h4>Andrei Rentea</h4>
+        <div class="author-role">Fundador de Practify IA</div>
+        <p>Llevo meses pasando llamadas de venta reales por un sistema de IA para detectar dónde se cae cada venta. En paralelo, he ido metiendo Claude en cada parte del proceso de venta — antes, durante el contacto por mensaje y después. Estos 5 usos son los que más impacto me han dado y los que recomiendo a cualquier negocio que venda por internet.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="container">
+    <div class="sec-label">Última llamada</div>
+    <h2 class="sec-h">Empieza hoy. Es gratis.</h2>
+    <p class="sec-desc">Deja tu email y te enviamos el recurso completo en menos de 1 minuto.</p>
+
+    <div class="form-wrap">
+      <h3>Acceso inmediato</h3>
+      <p class="form-sub">Te lo enviamos al instante.</p>
+
+      <form id="leadFormBottom" onsubmit="return handleSubmit(event)">
+        <div class="form-row">
+          <label for="name2">Nombre</label>
+          <input type="text" id="name2" name="name" placeholder="Tu nombre" required>
+        </div>
+        <div class="form-row">
+          <label for="email2">Email</label>
+          <input type="email" id="email2" name="email" placeholder="tu@email.com" required>
+        </div>
+        <button type="submit" class="btn-submit">
+          Recibir los 5 usos gratis
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    © 2026 Practify IA · <a href="/">Volver al inicio</a> · <a href="/privacidad">Privacidad</a>
+  </div>
+</footer>
+
+<script>
+async function handleSubmit(e){
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('button[type="submit"]');
+  const name = form.querySelector('input[name="name"]').value.trim();
+  const email = form.querySelector('input[name="email"]').value.trim();
+  const originalLabel = btn.innerHTML;
+
+  btn.disabled = true;
+  btn.innerHTML = 'Enviando…';
+
+  try {
+    const res = await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, source: 'landing-claude-5-usos' })
+    });
+    if (!res.ok) throw new Error('Subscribe failed');
+
+    window.location.href = '/recursos/claude-5-usos/gracias/';
+  } catch (err) {
+    btn.disabled = false;
+    btn.innerHTML = originalLabel;
+    alert('Ha habido un error. Inténtalo de nuevo en unos segundos o escríbeme a andrei@practifyia.com.');
+  }
+  return false;
+}
+</script>
+
+</body>
+</html>

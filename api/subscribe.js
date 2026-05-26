@@ -25,6 +25,7 @@ export default async function handler(req, res) {
   const LIST_BY_SOURCE = {
     'landing-claude-ventas': defaultListId,
     'landing-prepara-prospectos': parseInt(process.env.BREVO_LIST_ID_PROSPECTOS, 10) || defaultListId,
+    'landing-claude-5-usos': parseInt(process.env.BREVO_LIST_ID_5USOS, 10) || defaultListId,
   };
 
   const listId = LIST_BY_SOURCE[source] || defaultListId;

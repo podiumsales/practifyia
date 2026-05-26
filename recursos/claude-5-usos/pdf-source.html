@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>5 Usos de Claude para Vender Más — Practify IA</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #0a0a0a;
+    --bg-light: #fafafa;
+    --ink: #0a0a0a;
+    --ink-soft: #404040;
+    --muted: #737373;
+    --line: #e5e5e5;
+    --purple-1: #7c3aed;
+    --purple-2: #a78bfa;
+    --purple-3: #c4b5fd;
+    --purple-4: #ede9fe;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: var(--ink); }
+
+  @page { size: A4; margin: 0; }
+
+  .page {
+    width: 210mm; height: 297mm;
+    padding: 22mm 20mm;
+    page-break-after: always;
+    position: relative; overflow: hidden;
+    background: var(--bg-light);
+  }
+  .page:last-child { page-break-after: auto; }
+
+  .pagenum { position: absolute; bottom: 12mm; right: 20mm; font-size: 9pt; color: var(--muted); letter-spacing: 0.04em; }
+  .wordmark { position: absolute; bottom: 12mm; left: 20mm; font-size: 9pt; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
+  .wordmark span { color: var(--purple-1); }
+
+  /* COVER */
+  .cover { background: var(--bg); color: #fafafa; padding: 30mm 22mm; display: flex; flex-direction: column; justify-content: space-between; }
+  .cover .wordmark { color: #fafafa; }
+  .cover .pagenum { color: rgba(255,255,255,0.5); }
+  .cover-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .cover-logo { font-size: 14pt; font-weight: 800; letter-spacing: -0.02em; }
+  .cover-logo span { color: var(--purple-2); }
+  .cover-eyebrow { display: inline-block; padding: 6px 12px; background: rgba(167, 139, 250, 0.15); border: 1px solid rgba(167, 139, 250, 0.3); border-radius: 999px; font-size: 9pt; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--purple-3); }
+  .cover-main h1 { font-size: 50pt; line-height: 1.02; letter-spacing: -0.04em; font-weight: 800; margin-bottom: 14mm; }
+  .cover-main h1 .hl { background: linear-gradient(180deg, transparent 60%, rgba(124, 58, 237, 0.55) 60%); padding: 0 4px; }
+  .cover-sub { font-size: 14pt; line-height: 1.5; color: rgba(255,255,255,0.78); max-width: 135mm; font-weight: 400; }
+  .cover-foot { display: flex; justify-content: space-between; align-items: flex-end; gap: 20mm; padding-top: 12mm; border-top: 1px solid rgba(255,255,255,0.12); }
+  .cover-foot .author { font-size: 10pt; color: rgba(255,255,255,0.6); line-height: 1.6; }
+  .cover-foot .author strong { color: #fafafa; font-weight: 600; }
+  .cover-badge { text-align: right; font-size: 9pt; color: rgba(255,255,255,0.5); }
+  .cover-badge .big { display: block; font-size: 32pt; font-weight: 800; color: var(--purple-2); line-height: 1; letter-spacing: -0.03em; margin-bottom: 4mm; }
+
+  /* SECTION HEADER (use pages) */
+  .skill-header { display: flex; align-items: flex-start; gap: 8mm; margin-bottom: 10mm; padding-bottom: 8mm; border-bottom: 1px solid var(--line); }
+  .skill-number { flex-shrink: 0; width: 22mm; height: 22mm; background: var(--bg); color: #fafafa; border-radius: 4mm; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1; }
+  .skill-number .label { font-size: 7pt; letter-spacing: 0.15em; text-transform: uppercase; color: var(--purple-3); margin-bottom: 2mm; font-weight: 600; }
+  .skill-number .num { font-size: 28pt; font-weight: 800; letter-spacing: -0.04em; }
+  .skill-title { flex: 1; padding-top: 2mm; }
+  .skill-title h2 { font-size: 22pt; font-weight: 800; line-height: 1.1; letter-spacing: -0.025em; margin-bottom: 3mm; }
+  .skill-title .tagline { font-size: 10.5pt; color: var(--muted); font-weight: 500; }
+
+  .block { margin-bottom: 7mm; }
+  .block-label { font-size: 8pt; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--purple-1); margin-bottom: 3mm; }
+  .block-body { font-size: 10.5pt; line-height: 1.55; color: var(--ink-soft); }
+  .block-body strong { color: var(--ink); font-weight: 600; }
+  .prompt-box { background: var(--bg); color: #e5e5e5; border-radius: 4mm; padding: 6mm 7mm; font-family: 'JetBrains Mono', 'Menlo', monospace; font-size: 8.5pt; line-height: 1.55; white-space: pre-wrap; border-left: 4px solid var(--purple-1); }
+
+  /* INTRO PAGE */
+  .intro-page h1 { font-size: 38pt; line-height: 1.05; letter-spacing: -0.035em; font-weight: 800; margin-bottom: 12mm; }
+  .intro-page h1 .hl { color: var(--purple-1); }
+  .intro-page p { font-size: 12pt; line-height: 1.6; color: var(--ink-soft); margin-bottom: 6mm; max-width: 155mm; }
+  .intro-page p strong { color: var(--ink); }
+  .intro-meta { margin-top: 12mm; padding: 8mm; background: var(--purple-4); border-left: 3px solid var(--purple-1); border-radius: 0 4mm 4mm 0; }
+  .intro-meta .label { font-size: 8pt; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--purple-1); margin-bottom: 3mm; }
+  .intro-meta .body { font-size: 11pt; line-height: 1.55; color: var(--ink); }
+
+  /* CTA PAGE */
+  .cta-page { background: var(--bg); color: #fafafa; padding: 30mm 22mm; display: flex; flex-direction: column; justify-content: space-between; }
+  .cta-page .wordmark { color: #fafafa; }
+  .cta-page .pagenum { color: rgba(255,255,255,0.5); }
+  .cta-page h2 { font-size: 38pt; line-height: 1.05; letter-spacing: -0.035em; font-weight: 800; margin-bottom: 10mm; }
+  .cta-page h2 .hl { color: var(--purple-2); }
+  .cta-page .body { font-size: 12pt; line-height: 1.6; color: rgba(255,255,255,0.78); margin-bottom: 6mm; max-width: 150mm; }
+  .cta-page .body strong { color: #fafafa; font-weight: 600; }
+  .cta-list { list-style: none; margin: 6mm 0 10mm; padding: 0; }
+  .cta-list li { padding: 4mm 0 4mm 9mm; position: relative; font-size: 11.5pt; color: rgba(255,255,255,0.85); line-height: 1.5; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .cta-list li::before { content: ''; position: absolute; left: 0; top: 7mm; width: 5mm; height: 5mm; border-radius: 50%; background: var(--purple-1); }
+  .cta-list li strong { color: #fff; font-weight: 600; }
+  .cta-box { background: linear-gradient(135deg, var(--purple-1) 0%, #6d28d9 100%); border-radius: 5mm; padding: 8mm 9mm; margin-top: 6mm; }
+  .cta-box .label { font-size: 9pt; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.7); font-weight: 700; margin-bottom: 3mm; }
+  .cta-box .url { font-size: 20pt; font-weight: 800; color: #fff; letter-spacing: -0.02em; margin-bottom: 3mm; }
+  .cta-box .detail { font-size: 10pt; color: rgba(255,255,255,0.85); line-height: 1.5; }
+  .signature { margin-top: auto; padding-top: 8mm; border-top: 1px solid rgba(255,255,255,0.12); font-size: 10pt; color: rgba(255,255,255,0.6); line-height: 1.6; }
+  .signature strong { color: #fafafa; font-weight: 600; font-size: 11pt; display: block; margin-bottom: 1mm; }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 — COVER -->
+<section class="page cover">
+  <div class="cover-top">
+    <div class="cover-logo">Practify <span>IA</span></div>
+    <div class="cover-eyebrow">Recurso gratuito</div>
+  </div>
+  <div class="cover-main">
+    <h1>5 usos de Claude que <span class="hl">escalan las ventas</span> de cualquier negocio.</h1>
+    <p class="cover-sub">El sistema para aplicar Claude a las 5 partes concretas que más mueven la aguja — vendas solo o con equipo.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="author">
+      <strong>Andrei Rentea</strong>
+      Fundador de Practify IA<br>
+      Para founders, consultores, infoproductores y cualquier negocio que venda online
+    </div>
+    <div class="cover-badge">
+      <span class="big">5</span>
+      usos · 9 páginas · 1 sistema
+    </div>
+  </div>
+</section>
+
+<!-- PAGE 2 — INTRO -->
+<section class="page intro-page">
+  <h1>La mayoría usa Claude <span class="hl">como un buscador.</span></h1>
+  <p>Abre Claude, le pide un email, lo cierra. Y vuelve a abrirlo al día siguiente para otra pregunta suelta.</p>
+  <p>Cuando lo aplicas a partes concretas de tu negocio — investigar al cliente, escribir el primer mensaje, crear contenido, manejar dudas, hacer seguimiento — <strong>Claude deja de ser un buscador y empieza a comportarse como un asistente real</strong>.</p>
+  <p>He empaquetado los 5 usos que más impacto me han dado tanto vendiendo yo solo como ayudando a equipos comerciales pequeños. Son universales: funcionan igual para un consultor B2B, un infoproductor de cursos online, un founder de SaaS o un coach high-ticket.</p>
+  <div class="intro-meta">
+    <div class="label">Cómo usar este recurso</div>
+    <div class="body">Cada uso tiene su propio prompt listo para copiar y pegar en Claude. Empieza por el Uso 1 (Investigar a un cliente potencial) — su output alimenta a los siguientes 4. En 10-15 minutos tienes el sistema funcionando para cualquier cliente real de tu cartera.</div>
+  </div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">02 / 09</div>
+</section>
+
+<!-- USE 1 — INVESTIGAR -->
+<section class="page">
+  <div class="skill-header">
+    <div class="skill-number"><div class="label">Uso</div><div class="num">01</div></div>
+    <div class="skill-title">
+      <h2>Investigar a un cliente potencial</h2>
+      <div class="tagline">Informe completo en 5 minutos: qué hace su negocio, dónde le aprieta el zapato, qué decirle para conectar.</div>
+    </div>
+  </div>
+  <div class="block">
+    <div class="block-label">Problema que resuelve</div>
+    <div class="block-body">Antes de cada primer contacto pierdes 30-45 minutos navegando entre LinkedIn, la web del cliente, sus posts, su sector y los movimientos recientes. Información dispersa y sintetizada mentalmente sobre la marcha.</div>
+  </div>
+  <div class="block">
+    <div class="block-label">Cómo usarlo</div>
+    <div class="block-body">Le pegas el LinkedIn del contacto + la URL de la web de su empresa + 1 línea sobre lo que tú vendes. Te devuelve un informe estructurado en 5 secciones que te deja listo para escribir, llamar o preparar la propuesta.</div>
+  </div>
+  <div class="block">
+    <div class="block-label">Prompt exacto</div>
+    <div class="prompt-box">ROL: Eres un asistente comercial senior que prepara informes de clientes antes del primer contacto. Tu output es conciso, accionable y estructurado.
+
+CONTEXTO: Voy a darte el LinkedIn de un contacto y la URL de su empresa. Yo vendo: [DESCRIBE EN 1 LÍNEA].
+
+INSTRUCCIONES — devuélveme un informe con estas 5 secciones:
+
+1. CONTACTO: rol, antigüedad, trayectoria reciente, señales de su LinkedIn (posts, intereses)
+2. EMPRESA: qué hace, modelo de negocio, tamaño, sector, momento actual
+3. SEÑALES DE TIMING: noticias, fichajes, lanzamientos, cambios — todo lo que sugiera urgencia
+4. POSIBLES STAKEHOLDERS: quién más decide o influye en una compra como la mía
+5. CONEXIÓN: en 2-3 frases, dónde encajaría lo que vendo en su realidad actual
+
+FORMATO: bullets cortos. Si no hay info clara sobre un punto, di "sin señales claras" en vez de inventar.
+
+LINKEDIN: [pegar URL]
+WEB: [pegar URL]</div>
+  </div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">03 / 09</div>
+</section>
+
+<!-- USE 2 — MENSAJE FRÍO -->
+<section class="page">
+  <div class="skill-header">
+    <div class="skill-number"><div class="label">Uso</div><div class="num">02</div></div>
+    <div class="skill-title">
+      <h2>Escribir un mensaje frío que sí contesten</h2>
+      <div class="tagline">DM en LinkedIn o email a alguien que no te conoce, adaptado a SU sector y momento.</div>
+    </div>
+  </div>
+  <div class="block">
+    <div class="block-label">Problema que resuelve</div>
+    <div class="block-body">El 95% de los mensajes en frío suenan iguales: presentación + servicio + petición de llamada. Resultado: 1-3% de respuesta. Y cuando intentas personalizar, te toma 20-30 minutos por mensaje.</div>
+  </div>
+  <div class="block">
+    <div class="block-label">Cómo usarlo</div>
+    <div class="block-body">Le pasas el informe del Uso 1 + el ángulo concreto que quieres trabajar. Te devuelve 3 versiones del mensaje (LinkedIn, email corto, email largo) con la apertura, el cuerpo y el cierre adaptados al contexto del contacto.</div>
+  </div>
+  <div class="block">
+    <div class="block-label">Prompt exacto</div>
+    <div class="prompt-box">ROL: Eres un experto en cold outreach humano. Tus mensajes no suenan a venta — suenan a alguien que ha hecho los deberes y quiere conversar.
+
+CONTEXTO: Tienes el informe del cliente (Uso 1) y mi propuesta. Vas a escribir un mensaje frío para iniciar la conversación.
+
+INSTRUCCIONES — devuélveme 3 versiones:
+
+1. LINKEDIN (máx 250 caracteres): apertura conectada con algo concreto del perfil del cliente + 1 línea de valor + propuesta blanda de conversación.
+
+2. EMAIL CORTO (máx 80 palabras): asunto + apertura específica + 1 línea de problema/oportunidad + cierre con micro-compromiso (no "una llamada de 30 min").
+
+3. EMAIL LARGO (máx 180 palabras): asunto + apertura específica + contexto/insight relacionado con su sector + propuesta concreta + cierre.
+
+REGLAS:
+- Cero "Espero que estés bien"
+- Cero "Te escribo porque..."
+- Cero "Trabajamos con empresas como X, Y, Z"
+- Sí: referencia específica + propuesta de valor en menos de 30 palabras
+
+INFORME: [pegar output Uso 1]
+MI PROPUESTA: [DESCRIBE EN 1 LÍNEA]</div>
+  </div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">04 / 09</div>
+</section>
+
+<!-- USE 3 — POST LINKEDIN -->
+<section class="page">
+  <div class="skill-header">
+    <div class="skill-number"><div class="label">Uso</div><div class="num">03</div></div>
+    <div class="skill-title">
+      <h2>Crear un post de LinkedIn que atraiga clientes</h2>
+      <div class="tagline">5 versiones del mismo post en tu voz, sin sonar a "ChatGPT genérico".</div>
+    </div>
+  </div>
+  <div class="block">
+    <div class="block-label">Problema que resuelve</div>
+    <div class="block-body">Sabes qué quieres contar pero te bloqueas con el formato. O peor: lo escribes, lo lees, te parece soso y no lo publicas. La diferencia entre el post que viraliza y el que no es casi siempre el hook.</div>
+  </div>
+  <div class="block">
+    <div class="block-label">Cómo usarlo</div>
+    <div class="block-body">Le das tu tema + tu voz (en 3 frases descriptivas) + tu cliente ideal. Te devuelve 5 versiones del mismo post: 5 hooks distintos, 5 ángulos distintos, 5 cierres distintos. Eliges el que más te resuene.</div>
+  </div>
+  <div class="block">
+    <div class="block-label">Prompt exacto</div>
+    <div class="prompt-box">ROL: Eres un copywriter senior de LinkedIn especializado en posts que atraen clientes B2B. Conoces los patrones de hook que rompen el scroll en 2026.
+
+CONTEXTO: Voy a darte (1) mi tema, (2) mi voz (3 adjetivos descriptivos), (3) mi cliente ideal en 1 frase.
+
+INSTRUCCIONES — devuélveme 5 versiones del mismo post, cada una con:
+
+- HOOK distinto (máx 2 líneas, debe entrar en "ver más" de LinkedIn móvil = 210 chars)
+- DESARROLLO de 200-300 palabras
+- CIERRE con pregunta o llamada a comentar (sin "comenta X y te paso Y" — eso suena a comment-baiting forzado)
+
+CADA VERSIÓN debe usar un patrón distinto:
+1. Confesión paradójica: "He hecho X y descubrí Y"
+2. Stat brutal: "El X% de Y hace Z"
+3. Provocación: "DEJA de hacer X"
+4. Historia específica: "Esta semana / Hace tiempo me pasó X"
+5. Contrarian: "La mayoría dice X. Mi experiencia dice Y"
+
+VOZ — no uses:
+- Emojis decorativos (🔥💯🚀)
+- Estructuras tipo "Vamos al lío:" o "Aquí van mis aprendizajes:"
+- Listas con números 1️⃣2️⃣3️⃣
+
+TEMA: [tu tema]
+MI VOZ: [3 adjetivos]
+MI CLIENTE IDEAL: [1 frase]</div>
+  </div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">05 / 09</div>
+</section>
+
+<!-- USE 4 — MANEJAR DUDA -->
+<section class="page">
+  <div class="skill-header">
+    <div class="skill-number"><div class="label">Uso</div><div class="num">04</div></div>
+    <div class="skill-title">
+      <h2>Manejar una duda del cliente por mensaje</h2>
+      <div class="tagline">Respuesta empática, directa y accionable. Sin sonar a venta forzada.</div>
+    </div>
+  </div>
+  <div class="block">
+    <div class="block-label">Problema que resuelve</div>
+    <div class="block-body">El cliente te suelta "lo veo caro" / "tengo que pensarlo" / "déjame hablarlo con mi equipo" por mensaje. Y tú estás cocinando o conduciendo. Improvisas una respuesta corta, suena a defensa, el cliente no responde y la venta se enfría.</div>
+  </div>
+  <div class="block">
+    <div class="block-label">Cómo usarlo</div>
+    <div class="block-body">Le pasas la frase exacta del cliente + tu propuesta + el contexto de dónde está la conversación. Te devuelve 3 versiones de respuesta: empática (validar + reformular), directa (devolver la pregunta), de cierre (proponer micro-compromiso). Eliges según el tono de la conversación.</div>
+  </div>
+  <div class="block">
+    <div class="block-label">Prompt exacto</div>
+    <div class="prompt-box">ROL: Eres un comercial senior que ha respondido miles de dudas de clientes por mensaje. Tu estilo es empático, claro y nunca defensivo.
+
+CONTEXTO: Un cliente me ha dicho [FRASE EXACTA] por mensaje. Yo vendo [PROPUESTA EN 1 LÍNEA]. Estamos en [MOMENTO DE LA CONVERSACIÓN: primera respuesta / tras propuesta / antes de cerrar].
+
+INSTRUCCIONES — devuélveme 3 versiones de respuesta:
+
+1. EMPÁTICA: valida lo que el cliente dice + reformula la duda en sus propios términos + propone profundizar. Máx 80 palabras.
+
+2. DIRECTA: devuelve la pregunta para que el cliente verbalice lo que está detrás de su duda. Máx 60 palabras.
+
+3. DE CIERRE: propone un micro-compromiso concreto (15 min de llamada / ver un ejemplo / responder a 2 preguntas tuyas). Máx 80 palabras.
+
+REGLAS:
+- Cero "Entiendo perfectamente lo que dices"
+- Cero "Mi propuesta es la mejor del mercado porque..."
+- Cero defensas tipo "Pero piensa que..."
+- Sí tono natural, como hablarías a un amigo que duda
+
+FRASE DEL CLIENTE: [pegar literal]
+MI PROPUESTA: [1 línea]
+MOMENTO: [contexto]</div>
+  </div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">06 / 09</div>
+</section>
+
+<!-- USE 5 — SEGUIMIENTO -->
+<section class="page">
+  <div class="skill-header">
+    <div class="skill-number"><div class="label">Uso</div><div class="num">05</div></div>
+    <div class="skill-title">
+      <h2>Hacer seguimiento sin sonar pesado</h2>
+      <div class="tagline">Secuencia exacta de mensajes para reactivar a un cliente que se enfrió.</div>
+    </div>
+  </div>
+  <div class="block">
+    <div class="block-label">Problema que resuelve</div>
+    <div class="block-body">El cliente te dijo "te digo algo la semana que viene". Han pasado 3 semanas. Tú no quieres parecer desesperado pero tampoco quieres dejar morir la venta. Acabas escribiendo "¿qué tal? ¿lo hablaste con tu socio?" → silencio absoluto.</div>
+  </div>
+  <div class="block">
+    <div class="block-label">Cómo usarlo</div>
+    <div class="block-body">Le pasas el último contacto que tuviste con el cliente + el tiempo que ha pasado + lo que vendes. Te devuelve una secuencia de 3 mensajes espaciados (día 1, día 7, día 21) que reactivan sin sonar desesperado: el primero aporta valor nuevo, el segundo plantea opción concreta, el tercero cierra con elegancia.</div>
+  </div>
+  <div class="block">
+    <div class="block-label">Prompt exacto</div>
+    <div class="prompt-box">ROL: Eres un comercial senior especializado en reactivar clientes fríos sin sonar pesado. Cada uno de tus mensajes aporta algo nuevo — nunca son "¿qué tal? ¿alguna novedad?".
+
+CONTEXTO: Tuve un último contacto con un cliente potencial hace [TIEMPO]. Su última respuesta fue [FRASE]. Yo vendo [PROPUESTA EN 1 LÍNEA].
+
+INSTRUCCIONES — devuélveme una SECUENCIA DE 3 MENSAJES para enviar en días distintos:
+
+MENSAJE 1 (día 1 desde hoy) — APORTAR VALOR:
+Comparte un insight, un caso real anonimizado, una noticia del sector o una pregunta provocadora relacionada con su situación. Cero auto-promoción. Máx 80 palabras.
+
+MENSAJE 2 (día 7) — OPCIÓN CONCRETA:
+Propón una acción específica: ver un ejemplo, responder a 1 pregunta, una llamada de 15 min. No ofrezcas "lo que necesite". Máx 70 palabras.
+
+MENSAJE 3 (día 21) — CIERRE ELEGANTE:
+Indica que cierras el seguimiento por ahora pero dejas la puerta abierta. Sin culpabilidad, sin reproche, sin "te he escrito 3 veces". Máx 50 palabras.
+
+REGLAS:
+- Cero "¿qué tal todo?"
+- Cero "Solo quería confirmar..."
+- Cero "Si no estás interesado, dímelo"
+- Tono profesional pero humano
+
+ÚLTIMO CONTACTO: [resumen]
+TIEMPO TRANSCURRIDO: [días/semanas]
+MI PROPUESTA: [1 línea]</div>
+  </div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">07 / 09</div>
+</section>
+
+<!-- PAGE 8 — POWER STATEMENT + LIMITES -->
+<section class="page intro-page">
+  <h1>Lo que Claude <span class="hl">NO va a resolver.</span></h1>
+  <p>Claude funciona brutal en TODO lo que pasa por escrito y fuera de la conversación en directo. Pero hay 3 partes del proceso de venta donde meter IA te destroza la conversión:</p>
+  <p><strong>1. Durante la llamada en directo.</strong> Claude no te escucha ni reacciona a tu tono o silencios. Si lo abres en otra pestaña mientras vendes, el cliente lo nota.</p>
+  <p><strong>2. La negociación profunda.</strong> Cuando el cliente pone una duda real (no escudo), pide silencios, dudas, preguntas indirectas. Es conversación humana. Claude no negocia. Tú sí.</p>
+  <p><strong>3. El momento exacto del cierre.</strong> La duda final del cliente casi nunca es la que dice en voz alta. Detectarla pide leer a la persona, no a un prompt.</p>
+  <div class="intro-meta">
+    <div class="label">La regla simple</div>
+    <div class="body">Claude funciona donde HAY TEXTO (preparación, mensajes, contenido, dudas escritas, seguimiento). Donde hay VOZ EN DIRECTO, sigue siendo tu trabajo. No mezcles los dos planos o pierdes en ambos.</div>
+  </div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">08 / 09</div>
+</section>
+
+<!-- PAGE 9 — CTA -->
+<section class="page cta-page">
+  <div class="cover-top">
+    <div class="cover-logo">Practify <span>IA</span></div>
+    <div class="cover-eyebrow">El siguiente paso</div>
+  </div>
+  <div>
+    <h2>Esto cubre lo que pasa <span class="hl">por escrito</span>.<br>La llamada en directo es otra historia.</h2>
+    <p class="body">Estos 5 usos cubren el 80% del proceso comercial — todo lo que pasa antes y después del contacto en directo con un cliente. <strong>Pero hay un agujero que ningún prompt cierra</strong>: lo que tu equipo (o tú) hacéis DENTRO de la llamada en directo.</p>
+    <p class="body">Las ventas que se caen ahí no se ven, no se recuperan, no se registran como perdidas. Por eso construyo Practify IA:</p>
+    <ul class="cta-list">
+      <li><strong>Análisis automático de cada llamada</strong> — IA específica de ventas marca el momento exacto donde se cae la venta.</li>
+      <li><strong>Entrenamiento con voz IA</strong> — el equipo practica dudas reales de clientes en español, sin coach humano.</li>
+      <li><strong>Informe ejecutivo cada semana</strong> — lo que funciona, lo que no y dónde está el cuello.</li>
+    </ul>
+    <div class="cta-box">
+      <div class="label">Conoce Practify IA</div>
+      <div class="url">practifyia.com</div>
+      <div class="detail">Pide acceso gratuito a una demo. Verás cómo Practify analiza una llamada real de tu equipo. En vivo.</div>
+    </div>
+  </div>
+  <div class="signature">
+    <strong>Andrei Rentea</strong>
+    Fundador de Practify IA<br>
+    andrei@practifyia.com · linkedin.com/in/andreirentea
+  </div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">09 / 09</div>
+</section>
+
+</body>
+</html>
