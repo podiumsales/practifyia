@@ -43,6 +43,8 @@ Filtro común único: cierran ventas por videollamada o llamada por Internet. No
 
 - [LinkedIn Company Page](https://www.linkedin.com/company/practifyia)
 - [Product Hunt — launch programado 2 junio 2026](https://www.producthunt.com/products/practify-ia)
+- [Wikidata · Practify IA (Q139943031)](https://www.wikidata.org/wiki/Q139943031)
+- [Wikidata · Podium IO, LLC (Q139942944)](https://www.wikidata.org/wiki/Q139942944)
 
 ## Integraciones
 
