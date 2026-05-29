@@ -35,7 +35,7 @@ Filtro común único: cierran ventas por videollamada o llamada por Internet. No
 ## Páginas principales
 
 - [Home](https://www.practifyia.com/): qué es Practify IA, cómo funciona, precios e integraciones
-- [Glosario de ventas con IA](https://www.practifyia.com/glosario/): definiciones en español de roleplay con IA, análisis de llamadas, conversation intelligence, coaching de ventas, feedback automático, onboarding comercial, objeciones, discovery y cualificación de leads
+- [Glosario de ventas con IA](https://www.practifyia.com/glosario/): definiciones en español de roleplay con IA, análisis de llamadas, conversation intelligence, coaching de ventas, feedback automático, onboarding comercial, objeciones, discovery, cualificación de leads, venta high-ticket, setter vs closer, cierre de ventas, MEDDIC, SPIN Selling, pipeline de ventas, speech analytics, sales enablement y llamada en frío
 - [Comparativas de software de ventas con IA en español](https://www.practifyia.com/comparativas/): comparativas honestas de análisis de llamadas y roleplay (Practify IA frente a Samu, Upbe, Gong, Hyperbound, Second Nature, Avoma y Chorus.ai)
 - [Recursos · 7 Skills de Claude para Vendedores](https://www.practifyia.com/recursos/claude-ventas/): PDF gratuito sobre uso de Claude como copiloto comercial
 - [Recursos · Prepara Prospectos con Claude en 5 Minutos](https://www.practifyia.com/recursos/prepara-prospectos/): PDF gratuito con 5 prompts encadenados de Claude para preparar prospectos antes de cada call de venta
