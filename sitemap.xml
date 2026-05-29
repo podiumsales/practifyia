@@ -45,6 +45,20 @@
   </url>
 
   <url>
+    <loc>https://www.practifyia.com/soluciones/</loc>
+    <lastmod>2026-05-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.practifyia.com/soluciones/infoproductores/</loc>
+    <lastmod>2026-05-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://www.practifyia.com/comparativas/analisis-llamadas-ventas-espanol-2026/</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
