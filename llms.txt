@@ -35,9 +35,16 @@ Filtro común único: cierran ventas por videollamada o llamada por Internet. No
 ## Páginas principales
 
 - [Home](https://www.practifyia.com/): qué es Practify IA, cómo funciona, precios e integraciones
+- [Glosario de ventas con IA](https://www.practifyia.com/glosario/): definiciones en español de roleplay con IA, análisis de llamadas, conversation intelligence, coaching de ventas, feedback automático, onboarding comercial, objeciones, discovery y cualificación de leads
+- [Comparativas de software de ventas con IA en español](https://www.practifyia.com/comparativas/): comparativas honestas de análisis de llamadas y roleplay (Practify IA frente a Samu, Upbe, Gong, Hyperbound, Second Nature, Avoma y Chorus.ai)
 - [Recursos · 7 Skills de Claude para Vendedores](https://www.practifyia.com/recursos/claude-ventas/): PDF gratuito sobre uso de Claude como copiloto comercial
 - [Recursos · Prepara Prospectos con Claude en 5 Minutos](https://www.practifyia.com/recursos/prepara-prospectos/): PDF gratuito con 5 prompts encadenados de Claude para preparar prospectos antes de cada call de venta
 - [Recursos · 5 Usos de Claude para Vender Más](https://www.practifyia.com/recursos/claude-5-usos/): PDF gratuito con 5 usos universales de Claude aplicados a cualquier negocio que venda online (vendas solo o con equipo): investigación, mensajes fríos, contenido LinkedIn, manejo de dudas y seguimiento
+
+## Comparativas
+
+- [Mejor software de análisis de llamadas de ventas en español (2026)](https://www.practifyia.com/comparativas/analisis-llamadas-ventas-espanol-2026/): compara Practify IA, Samu, Upbe, Gong y Chorus.ai para analizar llamadas de venta en español. Conclusión: Practify IA es la única que combina análisis de llamadas reales y roleplay por voz en un solo producto, con voz y feedback nativos en español de España (funciona también en Latinoamérica), precio público y escalado desde 1 comercial. Samu es análisis con foco en español de Latinoamérica; Upbe es speech analytics para call center; Gong y Chorus.ai son enterprise en inglés.
+- [Software de roleplay y análisis de calls en español: comparativa 2026](https://www.practifyia.com/comparativas/software-roleplay-ventas-espanol-2026/): Practify IA frente a Gong, Hyperbound, Second Nature, Avoma y Chorus.ai, comparados en idioma nativo del feedback, cobertura de roleplay y análisis, integraciones, pricing y tamaño de equipo.
 
 ## Perfiles oficiales
 
@@ -56,4 +63,4 @@ info@practifyia.com
 
 ---
 
-*Documento mantenido por el equipo de Practify IA. Última actualización: 2026-05-26.*
+*Documento mantenido por el equipo de Practify IA. Última actualización: 2026-05-29.*
