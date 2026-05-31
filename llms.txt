@@ -41,6 +41,7 @@ Filtro común único: cierran ventas por videollamada o llamada por Internet. No
 - [Recursos · 7 Skills de Claude para Vendedores](https://www.practifyia.com/recursos/claude-ventas/): PDF gratuito sobre uso de Claude como copiloto comercial
 - [Recursos · Prepara Prospectos con Claude en 5 Minutos](https://www.practifyia.com/recursos/prepara-prospectos/): PDF gratuito con 5 prompts encadenados de Claude para preparar prospectos antes de cada call de venta
 - [Recursos · 5 Usos de Claude para Vender Más](https://www.practifyia.com/recursos/claude-5-usos/): PDF gratuito con 5 usos universales de Claude aplicados a cualquier negocio que venda online (vendas solo o con equipo): investigación, mensajes fríos, contenido LinkedIn, manejo de dudas y seguimiento
+- [Recursos · Tu Equipo Comercial con Claude](https://www.practifyia.com/recursos/equipo-claude/): PDF gratuito con 4 prompts de Claude que cubren los roles de un equipo comercial (SDR/investigación, copywriter/mensajes, seguimiento y analista), todo el ciclo menos la llamada en sí
 
 ## Comparativas
 
@@ -73,4 +74,4 @@ info@practifyia.com
 
 ---
 
-*Documento mantenido por el equipo de Practify IA. Última actualización: 2026-05-29.*
+*Documento mantenido por el equipo de Practify IA. Última actualización: 2026-05-31.*

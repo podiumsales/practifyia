@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Tu Equipo Comercial con Claude — Practify IA</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+  :root{--bg:#0a0a0a;--bg-light:#fafafa;--ink:#0a0a0a;--ink-soft:#404040;--muted:#737373;--line:#e5e5e5;--purple-1:#7c3aed;--purple-2:#a78bfa;--purple-3:#c4b5fd;--purple-4:#ede9fe;}
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  html,body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--ink);}
+  @page{size:A4;margin:0;}
+  .page{width:210mm;height:297mm;padding:22mm 20mm;page-break-after:always;position:relative;overflow:hidden;background:var(--bg-light);}
+  .page:last-child{page-break-after:auto;}
+  .pagenum{position:absolute;bottom:12mm;right:20mm;font-size:9pt;color:var(--muted);letter-spacing:0.04em;}
+  .wordmark{position:absolute;bottom:12mm;left:20mm;font-size:9pt;font-weight:700;color:var(--ink);letter-spacing:-0.01em;}
+  .wordmark span{color:var(--purple-1);}
+  .cover{background:var(--bg);color:#fafafa;padding:30mm 22mm;display:flex;flex-direction:column;justify-content:space-between;}
+  .cover .wordmark{color:#fafafa;}.cover .pagenum{color:rgba(255,255,255,0.5);}
+  .cover-top{display:flex;justify-content:space-between;align-items:flex-start;}
+  .cover-logo{font-size:14pt;font-weight:800;letter-spacing:-0.02em;}
+  .cover-logo span{color:var(--purple-2);}
+  .cover-eyebrow{display:inline-block;padding:6px 12px;background:rgba(167,139,250,0.15);border:1px solid rgba(167,139,250,0.3);border-radius:999px;font-size:9pt;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--purple-3);}
+  .cover-main h1{font-size:50pt;line-height:1.02;letter-spacing:-0.04em;font-weight:800;margin-bottom:14mm;}
+  .cover-main h1 .hl{background:linear-gradient(180deg,transparent 60%,rgba(124,58,237,0.55) 60%);padding:0 4px;}
+  .cover-sub{font-size:14pt;line-height:1.5;color:rgba(255,255,255,0.78);max-width:140mm;font-weight:400;}
+  .cover-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:20mm;padding-top:12mm;border-top:1px solid rgba(255,255,255,0.12);}
+  .cover-foot .author{font-size:10pt;color:rgba(255,255,255,0.6);line-height:1.6;}
+  .cover-foot .author strong{color:#fafafa;font-weight:600;}
+  .cover-badge{text-align:right;font-size:9pt;color:rgba(255,255,255,0.5);}
+  .cover-badge .big{display:block;font-size:32pt;font-weight:800;color:var(--purple-2);line-height:1;letter-spacing:-0.03em;margin-bottom:4mm;}
+  .skill-header{display:flex;align-items:flex-start;gap:8mm;margin-bottom:9mm;padding-bottom:7mm;border-bottom:1px solid var(--line);}
+  .skill-number{flex-shrink:0;width:24mm;height:24mm;background:var(--bg);color:#fafafa;border-radius:4mm;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;}
+  .skill-number .label{font-size:7pt;letter-spacing:0.15em;text-transform:uppercase;color:var(--purple-3);margin-bottom:2mm;font-weight:600;}
+  .skill-number .num{font-size:26pt;font-weight:800;letter-spacing:-0.04em;}
+  .skill-title{flex:1;padding-top:2mm;}
+  .skill-title h2{font-size:21pt;font-weight:800;line-height:1.1;letter-spacing:-0.025em;margin-bottom:3mm;}
+  .skill-title .tagline{font-size:10.5pt;color:var(--muted);font-weight:500;}
+  .block{margin-bottom:6mm;}
+  .block-label{font-size:8pt;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--purple-1);margin-bottom:3mm;}
+  .block-body{font-size:10.5pt;line-height:1.55;color:var(--ink-soft);}
+  .block-body strong{color:var(--ink);font-weight:600;}
+  .prompt-box{background:var(--bg);color:#e5e5e5;border-radius:4mm;padding:6mm 7mm;font-family:'JetBrains Mono','Menlo',monospace;font-size:8pt;line-height:1.55;white-space:pre-wrap;border-left:4px solid var(--purple-1);}
+  .intro-page h1{font-size:36pt;line-height:1.05;letter-spacing:-0.035em;font-weight:800;margin-bottom:12mm;}
+  .intro-page h1 .hl{color:var(--purple-1);}
+  .intro-page p{font-size:12pt;line-height:1.6;color:var(--ink-soft);margin-bottom:6mm;max-width:155mm;}
+  .intro-page p strong{color:var(--ink);}
+  .intro-meta{margin-top:10mm;padding:8mm;background:var(--purple-4);border-left:3px solid var(--purple-1);border-radius:0 4mm 4mm 0;}
+  .intro-meta .label{font-size:8pt;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--purple-1);margin-bottom:3mm;}
+  .intro-meta .body{font-size:11pt;line-height:1.55;color:var(--ink);}
+  .system-page h2{font-size:28pt;line-height:1.1;letter-spacing:-0.03em;font-weight:800;margin-bottom:8mm;}
+  .system-page>p.lead{font-size:12pt;line-height:1.6;color:var(--ink-soft);margin-bottom:10mm;max-width:155mm;}
+  .flow-list{list-style:none;counter-reset:step;padding:0;margin-bottom:8mm;}
+  .flow-list li{counter-increment:step;padding:5mm 0 5mm 16mm;position:relative;font-size:11pt;line-height:1.55;color:var(--ink-soft);border-bottom:1px solid var(--line);}
+  .flow-list li:last-child{border-bottom:none;}
+  .flow-list li::before{content:counter(step);position:absolute;left:0;top:5mm;width:11mm;height:11mm;border-radius:50%;background:var(--purple-1);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13pt;font-weight:700;}
+  .flow-list li strong{color:var(--ink);font-weight:700;display:block;margin-bottom:1mm;font-size:12pt;}
+  .conclusion{padding:8mm;background:var(--bg);color:#fafafa;border-radius:4mm;font-size:11pt;line-height:1.6;}
+  .conclusion strong{color:var(--purple-2);font-weight:600;}
+  .cta-page{background:var(--bg);color:#fafafa;padding:30mm 22mm;display:flex;flex-direction:column;justify-content:space-between;}
+  .cta-page h2{font-size:36pt;line-height:1.05;letter-spacing:-0.035em;font-weight:800;margin-bottom:10mm;}
+  .cta-page h2 .hl{color:var(--purple-2);}
+  .cta-page .body{font-size:12pt;line-height:1.6;color:rgba(255,255,255,0.78);margin-bottom:6mm;max-width:150mm;}
+  .cta-page .body strong{color:#fafafa;font-weight:600;}
+  .cta-list{list-style:none;margin:6mm 0 10mm;padding:0;}
+  .cta-list li{padding:4mm 0 4mm 9mm;position:relative;font-size:11.5pt;color:rgba(255,255,255,0.85);line-height:1.5;border-bottom:1px solid rgba(255,255,255,0.08);}
+  .cta-list li::before{content:'';position:absolute;left:0;top:7mm;width:5mm;height:5mm;border-radius:50%;background:var(--purple-1);}
+  .cta-list li strong{color:#fff;font-weight:600;}
+  .cta-box{background:linear-gradient(135deg,var(--purple-1) 0%,#6d28d9 100%);border-radius:5mm;padding:8mm 9mm;margin-top:6mm;}
+  .cta-box .label{font-size:9pt;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.7);font-weight:700;margin-bottom:3mm;}
+  .cta-box .url{font-size:20pt;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:3mm;}
+  .cta-box .detail{font-size:10pt;color:rgba(255,255,255,0.85);line-height:1.5;}
+  .signature{margin-top:auto;margin-bottom:12mm;padding-top:8mm;border-top:1px solid rgba(255,255,255,0.12);font-size:10pt;color:rgba(255,255,255,0.6);line-height:1.6;}
+  .signature strong{color:#fafafa;font-weight:600;font-size:11pt;display:block;margin-bottom:1mm;}
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 — COVER -->
+<section class="page cover">
+  <div class="cover-top">
+    <div class="cover-logo">Practify <span>IA</span></div>
+    <div class="cover-eyebrow">Recurso gratuito</div>
+  </div>
+  <div class="cover-main">
+    <h1>Tu equipo comercial <span class="hl">con Claude</span>.</h1>
+    <p class="cover-sub">Los 4 roles que hacen el trabajo de un equipo de 6.000€/mes. Todo menos la llamada en sí.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="author"><strong>Andrei Rentea</strong><br>Fundador de Practify IA<br>Para founders y comerciales que venden solos</div>
+    <div class="cover-badge"><span class="big">4</span>roles · 8 páginas · 1 sistema</div>
+  </div>
+</section>
+
+<!-- PAGE 2 — INTRO -->
+<section class="page intro-page">
+  <h1>4 roles. 1 persona. <span class="hl">0€ al mes.</span></h1>
+  <p>Un equipo comercial pequeño cuesta una fortuna: un SDR que prospecta (~1.500€), alguien que escribe mensajes y seguimiento (~2.000€), un analista que revisa qué funciona (~2.000€). Total: unos <strong>6.000€/mes antes de cerrar una sola venta.</strong></p>
+  <p>En vez de contratar, puedes montar cada uno de esos roles con Claude. No para reemplazar a personas — para que tú solo puedas hacer el trabajo de varios sin morir en el intento.</p>
+  <p>Este sistema son <strong>4 prompts</strong>, uno por rol. Cubren todo el ciclo comercial <strong>menos la parte humana</strong>: la llamada y el cierre. Eso sigue siendo tuyo.</p>
+  <div class="intro-meta">
+    <div class="label">Cómo usar este recurso</div>
+    <div class="body">Copia y pega cada prompt en Claude (gratis o Pro). Empieza por el Rol 1 (El SDR) — su resultado alimenta a los otros tres. Al final tienes el flujo completo de tu semana comercial.</div>
+  </div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">02 / 08</div>
+</section>
+
+<!-- ROL 1 — SDR -->
+<section class="page">
+  <div class="skill-header">
+    <div class="skill-number"><div class="label">Rol</div><div class="num">01</div></div>
+    <div class="skill-title"><h2>El SDR</h2><div class="tagline">Investiga y prepara cada cliente en 5 minutos. Sin abrir 10 pestañas.</div></div>
+  </div>
+  <div class="block"><div class="block-label">Qué hace en tu equipo</div><div class="block-body">Un SDR dedica horas a investigar cada cliente antes del contacto. Este rol lo hace en minutos: le das un LinkedIn + web y te devuelve un dossier completo y accionable.</div></div>
+  <div class="block"><div class="block-label">Prompt exacto</div><div class="prompt-box">ROL: Eres un analista comercial senior que prepara dossiers de clientes antes de una venta. Tu output es siempre conciso, estructurado y accionable.
+
+CONTEXTO: Te doy el LinkedIn de un contacto y la web de su empresa. Mi producto/servicio es: [DESCRIBE EN 1 LÍNEA].
+
+DEVUÉLVEME un dossier con 5 secciones, en bullets:
+1. CONTACTO: rol, antigüedad, trayectoria reciente, señales de su LinkedIn
+2. EMPRESA: qué hacen, modelo, tamaño, momento que atraviesan
+3. SEÑALES DE TIMING: noticias, fichajes, lanzamientos, cambios recientes
+4. DÓNDE LE APRIETA EL ZAPATO: 2-3 problemas probables que mi producto podría resolver
+5. ÁNGULO DE ENTRADA: en 2 frases, cómo conectar con su realidad actual
+
+Si no tienes info de algún punto, di "sin señales claras". No inventes.
+
+LINKEDIN: [pegar]
+WEB: [pegar]</div></div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">03 / 08</div>
+</section>
+
+<!-- ROL 2 — COPYWRITER -->
+<section class="page">
+  <div class="skill-header">
+    <div class="skill-number"><div class="label">Rol</div><div class="num">02</div></div>
+    <div class="skill-title"><h2>El Copywriter</h2><div class="tagline">Mensajes, posts y respuestas en tu tono. Nunca genérico.</div></div>
+  </div>
+  <div class="block"><div class="block-label">Qué hace en tu equipo</div><div class="block-body">Escribe lo que atrae clientes (posts, mensajes fríos) y lo que los retiene (respuestas a dudas). Siempre en tu voz, no en "modo ChatGPT genérico".</div></div>
+  <div class="block"><div class="block-label">Prompt exacto</div><div class="prompt-box">ROL: Eres un copywriter de ventas que escribe en MI tono, no en tono corporativo ni de IA genérica. Frases cortas, directas, humanas.
+
+PRIMERO, aprende mi tono: te pego 2 ejemplos de cómo escribo yo. Estúdialos antes de generar nada.
+[PEGAR 2 EJEMPLOS DE TU FORMA DE ESCRIBIR]
+
+CONTEXTO: Mi producto es [X]. Mi cliente ideal es [Y].
+
+AHORA escríbeme [elige: un mensaje frío de LinkedIn / un email a un cliente / una respuesta a la duda "[pega la duda]"]:
+- Adaptado al cliente y su sector
+- En mi tono (el de los ejemplos)
+- Sin sonar a venta forzada
+- Dame 3 versiones para elegir
+
+Después de cada versión, dime en 1 línea por qué funcionaría.</div></div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">04 / 08</div>
+</section>
+
+<!-- ROL 3 — SEGUIMIENTO -->
+<section class="page">
+  <div class="skill-header">
+    <div class="skill-number"><div class="label">Rol</div><div class="num">03</div></div>
+    <div class="skill-title"><h2>El Seguimiento</h2><div class="tagline">Que ningún cliente se enfríe. Reactivación sin sonar pesado.</div></div>
+  </div>
+  <div class="block"><div class="block-label">Qué hace en tu equipo</div><div class="block-body">La mayoría de ventas se pierden en el seguimiento, no en la llamada. Este rol diseña la secuencia exacta para reactivar a quien se quedó a medias — sin el típico "¿qué tal? ¿lo has visto?".</div></div>
+  <div class="block"><div class="block-label">Prompt exacto</div><div class="prompt-box">ROL: Eres un experto en seguimiento comercial. Sabes que un buen follow-up aporta valor o avanza la conversación — nunca solo "recuerda que existo".
+
+CONTEXTO: Tengo un cliente que se quedó a medias. Te cuento la situación:
+- Qué hablamos: [resume]
+- Por qué se enfrió: [si lo sabes]
+- Cuánto tiempo lleva sin responder: [X]
+- Mi producto: [X]
+
+DISEÑA una secuencia de 3 mensajes de reactivación, espaciados en el tiempo. Para cada uno:
+1. Cuándo enviarlo (día X)
+2. El mensaje exacto (corto, en tono humano)
+3. Qué aporta o qué pregunta abre (nunca "solo por recordar")
+
+REGLA: cada mensaje debe dar una razón real para responder. Cero mensajes vacíos tipo "¿cómo lo ves?".</div></div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">05 / 08</div>
+</section>
+
+<!-- ROL 4 — ANALISTA -->
+<section class="page">
+  <div class="skill-header">
+    <div class="skill-number"><div class="label">Rol</div><div class="num">04</div></div>
+    <div class="skill-title"><h2>El Analista</h2><div class="tagline">Te dice dónde pierdes tiempo y ventas. Como un consultor, sin coste.</div></div>
+  </div>
+  <div class="block"><div class="block-label">Qué hace en tu equipo</div><div class="block-body">Cada semana revisa tus números y te dice qué está fallando y dónde enfocarte. No analiza tus llamadas grabadas (eso es otra liga) — analiza tu proceso y tus resultados para que no trabajes a ciegas.</div></div>
+  <div class="block"><div class="block-label">Prompt exacto</div><div class="prompt-box">ROL: Eres un consultor comercial que revisa los números de un vendedor cada semana y le dice, sin rodeos, dónde está perdiendo tiempo y ventas.
+
+CONTEXTO: Te paso mis números de esta semana:
+- Contactos nuevos: [X]
+- Respuestas / conversaciones abiertas: [X]
+- Llamadas / reuniones hechas: [X]
+- Ventas cerradas: [X]
+- Dónde noto que se atasca: [describe]
+
+ANALÍZALO y devuélveme:
+1. El CUELLO DE BOTELLA principal (en qué paso se cae más gente)
+2. Por qué probablemente pasa
+3. UNA sola cosa en la que enfocarme la próxima semana (la de más impacto)
+4. Cómo medir si ha funcionado
+
+REGLA: no me des 10 consejos. Dame el de más impacto. Prefiero foco a lista.</div></div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">06 / 08</div>
+</section>
+
+<!-- PAGE 7 — FLUJO -->
+<section class="page system-page">
+  <h2>Cómo encadenar los 4 roles</h2>
+  <p class="lead">Cada rol tiene su momento en tu semana. Usados en orden, son un equipo comercial funcionando solo — menos la llamada, que la pones tú.</p>
+  <ol class="flow-list">
+    <li><strong>Lunes — El SDR</strong>Investiga los clientes con los que vas a hablar esta semana. Tienes los dossiers listos antes de empezar.</li>
+    <li><strong>Lunes/Martes — El Copywriter</strong>Con los dossiers, escribe los primeros mensajes y el contenido de la semana.</li>
+    <li><strong>Durante la semana — La llamada (tú)</strong>La parte humana. Hablas con el cliente. Aquí no entra la IA.</li>
+    <li><strong>Jueves/Viernes — El Seguimiento</strong>Reactiva a quien se quedó a medias con la secuencia que te diseña.</li>
+    <li><strong>Viernes — El Analista</strong>Revisa los números de la semana y te dice en qué enfocarte la siguiente.</li>
+  </ol>
+  <div class="conclusion">El trabajo repetitivo de 4 roles, hecho por ti en una fracción del tiempo. <strong>Solo te queda lo que paga las facturas: hablar con el cliente.</strong></div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">07 / 08</div>
+</section>
+
+<!-- PAGE 8 — CTA -->
+<section class="page cta-page">
+  <div class="cover-top">
+    <div class="cover-logo">Practify <span>IA</span></div>
+    <div class="cover-eyebrow">La parte que falta</div>
+  </div>
+  <div>
+    <h2>Este sistema cubre todo.<br>Menos <span class="hl">la llamada.</span></h2>
+    <p class="body">Los 4 roles te resuelven el antes y el después. Pero la venta se gana o se pierde <strong>dentro de la llamada</strong> — en lo que dices, lo que no preguntas, lo que se te escapa en directo.</p>
+    <p class="body">Esa parte no la cubre ningún prompt. Y es justo donde más ventas se pierden sin que te des cuenta.</p>
+    <ul class="cta-list">
+      <li><strong>Análisis de tus llamadas reales</strong> — la IA marca el momento exacto donde se cae la venta.</li>
+      <li><strong>Roleplay por voz</strong> — entrena objeciones reales antes de cada call, en español.</li>
+      <li><strong>Feedback claro cada semana</strong> — qué funcionó, qué no, qué cambiar.</li>
+    </ul>
+    <div class="cta-box">
+      <div class="label">Prueba Practify IA gratis</div>
+      <div class="url">practifyia.com</div>
+      <div class="detail">7 días gratis, sin tarjeta. Sube una llamada real y mira cómo la analiza. En vivo.</div>
+    </div>
+  </div>
+  <div class="signature"><strong>Andrei Rentea</strong>Fundador de Practify IA<br>andrei@practifyia.com · linkedin.com/in/andreirentea</div>
+  <div class="pagenum">08 / 08</div>
+</section>
+
+</body>
+</html>
