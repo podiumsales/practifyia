@@ -48,6 +48,7 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         email,
         attributes: {
+          NOMBRE: name || '',
           FIRSTNAME: name || '',
           SOURCE: source || 'landing-claude-ventas'
         },
