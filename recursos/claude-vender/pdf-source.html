@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>El kit de Claude para vender — Practify IA</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+  :root{--bg:#0a0a0a;--bg-light:#fafafa;--ink:#0a0a0a;--ink-soft:#404040;--muted:#737373;--line:#e5e5e5;--purple-1:#7c3aed;--purple-2:#a78bfa;--purple-3:#c4b5fd;--purple-4:#ede9fe;}
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  html,body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--ink);}
+  @page{size:A4;margin:0;}
+  .page{width:210mm;height:297mm;padding:22mm 20mm;page-break-after:always;position:relative;overflow:hidden;background:var(--bg-light);}
+  .page:last-child{page-break-after:auto;}
+  .pagenum{position:absolute;bottom:12mm;right:20mm;font-size:9pt;color:var(--muted);letter-spacing:0.04em;}
+  .wordmark{position:absolute;bottom:12mm;left:20mm;font-size:9pt;font-weight:700;color:var(--ink);letter-spacing:-0.01em;}
+  .wordmark span{color:var(--purple-1);}
+  .cover{background:var(--bg);color:#fafafa;padding:30mm 22mm;display:flex;flex-direction:column;justify-content:space-between;}
+  .cover .wordmark{color:#fafafa;}.cover .pagenum{color:rgba(255,255,255,0.5);}
+  .cover-top{display:flex;justify-content:space-between;align-items:flex-start;}
+  .cover-logo{font-size:14pt;font-weight:800;letter-spacing:-0.02em;}
+  .cover-logo span{color:var(--purple-2);}
+  .cover-eyebrow{display:inline-block;padding:6px 12px;background:rgba(167,139,250,0.15);border:1px solid rgba(167,139,250,0.3);border-radius:999px;font-size:9pt;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--purple-3);}
+  .cover-main h1{font-size:50pt;line-height:1.02;letter-spacing:-0.04em;font-weight:800;margin-bottom:14mm;}
+  .cover-main h1 .hl{background:linear-gradient(180deg,transparent 60%,rgba(124,58,237,0.55) 60%);padding:0 4px;}
+  .cover-sub{font-size:14pt;line-height:1.5;color:rgba(255,255,255,0.78);max-width:140mm;font-weight:400;}
+  .cover-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:20mm;padding-top:12mm;border-top:1px solid rgba(255,255,255,0.12);}
+  .cover-foot .author{font-size:10pt;color:rgba(255,255,255,0.6);line-height:1.6;}
+  .cover-foot .author strong{color:#fafafa;font-weight:600;}
+  .cover-badge{text-align:right;font-size:9pt;color:rgba(255,255,255,0.5);}
+  .cover-badge .big{display:block;font-size:32pt;font-weight:800;color:var(--purple-2);line-height:1;letter-spacing:-0.03em;margin-bottom:4mm;}
+  .skill-header{display:flex;align-items:flex-start;gap:8mm;margin-bottom:9mm;padding-bottom:7mm;border-bottom:1px solid var(--line);}
+  .skill-number{flex-shrink:0;width:24mm;height:24mm;background:var(--bg);color:#fafafa;border-radius:4mm;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;}
+  .skill-number .label{font-size:7pt;letter-spacing:0.15em;text-transform:uppercase;color:var(--purple-3);margin-bottom:2mm;font-weight:600;}
+  .skill-number .num{font-size:26pt;font-weight:800;letter-spacing:-0.04em;}
+  .skill-title{flex:1;padding-top:2mm;}
+  .skill-title h2{font-size:21pt;font-weight:800;line-height:1.1;letter-spacing:-0.025em;margin-bottom:3mm;}
+  .skill-title .tagline{font-size:10.5pt;color:var(--muted);font-weight:500;}
+  .block{margin-bottom:6mm;}
+  .block-label{font-size:8pt;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--purple-1);margin-bottom:3mm;}
+  .block-body{font-size:10.5pt;line-height:1.55;color:var(--ink-soft);}
+  .block-body strong{color:var(--ink);font-weight:600;}
+  .prompt-box{background:var(--bg);color:#e5e5e5;border-radius:4mm;padding:6mm 7mm;font-family:'JetBrains Mono','Menlo',monospace;font-size:8pt;line-height:1.55;white-space:pre-wrap;border-left:4px solid var(--purple-1);}
+  .intro-page h1{font-size:36pt;line-height:1.05;letter-spacing:-0.035em;font-weight:800;margin-bottom:12mm;}
+  .intro-page h1 .hl{color:var(--purple-1);}
+  .intro-page p{font-size:12pt;line-height:1.6;color:var(--ink-soft);margin-bottom:6mm;max-width:155mm;}
+  .intro-page p strong{color:var(--ink);}
+  .intro-meta{margin-top:10mm;padding:8mm;background:var(--purple-4);border-left:3px solid var(--purple-1);border-radius:0 4mm 4mm 0;}
+  .intro-meta .label{font-size:8pt;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--purple-1);margin-bottom:3mm;}
+  .intro-meta .body{font-size:11pt;line-height:1.55;color:var(--ink);}
+  .system-page h2{font-size:28pt;line-height:1.1;letter-spacing:-0.03em;font-weight:800;margin-bottom:8mm;}
+  .system-page>p.lead{font-size:12pt;line-height:1.6;color:var(--ink-soft);margin-bottom:10mm;max-width:155mm;}
+  .flow-list{list-style:none;counter-reset:step;padding:0;margin-bottom:8mm;}
+  .flow-list li{counter-increment:step;padding:5mm 0 5mm 16mm;position:relative;font-size:11pt;line-height:1.55;color:var(--ink-soft);border-bottom:1px solid var(--line);}
+  .flow-list li:last-child{border-bottom:none;}
+  .flow-list li::before{content:counter(step);position:absolute;left:0;top:5mm;width:11mm;height:11mm;border-radius:50%;background:var(--purple-1);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13pt;font-weight:700;}
+  .flow-list li strong{color:var(--ink);font-weight:700;display:block;margin-bottom:1mm;font-size:12pt;}
+  .conclusion{padding:8mm;background:var(--bg);color:#fafafa;border-radius:4mm;font-size:11pt;line-height:1.6;}
+  .conclusion strong{color:var(--purple-2);font-weight:600;}
+  .cta-page{background:var(--bg);color:#fafafa;padding:30mm 22mm;display:flex;flex-direction:column;justify-content:space-between;}
+  .cta-page h2{font-size:36pt;line-height:1.05;letter-spacing:-0.035em;font-weight:800;margin-bottom:10mm;}
+  .cta-page h2 .hl{color:var(--purple-2);}
+  .cta-page .body{font-size:12pt;line-height:1.6;color:rgba(255,255,255,0.78);margin-bottom:6mm;max-width:150mm;}
+  .cta-page .body strong{color:#fafafa;font-weight:600;}
+  .cta-list{list-style:none;margin:6mm 0 10mm;padding:0;}
+  .cta-list li{padding:4mm 0 4mm 9mm;position:relative;font-size:11.5pt;color:rgba(255,255,255,0.85);line-height:1.5;border-bottom:1px solid rgba(255,255,255,0.08);}
+  .cta-list li::before{content:'';position:absolute;left:0;top:7mm;width:5mm;height:5mm;border-radius:50%;background:var(--purple-1);}
+  .cta-list li strong{color:#fff;font-weight:600;}
+  .cta-box{background:linear-gradient(135deg,var(--purple-1) 0%,#6d28d9 100%);border-radius:5mm;padding:8mm 9mm;margin-top:6mm;}
+  .cta-box .label{font-size:9pt;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.7);font-weight:700;margin-bottom:3mm;}
+  .cta-box .url{font-size:20pt;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:3mm;}
+  .cta-box .detail{font-size:10pt;color:rgba(255,255,255,0.85);line-height:1.5;}
+  .signature{margin-top:auto;margin-bottom:12mm;padding-top:8mm;border-top:1px solid rgba(255,255,255,0.12);font-size:10pt;color:rgba(255,255,255,0.6);line-height:1.6;}
+  .signature strong{color:#fafafa;font-weight:600;font-size:11pt;display:block;margin-bottom:1mm;}
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 — COVER -->
+<section class="page cover">
+  <div class="cover-top">
+    <div class="cover-logo">Practify <span>IA</span></div>
+    <div class="cover-eyebrow">Recurso gratuito</div>
+  </div>
+  <div class="cover-main">
+    <h1>El kit de Claude <span class="hl">para vender</span>.</h1>
+    <p class="cover-sub">8 agentes de Claude, uno para cada momento de la venta. Deja de usarlo como un chatbot y conviértelo en tu equipo comercial.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="author"><strong>Andrei Rentea</strong><br>Fundador de Practify IA<br>Para quien vende por mensaje, llamada o videollamada</div>
+    <div class="cover-badge"><span class="big">8</span>agentes · 12 páginas · 1 sistema</div>
+  </div>
+</section>
+
+<!-- PAGE 2 — INTRO -->
+<section class="page intro-page">
+  <h1>La mayoría usa Claude <span class="hl">como un chatbot.</span></h1>
+  <p>Preguntas sueltas, respuestas genéricas, copiar y pegar. Así Claude te ahorra cinco minutos, pero no te ayuda a vender más.</p>
+  <p>La diferencia está en convertirlo en <strong>un equipo de agentes especializados</strong>: cada uno con un trabajo concreto, experto en una parte de la venta. Uno entiende a tu cliente, otro escribe el primer mensaje, otro prepara la llamada, otro analiza por qué se cayó una venta.</p>
+  <p>Esto son <strong>8 agentes</strong> que cubren cada momento donde una venta se gana o se pierde. Todo menos la parte humana: la llamada y el cierre. Eso sigue siendo tuyo.</p>
+  <div class="intro-meta">
+    <div class="label">Cómo usar este kit</div>
+    <div class="body">Copia y pega cada agente en Claude (gratis o Pro). Rellena los [CORCHETES] con tu información. Empieza por el Agente 1 (Conoce a tu cliente) — su resultado alimenta a casi todos los demás.</div>
+  </div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">02 / 12</div>
+</section>
+
+<!-- AGENTE 1 — CONOCE A TU CLIENTE -->
+<section class="page">
+  <div class="skill-header">
+    <div class="skill-number"><div class="label">Agente</div><div class="num">01</div></div>
+    <div class="skill-title"><h2>Conoce a tu cliente</h2><div class="tagline">Quién es y qué necesita de verdad, antes de hablar con él.</div></div>
+  </div>
+  <div class="block"><div class="block-label">Por qué importa</div><div class="block-body">No vendes a una empresa, vendes a una persona con un problema. Este agente te da, en 5 minutos, lo que tardarías media hora en juntar abriendo diez pestañas: quién es, qué le preocupa y cómo hablarle para conectar.</div></div>
+  <div class="block"><div class="block-label">Agente (cópialo en Claude)</div><div class="prompt-box">ROL: Eres un analista comercial que prepara a un vendedor antes de hablar con un cliente. Tu respuesta es breve, ordenada y útil. No rellenas con paja.
+
+CONTEXTO: Te doy el perfil de un contacto y la web de su negocio. Lo que yo vendo es: [DESCRÍBELO EN 1 LÍNEA].
+
+DEVUÉLVEME, en bullets cortos:
+1. QUIÉN ES: a qué se dedica, qué responsabilidad tiene, qué se nota en su perfil
+2. SU NEGOCIO: qué hace, a quién vende, en qué momento parece estar
+3. QUÉ LE PREOCUPA: 2-3 problemas probables que lo que yo vendo podría resolver
+4. CÓMO HABLARLE: en 2 frases, por dónde entrar para que sienta que le entiendo
+5. QUÉ NO HACER: 1 error típico que lo cerraría en banda
+
+Si no tienes información de algún punto, escribe "sin datos claros". No te lo inventes.
+
+PERFIL: [pegar]
+WEB: [pegar]</div></div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">03 / 12</div>
+</section>
+
+<!-- AGENTE 2 — EL PRIMER MENSAJE -->
+<section class="page">
+  <div class="skill-header">
+    <div class="skill-number"><div class="label">Agente</div><div class="num">02</div></div>
+    <div class="skill-title"><h2>El primer mensaje</h2><div class="tagline">El que sí contestan. Adaptado a su mundo, no copia-pega.</div></div>
+  </div>
+  <div class="block"><div class="block-label">Por qué importa</div><div class="block-body">La diferencia entre que te contesten un 3% o un 12% no es el producto: es el primer mensaje. El típico copia-pega se ignora solo. Este agente escribe en tu tono, sobre lo que de verdad le importa al cliente.</div></div>
+  <div class="block"><div class="block-label">Agente (cópialo en Claude)</div><div class="prompt-box">ROL: Eres un experto en escribir primeros mensajes que la gente sí contesta. Escribes corto, humano y directo. Nunca suenas a plantilla ni a vendedor desesperado.
+
+PRIMERO aprende mi tono: te pego 2 ejemplos de cómo escribo yo. Estúdialos antes de generar nada.
+[PEGAR 2 EJEMPLOS DE TU FORMA DE ESCRIBIR]
+
+CONTEXTO:
+- Lo que vendo: [X]
+- A quién escribo (usa el dossier del Agente 1): [pega lo relevante]
+- Por dónde quiero entrar: [el ángulo que viste]
+
+ESCRÍBEME 3 versiones de un primer mensaje (email o mensaje directo):
+- Que arranque por algo de SU mundo, no por mí
+- Corto (4-6 líneas máximo)
+- Con una sola llamada a la acción suave al final
+- En MI tono (el de los ejemplos)
+
+Debajo de cada versión, dime en 1 línea por qué funcionaría.</div></div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">04 / 12</div>
+</section>
+
+<!-- AGENTE 3 — PREPARAR LA LLAMADA -->
+<section class="page">
+  <div class="skill-header">
+    <div class="skill-number"><div class="label">Agente</div><div class="num">03</div></div>
+    <div class="skill-title"><h2>Preparar la llamada</h2><div class="tagline">Las preguntas que hacen que el cliente se abra y te cuente lo que importa.</div></div>
+  </div>
+  <div class="block"><div class="block-label">Por qué importa</div><div class="block-body">Quien pregunta mejor, vende más. La mayoría llega a hablar con el cliente soltando lo que ofrece. El que gana llega con preguntas que hacen que el cliente diga en voz alta su propio problema — y entonces vender es fácil.</div></div>
+  <div class="block"><div class="block-label">Agente (cópialo en Claude)</div><div class="prompt-box">ROL: Eres un experto en conversaciones de venta. Sabes que la venta la gana quien hace que el cliente hable, no quien más habla.
+
+CONTEXTO:
+- Lo que vendo: [X]
+- Con quién voy a hablar (usa el dossier del Agente 1): [pega lo relevante]
+- Qué quiero conseguir de esta conversación: [ej. saber si encaja, agendar una demo, cerrar]
+
+DAME:
+1. 5 PREGUNTAS para que el cliente se abra y me cuente su situación real (de menos a más profunda)
+2. Por cada pregunta, qué estoy buscando entender con ella
+3. 2 SEÑALES de que de verdad le interesa, y 2 de que solo está mirando
+4. UNA frase para arrancar la conversación sin sonar a guion
+
+REGLA: preguntas abiertas, nada de interrogatorio. Que parezca una conversación, no un cuestionario.</div></div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">05 / 12</div>
+</section>
+
+<!-- AGENTE 4 — RESPONDER DUDAS -->
+<section class="page">
+  <div class="skill-header">
+    <div class="skill-number"><div class="label">Agente</div><div class="num">04</div></div>
+    <div class="skill-title"><h2>Responder dudas</h2><div class="tagline">Sin sonar a vendedor. Honesto, tranquilo, sin presión.</div></div>
+  </div>
+  <div class="block"><div class="block-label">Por qué importa</div><div class="block-body">Cuando un cliente duda no quiere que le convenzan: quiere sentirse seguro. La respuesta que cierra no es la más lista, es la que reconoce su duda y le da tranquilidad. Este agente te la da sin que suenes a venta forzada.</div></div>
+  <div class="block"><div class="block-label">Agente (cópialo en Claude)</div><div class="prompt-box">ROL: Eres un vendedor con experiencia que responde a las dudas de un cliente con calma y honestidad. Nunca presionas ni das respuestas defensivas. Tu objetivo es que el cliente se sienta seguro, no acorralado.
+
+CONTEXTO:
+- Lo que vendo: [X]
+- La duda exacta que me ha dicho el cliente: "[PEGA SUS PALABRAS]"
+- Lo que sé de su situación: [pega lo relevante]
+
+DEVUÉLVEME:
+1. QUÉ HAY DETRÁS de esa duda (qué teme de verdad, casi nunca es lo que dice literalmente)
+2. La RESPUESTA exacta que le daría (corta, honesta, en tono humano)
+3. Una PREGUNTA para devolverle, que mantenga viva la conversación
+
+REGLA: nada de "pero es que…". Primero reconoce su duda, luego responde. Si mi producto NO le encaja, dímelo: prefiero perder la venta a forzarla.</div></div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">06 / 12</div>
+</section>
+
+<!-- AGENTE 5 — HABLAR DE PRECIO -->
+<section class="page">
+  <div class="skill-header">
+    <div class="skill-number"><div class="label">Agente</div><div class="num">05</div></div>
+    <div class="skill-title"><h2>Hablar de precio</h2><div class="tagline">Cómo presentarlo para que sea una decisión fácil, no un problema.</div></div>
+  </div>
+  <div class="block"><div class="block-label">Por qué importa</div><div class="block-body">El precio no asusta por la cifra, asusta por cómo se cuenta. Si lo sueltas a secas, es un golpe. Si lo enmarcas en lo que el cliente gana o deja de perder, es una decisión sencilla. Este agente te ayuda a contarlo bien.</div></div>
+  <div class="block"><div class="block-label">Agente (cópialo en Claude)</div><div class="prompt-box">ROL: Eres un experto en presentar precios sin que el cliente se asuste. Sabes que el precio se entiende en relación a algo: lo que el cliente gana, ahorra o deja de perder.
+
+CONTEXTO:
+- Lo que vendo y su precio: [X cuesta Y]
+- Qué consigue el cliente con ello: [resultado concreto]
+- Su situación / qué le cuesta hoy NO tenerlo: [pega lo relevante]
+
+DAME:
+1. La FORMA de presentar el precio en 3-4 frases, enmarcado en lo que gana (no a secas)
+2. Una COMPARACIÓN sencilla que lo haga parecer pequeño frente al resultado
+3. Qué responder si dice "es caro" — sin bajar el precio ni ponerme a la defensiva
+4. Cómo cerrar la frase para invitar a decidir, sin presionar
+
+REGLA: nunca pedir perdón por el precio. Lenguaje claro, cero tecnicismos.</div></div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">07 / 12</div>
+</section>
+
+<!-- AGENTE 6 — EL "ME LO PIENSO" -->
+<section class="page">
+  <div class="skill-header">
+    <div class="skill-number"><div class="label">Agente</div><div class="num">06</div></div>
+    <div class="skill-title"><h2>El "me lo pienso"</h2><div class="tagline">La secuencia para acompañar a un indeciso hasta que decide. Sin perseguirle.</div></div>
+  </div>
+  <div class="block"><div class="block-label">Por qué importa</div><div class="block-body">"Me lo pienso" casi nunca es un no. Es una duda sin resolver o un mal momento. La mayoría de ventas en este punto se pierden por perseguir o por desaparecer. Este agente diseña el camino del medio: acompañar.</div></div>
+  <div class="block"><div class="block-label">Agente (cópialo en Claude)</div><div class="prompt-box">ROL: Eres un experto en mover a clientes indecisos. Sabes que "me lo pienso" es una duda sin resolver, no un rechazo. Acompañas sin perseguir y sin desaparecer.
+
+CONTEXTO:
+- Lo que vendo: [X]
+- Qué hablamos y dónde se quedó: [resume]
+- Qué dijo exactamente al dudar: "[pega sus palabras]"
+- Qué creo que le frena de verdad: [si lo intuyes]
+
+DISEÑA una secuencia de 3 mensajes espaciados en el tiempo. Por cada uno:
+1. Cuándo enviarlo (día X)
+2. El mensaje exacto (corto, humano, sin presión)
+3. Qué aporta o qué desbloquea (nunca "solo por saber si lo has pensado")
+
+REGLA: cada mensaje da una razón nueva para responder. El último deja claro que respeto su decisión, sea cual sea.</div></div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">08 / 12</div>
+</section>
+
+<!-- AGENTE 7 — SEGUIMIENTO -->
+<section class="page">
+  <div class="skill-header">
+    <div class="skill-number"><div class="label">Agente</div><div class="num">07</div></div>
+    <div class="skill-title"><h2>Seguimiento sin pesadez</h2><div class="tagline">Mensajes que dan un motivo real para responder.</div></div>
+  </div>
+  <div class="block"><div class="block-label">Por qué importa</div><div class="block-body">La mayoría de ventas no mueren en la conversación, mueren en el silencio de después. Pero el seguimiento típico ("¿qué tal, lo has visto?") molesta y se ignora. Un buen seguimiento siempre aporta algo. Este agente lo escribe.</div></div>
+  <div class="block"><div class="block-label">Agente (cópialo en Claude)</div><div class="prompt-box">ROL: Eres un experto en seguimiento. Sabes que un buen mensaje de seguimiento aporta valor o avanza la conversación — nunca es solo "recuerda que existo".
+
+CONTEXTO:
+- Lo que vendo: [X]
+- Con quién hago seguimiento y qué hablamos: [resume]
+- Cuánto lleva sin responder: [X días/semanas]
+- Algo útil que podría compartirle (un caso, una idea, un recurso): [si tienes]
+
+DISEÑA 3 mensajes de seguimiento, espaciados. Por cada uno:
+1. Cuándo enviarlo
+2. El mensaje exacto (corto, en tono humano)
+3. Qué aporta de verdad (un dato, una idea, algo que le sirva aunque no me compre)
+
+REGLA: cero mensajes vacíos tipo "¿cómo lo ves?". Cada uno tiene que ganarse la respuesta.</div></div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">09 / 12</div>
+</section>
+
+<!-- AGENTE 8 — POR QUÉ SE CAYÓ LA VENTA -->
+<section class="page">
+  <div class="skill-header">
+    <div class="skill-number"><div class="label">Agente</div><div class="num">08</div></div>
+    <div class="skill-title"><h2>Por qué se cayó la venta</h2><div class="tagline">Le cuentas qué pasó y te dice dónde la perdiste. Para no repetirlo.</div></div>
+  </div>
+  <div class="block"><div class="block-label">Por qué importa</div><div class="block-body">Una venta perdida es la lección más cara que pagas. La mayoría la olvida y repite el mismo error. Este agente convierte cada "no" en algo que te hace mejor en la siguiente conversación.</div></div>
+  <div class="block"><div class="block-label">Agente (cópialo en Claude)</div><div class="prompt-box">ROL: Eres un consultor de ventas que revisa una venta perdida con honestidad, sin consolar al vendedor. Buscas la causa real, no la excusa cómoda.
+
+CONTEXTO: Te cuento una venta que se cayó.
+- Lo que vendo: [X]
+- Quién era el cliente y qué buscaba: [resume]
+- Cómo fue la conversación, paso a paso: [cuéntalo]
+- Qué dijo al final / por qué creo que se cayó: [pega lo que sepas]
+
+ANALÍZALO y devuélveme:
+1. EL MOMENTO donde probablemente se perdió (no el final: el punto real)
+2. POR QUÉ pasó (qué hice o dejé de hacer)
+3. QUÉ habría dicho yo distinto en ese momento
+4. UNA cosa concreta para hacer diferente en la próxima venta parecida
+
+REGLA: sé directo. Prefiero una verdad incómoda a un consuelo inútil.</div></div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">10 / 12</div>
+</section>
+
+<!-- PAGE 11 — FLUJO -->
+<section class="page system-page">
+  <h2>El equipo, en orden</h2>
+  <p class="lead">No son 8 agentes sueltos. Es un equipo: cada uno prepara el trabajo del siguiente. Usados en orden, cubren todo el camino de una venta — menos la llamada, que la pones tú.</p>
+  <ol class="flow-list">
+    <li><strong>Antes de contactar — Conoce a tu cliente (1)</strong>Tienes claro quién es y por dónde entrar antes de escribir una sola palabra.</li>
+    <li><strong>El primer contacto — Mensaje (2) + Preparar la llamada (3)</strong>Escribes lo que sí contestan y llegas a hablar con las preguntas correctas.</li>
+    <li><strong>Durante la venta — La llamada (tú)</strong>La parte humana. Aquí no entra la IA. Hablas, escuchas, conectas.</li>
+    <li><strong>Cuando aparecen frenos — Dudas (4) + Precio (5) + "Me lo pienso" (6)</strong>Respondes con calma, presentas el precio bien y acompañas al indeciso.</li>
+    <li><strong>Después — Seguimiento (7) + Por qué se cayó (8)</strong>No dejas morir nada en el silencio, y cada "no" te hace mejor en el siguiente.</li>
+  </ol>
+  <div class="conclusion">Todo el trabajo que rodea una venta, hecho en una fracción del tiempo. <strong>Solo te queda lo que de verdad importa: que el cliente te diga que sí.</strong></div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">11 / 12</div>
+</section>
+
+<!-- PAGE 12 — CTA -->
+<section class="page cta-page">
+  <div class="cover-top">
+    <div class="cover-logo">Practify <span>IA</span></div>
+    <div class="cover-eyebrow">La parte que falta</div>
+  </div>
+  <div>
+    <h2>Estos agentes cubren todo.<br>Menos <span class="hl">la llamada.</span></h2>
+    <p class="body">Estos 8 agentes te resuelven el antes y el después. Pero la venta se gana o se pierde <strong>dentro de la llamada</strong> — en lo que dices, lo que no preguntas, lo que se te escapa en directo.</p>
+    <p class="body">Esa parte no la cubre ningún agente de texto. Y es justo donde más ventas se pierden sin que te des cuenta. Para entrenar eso construí Practify IA.</p>
+    <ul class="cta-list">
+      <li><strong>Roleplay por voz</strong> — entrena dudas y situaciones reales antes de cada conversación, en español.</li>
+      <li><strong>Análisis de tus llamadas reales</strong> — la IA marca el momento exacto donde se cae la venta.</li>
+      <li><strong>Feedback claro cada semana</strong> — qué funcionó, qué no, qué cambiar.</li>
+    </ul>
+    <div class="cta-box">
+      <div class="label">Prueba Practify IA gratis</div>
+      <div class="url">practifyia.com</div>
+      <div class="detail">7 días gratis, sin tarjeta. Entrena una venta o sube una llamada real y mira cómo la analiza. En vivo.</div>
+    </div>
+  </div>
+  <div class="signature"><strong>Andrei Rentea</strong>Fundador de Practify IA<br>andrei@practifyia.com · linkedin.com/in/andreirentea</div>
+  <div class="pagenum">12 / 12</div>
+</section>
+
+</body>
+</html>
