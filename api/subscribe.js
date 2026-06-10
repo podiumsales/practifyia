@@ -29,6 +29,7 @@ export default async function handler(req, res) {
     'landing-equipo-claude': parseInt(process.env.BREVO_LIST_ID_EQUIPOCOMERCIAL, 10) || defaultListId,
     'landing-vender-claude': parseInt(process.env.BREVO_LIST_ID_VENDER, 10) || defaultListId,
     'landing-claude-vender': parseInt(process.env.BREVO_LIST_ID_KIT, 10) || defaultListId,
+    'landing-ficha-claude': parseInt(process.env.BREVO_LIST_ID_FICHA, 10) || defaultListId,
   };
 
   const listId = LIST_BY_SOURCE[source] || defaultListId;

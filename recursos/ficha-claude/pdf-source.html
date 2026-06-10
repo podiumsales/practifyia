@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>La ficha maestra de Claude para vender — Practify IA</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+  :root{--bg:#0a0a0a;--bg-light:#fafafa;--ink:#0a0a0a;--ink-soft:#404040;--muted:#737373;--line:#e5e5e5;--purple-1:#7c3aed;--purple-2:#a78bfa;--purple-3:#c4b5fd;--purple-4:#ede9fe;}
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  html,body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--ink);}
+  @page{size:A4;margin:0;}
+  .page{width:210mm;height:297mm;padding:22mm 20mm;page-break-after:always;position:relative;overflow:hidden;background:var(--bg-light);}
+  .page:last-child{page-break-after:auto;}
+  .pagenum{position:absolute;bottom:12mm;right:20mm;font-size:9pt;color:var(--muted);letter-spacing:0.04em;}
+  .wordmark{position:absolute;bottom:12mm;left:20mm;font-size:9pt;font-weight:700;color:var(--ink);letter-spacing:-0.01em;}
+  .wordmark span{color:var(--purple-1);}
+  .cover{background:var(--bg);color:#fafafa;padding:30mm 22mm;display:flex;flex-direction:column;justify-content:space-between;}
+  .cover .wordmark{color:#fafafa;}.cover .pagenum{color:rgba(255,255,255,0.5);}
+  .cover-top{display:flex;justify-content:space-between;align-items:flex-start;}
+  .cover-logo{font-size:14pt;font-weight:800;letter-spacing:-0.02em;}
+  .cover-logo span{color:var(--purple-2);}
+  .cover-eyebrow{display:inline-block;padding:6px 12px;background:rgba(167,139,250,0.15);border:1px solid rgba(167,139,250,0.3);border-radius:999px;font-size:9pt;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--purple-3);}
+  .cover-main h1{font-size:48pt;line-height:1.02;letter-spacing:-0.04em;font-weight:800;margin-bottom:14mm;}
+  .cover-main h1 .hl{background:linear-gradient(180deg,transparent 60%,rgba(124,58,237,0.55) 60%);padding:0 4px;}
+  .cover-sub{font-size:14pt;line-height:1.5;color:rgba(255,255,255,0.78);max-width:140mm;font-weight:400;}
+  .cover-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:20mm;padding-top:12mm;border-top:1px solid rgba(255,255,255,0.12);}
+  .cover-foot .author{font-size:10pt;color:rgba(255,255,255,0.6);line-height:1.6;}
+  .cover-foot .author strong{color:#fafafa;font-weight:600;}
+  .cover-badge{text-align:right;font-size:9pt;color:rgba(255,255,255,0.5);}
+  .cover-badge .big{display:block;font-size:30pt;font-weight:800;color:var(--purple-2);line-height:1;letter-spacing:-0.03em;margin-bottom:4mm;}
+  .intro-page h1{font-size:34pt;line-height:1.05;letter-spacing:-0.035em;font-weight:800;margin-bottom:12mm;}
+  .intro-page h1 .hl{color:var(--purple-1);}
+  .intro-page p{font-size:12pt;line-height:1.6;color:var(--ink-soft);margin-bottom:6mm;max-width:155mm;}
+  .intro-page p strong{color:var(--ink);}
+  .intro-meta{margin-top:10mm;padding:8mm;background:var(--purple-4);border-left:3px solid var(--purple-1);border-radius:0 4mm 4mm 0;}
+  .intro-meta .label{font-size:8pt;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--purple-1);margin-bottom:3mm;}
+  .intro-meta .body{font-size:11pt;line-height:1.55;color:var(--ink);}
+  .sec-header{display:flex;align-items:flex-start;gap:8mm;margin-bottom:8mm;padding-bottom:6mm;border-bottom:1px solid var(--line);}
+  .sec-number{flex-shrink:0;width:22mm;height:22mm;background:var(--bg);color:#fafafa;border-radius:4mm;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;}
+  .sec-number .label{font-size:7pt;letter-spacing:0.13em;text-transform:uppercase;color:var(--purple-3);margin-bottom:2mm;font-weight:600;}
+  .sec-number .num{font-size:24pt;font-weight:800;letter-spacing:-0.04em;}
+  .sec-title{flex:1;padding-top:1mm;}
+  .sec-title h2{font-size:20pt;font-weight:800;line-height:1.1;letter-spacing:-0.025em;margin-bottom:2mm;}
+  .sec-title .tagline{font-size:10pt;color:var(--muted);font-weight:500;}
+  .field{margin-bottom:6mm;}
+  .field .q{font-size:10.5pt;font-weight:700;color:var(--ink);margin-bottom:2.5mm;}
+  .field .box{border:1px dashed var(--purple-2);border-radius:2.5mm;min-height:13mm;padding:3.5mm 4mm;background:rgba(124,58,237,0.035);}
+  .field .box .hint{font-size:8.5pt;color:var(--muted);font-style:italic;line-height:1.45;}
+  .steps{list-style:none;counter-reset:step;padding:0;margin-top:4mm;}
+  .steps li{counter-increment:step;padding:5mm 0 5mm 16mm;position:relative;font-size:11pt;line-height:1.55;color:var(--ink-soft);border-bottom:1px solid var(--line);}
+  .steps li:last-child{border-bottom:none;}
+  .steps li::before{content:counter(step);position:absolute;left:0;top:5mm;width:11mm;height:11mm;border-radius:50%;background:var(--purple-1);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13pt;font-weight:700;}
+  .steps li strong{color:var(--ink);font-weight:700;display:block;margin-bottom:1mm;font-size:12pt;}
+  .block{margin-bottom:6mm;}
+  .block-label{font-size:8pt;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--purple-1);margin-bottom:3mm;}
+  .block-body{font-size:10.5pt;line-height:1.55;color:var(--ink-soft);}
+  .block-body strong{color:var(--ink);font-weight:600;}
+  .prompt-box{background:var(--bg);color:#e5e5e5;border-radius:4mm;padding:6mm 7mm;font-family:'JetBrains Mono','Menlo',monospace;font-size:8pt;line-height:1.55;white-space:pre-wrap;border-left:4px solid var(--purple-1);}
+  .note{margin-top:6mm;padding:5mm 6mm;background:var(--purple-4);border-radius:3mm;font-size:9.5pt;line-height:1.5;color:var(--ink);}
+  .note strong{color:var(--purple-1);}
+  .cta-page{background:var(--bg);color:#fafafa;padding:30mm 22mm;display:flex;flex-direction:column;justify-content:space-between;}
+  .cta-page h2{font-size:34pt;line-height:1.05;letter-spacing:-0.035em;font-weight:800;margin-bottom:10mm;}
+  .cta-page h2 .hl{color:var(--purple-2);}
+  .cta-page .body{font-size:12pt;line-height:1.6;color:rgba(255,255,255,0.78);margin-bottom:6mm;max-width:150mm;}
+  .cta-page .body strong{color:#fafafa;font-weight:600;}
+  .cta-list{list-style:none;margin:6mm 0 10mm;padding:0;}
+  .cta-list li{padding:4mm 0 4mm 9mm;position:relative;font-size:11.5pt;color:rgba(255,255,255,0.85);line-height:1.5;border-bottom:1px solid rgba(255,255,255,0.08);}
+  .cta-list li::before{content:'';position:absolute;left:0;top:7mm;width:5mm;height:5mm;border-radius:50%;background:var(--purple-1);}
+  .cta-list li strong{color:#fff;font-weight:600;}
+  .cta-box{background:linear-gradient(135deg,var(--purple-1) 0%,#6d28d9 100%);border-radius:5mm;padding:8mm 9mm;margin-top:6mm;}
+  .cta-box .label{font-size:9pt;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.7);font-weight:700;margin-bottom:3mm;}
+  .cta-box .url{font-size:20pt;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:3mm;}
+  .cta-box .detail{font-size:10pt;color:rgba(255,255,255,0.85);line-height:1.5;}
+  .signature{margin-top:auto;margin-bottom:12mm;padding-top:8mm;border-top:1px solid rgba(255,255,255,0.12);font-size:10pt;color:rgba(255,255,255,0.6);line-height:1.6;}
+  .signature strong{color:#fafafa;font-weight:600;font-size:11pt;display:block;margin-bottom:1mm;}
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 — COVER -->
+<section class="page cover">
+  <div class="cover-top">
+    <div class="cover-logo">Practify <span>IA</span></div>
+    <div class="cover-eyebrow">Recurso gratuito</div>
+  </div>
+  <div class="cover-main">
+    <h1>La ficha maestra <span class="hl">de Claude para vender</span>.</h1>
+    <p class="cover-sub">El motivo por el que Claude te da respuestas genéricas no son tus prompts. Es que no sabe nada de lo que vendes. Esto lo arregla en una hoja.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="author"><strong>Andrei Rentea</strong><br>Fundador de Practify IA<br>Para quien vende por mensaje, llamada o videollamada</div>
+    <div class="cover-badge"><span class="big">1</span>ficha · la base de todo</div>
+  </div>
+</section>
+
+<!-- PAGE 2 — INTRO -->
+<section class="page intro-page">
+  <h1>Claude no falla. <span class="hl">Le falta contexto.</span></h1>
+  <p>Copias un prompt de LinkedIn, se lo pides a Claude para una venta y te suelta una respuesta de manual que no sirve para tu cliente real. Y piensas que la IA "no es para lo tuyo".</p>
+  <p>No es la IA. Es como meter a un comercial nuevo a vender tu producto <strong>sin contarle qué vendes, a quién, a qué precio y cómo.</strong> Va a hacerlo fatal. No por tonto: por ciego.</p>
+  <p>La gente que saca oro de Claude hace una cosa antes que las demás: <strong>le da contexto una sola vez.</strong> Esta ficha es ese contexto. La rellenas hoy y, a partir de ahí, cada respuesta de Claude sale como si llevara años dentro de tu negocio.</p>
+  <div class="intro-meta">
+    <div class="label">Qué vas a hacer</div>
+    <div class="body">Rellenar 4 bloques (qué vendes, precio, dudas y tu forma de escribir). Montarlos en Claude una vez. Y usar los prompts del final, que solo funcionan bien con la ficha puesta.</div>
+  </div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">02 / 11</div>
+</section>
+
+<!-- PAGE 3 — CÓMO FUNCIONA -->
+<section class="page">
+  <div class="sec-header">
+    <div class="sec-number"><div class="label">Cómo</div><div class="num">×</div></div>
+    <div class="sec-title"><h2>Cómo se usa la ficha</h2><div class="tagline">Tres pasos. Lo haces una vez y lo usas para siempre.</div></div>
+  </div>
+  <ol class="steps">
+    <li><strong>Rellena los 4 bloques</strong>Las páginas siguientes. Sé concreto, escribe como hablas, sin adornos. Cuanto más real, mejor te prepara Claude.</li>
+    <li><strong>Móntala en Claude</strong>Copia el prompt de activación (página 8) con tu ficha rellena. Eso le dice a Claude que use SIEMPRE ese contexto.</li>
+    <li><strong>Pídele lo que necesites</strong>Usa los prompts del final (o los tuyos). Ahora responde con tu cliente, tu precio y tu voz, no con genéricos.</li>
+  </ol>
+  <div class="note"><strong>Truco:</strong> si tienes Claude Pro, guarda la ficha como un "Project" o en las instrucciones personales. Así no tienes que pegarla cada vez: Claude ya te conoce en cada conversación nueva.</div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">03 / 11</div>
+</section>
+
+<!-- PAGE 4 — BLOQUE 1 -->
+<section class="page">
+  <div class="sec-header">
+    <div class="sec-number"><div class="label">Bloque</div><div class="num">01</div></div>
+    <div class="sec-title"><h2>Qué vendes y a quién</h2><div class="tagline">Lo que Claude tiene que entender antes que nada.</div></div>
+  </div>
+  <div class="field"><div class="q">Qué vendo, en 1 frase y sin tecnicismos</div><div class="box"><div class="hint">Ej: "Ayudo a clínicas dentales a llenar su agenda con pacientes nuevos cada mes."</div></div></div>
+  <div class="field"><div class="q">El resultado real que se lleva mi cliente (no lo que hago, lo que consigue)</div><div class="box"><div class="hint">Ej: "Pasan de 4 pacientes nuevos al mes a 20, sin depender del boca a boca."</div></div></div>
+  <div class="field"><div class="q">A quién se lo vendo (mi cliente ideal: quién es, a qué se dedica)</div><div class="box"><div class="hint">Ej: "Dueños de clínicas pequeñas, 1-3 sillones, que ellos mismos llevan el negocio."</div></div></div>
+  <div class="field"><div class="q">Qué le pasa cuando NO lo tiene (su problema real, lo que le quita el sueño)</div><div class="box"><div class="hint">Ej: "Meses flojos sin saber por qué, gastan en anuncios que no traen pacientes."</div></div></div>
+  <div class="field"><div class="q">Por qué me eligen a mí y no a otro</div><div class="box"><div class="hint">Ej: "Solo trabajo con clínicas, no soy una agencia que hace de todo para todos."</div></div></div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">04 / 11</div>
+</section>
+
+<!-- PAGE 5 — BLOQUE 2 -->
+<section class="page">
+  <div class="sec-header">
+    <div class="sec-number"><div class="label">Bloque</div><div class="num">02</div></div>
+    <div class="sec-title"><h2>Tu precio y cómo lo defiendes</h2><div class="tagline">Para que Claude no se ponga a la defensiva por ti.</div></div>
+  </div>
+  <div class="field"><div class="q">Mi precio y qué incluye</div><div class="box"><div class="hint">Ej: "1.200€/mes. Incluye campañas, gestión y un informe mensual de resultados."</div></div></div>
+  <div class="field"><div class="q">En qué se traduce ese precio para el cliente (lo que gana o deja de perder)</div><div class="box"><div class="hint">Ej: "Con 2 pacientes nuevos al mes ya lo ha recuperado. De media trae 15."</div></div></div>
+  <div class="field"><div class="q">Mi mejor respuesta cuando dicen "es caro"</div><div class="box"><div class="hint">Ej: "Entiendo. ¿Caro comparado con qué? Vamos a ver qué te cuesta hoy NO tenerlo."</div></div></div>
+  <div class="field"><div class="q">Lo que NO hago nunca con el precio</div><div class="box"><div class="hint">Ej: "No lo bajo a la primera. Si negocio, pido algo a cambio (permanencia, testimonio)."</div></div></div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">05 / 11</div>
+</section>
+
+<!-- PAGE 6 — BLOQUE 3 -->
+<section class="page">
+  <div class="sec-header">
+    <div class="sec-number"><div class="label">Bloque</div><div class="num">03</div></div>
+    <div class="sec-title"><h2>Las dudas que más te ponen</h2><div class="tagline">Tus 3 frenos típicos y tu mejor respuesta a cada uno.</div></div>
+  </div>
+  <div class="field"><div class="q">Freno 1 — la frase exacta que te sueltan + tu mejor respuesta</div><div class="box"><div class="hint">Ej: "Me lo pienso." → "Claro. ¿Qué es lo que más te haría dudar ahora mismo?"</div></div></div>
+  <div class="field"><div class="q">Freno 2 — la frase + tu respuesta</div><div class="box"><div class="hint">Ej: "Ya trabajo con alguien." → "Perfecto, ¿y qué te gustaría que hiciera mejor?"</div></div></div>
+  <div class="field"><div class="q">Freno 3 — la frase + tu respuesta</div><div class="box"><div class="hint">Ej: "Tengo que consultarlo." → "Lo entiendo. ¿Qué crees que te van a preguntar?"</div></div></div>
+  <div class="note"><strong>Por qué importa:</strong> cuando Claude conoce tus frenos reales y tus respuestas, deja de inventarse réplicas de manual y te ayuda a afinar las TUYAS.</div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">06 / 11</div>
+</section>
+
+<!-- PAGE 7 — BLOQUE 4 -->
+<section class="page">
+  <div class="sec-header">
+    <div class="sec-number"><div class="label">Bloque</div><div class="num">04</div></div>
+    <div class="sec-title"><h2>Tu forma de escribir</h2><div class="tagline">Para que suene a ti y no a robot.</div></div>
+  </div>
+  <div class="field"><div class="q">Pega 2 mensajes reales tuyos (un email, un mensaje que funcionó)</div><div class="box" style="min-height:24mm;"><div class="hint">Ej: pega aquí 2 textos tal cual los escribiste tú. Claude aprende tu tono de ahí.</div></div></div>
+  <div class="field"><div class="q">Palabras o expresiones que uso mucho / que NO uso jamás</div><div class="box"><div class="hint">Ej: "Uso: 'oye', 'te cuento', 'sin rollos'. NO uso: 'estimado', 'sinergias', 'a nivel de'."</div></div></div>
+  <div class="field"><div class="q">Mi tono en una línea</div><div class="box"><div class="hint">Ej: "Cercano y directo, como hablando con un amigo, pero claro y sin paja."</div></div></div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">07 / 11</div>
+</section>
+
+<!-- PAGE 8 — PROMPT DE ACTIVACIÓN -->
+<section class="page">
+  <div class="sec-header">
+    <div class="sec-number"><div class="label">Monta</div><div class="num">→</div></div>
+    <div class="sec-title"><h2>Activa la ficha en Claude</h2><div class="tagline">Pega esto con tu ficha rellena. Una vez.</div></div>
+  </div>
+  <div class="block"><div class="block-label">Prompt de activación</div><div class="prompt-box">A partir de ahora eres mi asistente de ventas. Vas a ayudarme a vender mejor, y SIEMPRE vas a usar el contexto de mi negocio que te paso aquí abajo. No respondas con consejos genéricos: responde con MI cliente, MI precio y MI forma de escribir.
+
+=== MI FICHA DE VENTAS ===
+
+QUÉ VENDO Y A QUIÉN:
+[pega tu Bloque 1]
+
+PRECIO Y CÓMO LO DEFIENDO:
+[pega tu Bloque 2]
+
+LAS DUDAS QUE MÁS ME PONEN:
+[pega tu Bloque 3]
+
+MI FORMA DE ESCRIBIR:
+[pega tu Bloque 4]
+
+=== FIN DE LA FICHA ===
+
+Confírmame que lo has entendido resumiéndome en 3 líneas a quién vendo, qué problema le resuelvo y cómo escribo yo. A partir de ahí, espera mis peticiones.</div></div>
+  <div class="note"><strong>Lo notas al instante:</strong> Claude te devuelve el resumen con TUS palabras. Si algo no encaja, corrígelo ahí mismo. Esa corrección también se queda.</div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">08 / 11</div>
+</section>
+
+<!-- PAGE 9 — BONUS PROMPT 1 -->
+<section class="page">
+  <div class="sec-header">
+    <div class="sec-number"><div class="label">Úsala</div><div class="num">01</div></div>
+    <div class="sec-title"><h2>Prepárame esta venta</h2><div class="tagline">Con la ficha puesta, te deja la conversación lista.</div></div>
+  </div>
+  <div class="block"><div class="block-body">Con la ficha ya activada, este prompt aprovecha todo tu contexto para prepararte una venta concreta de principio a fin.</div></div>
+  <div class="block"><div class="block-label">Prompt</div><div class="prompt-box">Usando mi ficha de ventas, prepárame esta conversación con un cliente concreto.
+
+EL CLIENTE: [quién es / pega su perfil o lo que sepas]
+POR DÓNDE VAMOS: [primer contacto / ya hemos hablado / me está dudando]
+
+DAME, en bullets cortos:
+1. Cómo enfocar a ESTE cliente según lo que vendo y a quién suelo vender
+2. 3 preguntas para que se abra (en mi tono)
+3. Las 2 dudas que probablemente me ponga y mi respuesta (usa mis frenos de la ficha)
+4. La frase con la que cerraría o avanzaría, sin presionar
+
+Todo con mi cliente, mi precio y mi forma de escribir. Nada genérico.</div></div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">09 / 11</div>
+</section>
+
+<!-- PAGE 10 — BONUS PROMPT 2 -->
+<section class="page">
+  <div class="sec-header">
+    <div class="sec-number"><div class="label">Úsala</div><div class="num">02</div></div>
+    <div class="sec-title"><h2>Escríbelo en mi voz</h2><div class="tagline">Mensajes que suenan a ti, no a plantilla.</div></div>
+  </div>
+  <div class="block"><div class="block-body">El uso más rápido y más útil de la ficha: cualquier mensaje, escrito en tu tono, sobre lo que de verdad le importa a tu cliente.</div></div>
+  <div class="block"><div class="block-label">Prompt</div><div class="prompt-box">Usando mi ficha de ventas, escríbeme [un primer mensaje / una respuesta a una duda / un mensaje de seguimiento].
+
+SITUACIÓN: [cuéntala en 2 líneas]
+LO QUE QUIERO CONSEGUIR: [que me conteste / que agende / que decida]
+
+REGLAS:
+- En MI tono (el de los ejemplos de mi ficha)
+- Corto y humano, sin sonar a vendedor
+- Que arranque por algo de SU mundo, no por mí
+- Una sola llamada a la acción al final
+
+Dame 2 versiones y dime en 1 línea por qué funcionaría cada una.</div></div>
+  <div class="note"><strong>Regla de oro:</strong> cuanto mejor sea tu Bloque 4 (tu forma de escribir), menos vas a tener que retocar. Pega ejemplos reales, no inventados.</div>
+  <div class="wordmark">Practify <span>IA</span></div>
+  <div class="pagenum">10 / 11</div>
+</section>
+
+<!-- PAGE 11 — CTA -->
+<section class="page cta-page">
+  <div class="cover-top">
+    <div class="cover-logo">Practify <span>IA</span></div>
+    <div class="cover-eyebrow">La parte que falta</div>
+  </div>
+  <div>
+    <h2>La ficha prepara la venta.<br>Tú tienes que <span class="hl">darla.</span></h2>
+    <p class="body">Con esta ficha, Claude te prepara cada venta con tu cliente, tu precio y tu voz. El antes lo tienes resuelto.</p>
+    <p class="body">Pero la venta se gana <strong>dentro de la llamada</strong> — en lo que dices cuando te sueltan "es caro", en el silencio que no aguantas, en el tono cuando se complica. Eso no se prepara escribiendo. Se entrena hablando.</p>
+    <ul class="cta-list">
+      <li><strong>Roleplay por voz</strong> — practica tus llamadas y tus frenos reales, en voz alta, en español.</li>
+      <li><strong>Análisis de tus llamadas reales</strong> — la IA marca el momento exacto donde se cae la venta.</li>
+      <li><strong>Feedback claro cada semana</strong> — qué funcionó, qué no, qué cambiar.</li>
+    </ul>
+    <div class="cta-box">
+      <div class="label">Prueba Practify IA gratis</div>
+      <div class="url">practifyia.com</div>
+      <div class="detail">7 días gratis, sin tarjeta. Entrena una venta o sube una llamada real y mira cómo la analiza. En vivo.</div>
+    </div>
+  </div>
+  <div class="signature"><strong>Andrei Rentea</strong>Fundador de Practify IA<br>andrei@practifyia.com · linkedin.com/in/andreirentea</div>
+  <div class="pagenum">11 / 11</div>
+</section>
+
+</body>
+</html>
